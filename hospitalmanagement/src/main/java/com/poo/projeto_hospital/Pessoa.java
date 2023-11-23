@@ -1,13 +1,13 @@
 package com.poo.projeto_hospital;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Pessoa {
     private final String nome;
     private final String cpf;
-    private final Date dataNascimento;
+    private final LocalDateTime dataNascimento;
 
-    public Pessoa(String nome, String cpf, Date dataNascimento) {
+    public Pessoa(String nome, String cpf, LocalDateTime dataNascimento) {
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
@@ -21,7 +21,7 @@ public class Pessoa {
         return cpf;
     }
 
-    public Date getDataNascimento() {
+    public LocalDateTime getDataNascimento() {
         return dataNascimento;
     }
 }
