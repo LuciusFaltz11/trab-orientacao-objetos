@@ -1,8 +1,6 @@
 package com.poo.projeto_hospital;
 
-import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 public class Medico extends Pessoa {
     private String especialidade;
@@ -10,7 +8,7 @@ public class Medico extends Pessoa {
     private String inicioExpediente;
     private String finalExpediente;
 
-    public Medico(String nome, String cpf, LocalDateTime dataNascimento, String especialidade, String inicioExpediente, String finalExpediente) {
+    public Medico(String nome, String cpf, LocalDate dataNascimento, String especialidade, String inicioExpediente, String finalExpediente) {
         super(nome, cpf, dataNascimento);
         this.especialidade = especialidade;
         this.agenda = new AgendaMedico();
