@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.poo.projeto_hospital;
+package com.poo.projeto_hospital.paginaInicial_login;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -27,7 +27,7 @@ import javax.swing.SwingUtilities;
  *
  * @author luiza
  */
-public class Login {
+public class Login extends FormatacaoInicial {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -44,34 +44,13 @@ public class Login {
         frame.setResizable(false);
 
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
-        criaTitulo(frame);
-        criaPainelImagem(frame);
+        criarTitulo(frame, "Login");
+        criaPainelImagem(frame, "hospitalmanagement/src/main/resources/images/iconeLogin.png");
         criaFormularioLogin(frame);
         renderizaBotao(frame);
 
         frame.pack();
         frame.setVisible(true);
-    }
-
-    private static void criaPainelImagem(JFrame frame) {
-
-        JPanel iconePanel = new JPanel();
-        GridBagLayout layout = new GridBagLayout();
-        iconePanel.setLayout(layout);
-        iconePanel.setPreferredSize(new Dimension(768, 100));
-
-        ImageIcon imageIcon = new ImageIcon("hospitalmanagement/src/main/resources/images/iconeCerto.png");
-        JLabel jLabel = new JLabel(imageIcon);
-        jLabel.setHorizontalAlignment(JLabel.CENTER);
-        jLabel.setVerticalAlignment(JLabel.CENTER);
-
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.weighty = 1;
-
-        iconePanel.add(jLabel, gbc);
-        frame.getContentPane().add(iconePanel, BorderLayout.CENTER);
     }
 
     private static void criaFormularioLogin(JFrame frame) {
@@ -92,6 +71,7 @@ public class Login {
         formularioPanel.add(passwordField, gbc);
 
         frame.getContentPane().add(formularioPanel, BorderLayout.SOUTH);
+
     }
 
     private static void renderizaBotao(JFrame frame) {
@@ -107,17 +87,4 @@ public class Login {
 
         frame.getContentPane().add(botaoPanel, BorderLayout.PAGE_END);
     }
-
-    private static void criaTitulo(JFrame frame) {
-        JPanel tituloPanel = new JPanel();
-        tituloPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        tituloPanel.setPreferredSize(new Dimension(768, 50));
-
-        JLabel tituloLabel = new JLabel("Login");
-        tituloLabel.setFont(tituloLabel.getFont().deriveFont(20.0f));
-        tituloPanel.add(tituloLabel);
-
-        frame.getContentPane().add(tituloPanel, BorderLayout.NORTH);
-    }
-
 }

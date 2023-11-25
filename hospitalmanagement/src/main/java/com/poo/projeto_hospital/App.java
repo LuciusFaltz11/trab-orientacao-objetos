@@ -1,26 +1,25 @@
 package com.poo.projeto_hospital;
+
 import java.awt.FlowLayout;
 import java.time.LocalDate;
 import java.util.Calendar;
 import javax.swing.*;
 
+import com.poo.projeto_hospital.paginaInicial_login.Login;
+
 /**
  * Hello world!
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         Login tela = new Login();
-        
-        
-        
-        
+
         Medico medico = new Medico("Dr. João", "21111623708", LocalDate.of(1980, 1, 1), "Cardiologia", "8:00", "18:00");
 
         // Criar um paciente
-        Paciente paciente = new Paciente("Maria", "21111623708", LocalDate.of(1990, 5, 15), "Paciente com dor de barriga");
+        Paciente paciente = new Paciente("Maria", "21111623708", LocalDate.of(1990, 5, 15),
+                "Paciente com dor de barriga");
 
         // Criar duas consultas para o paciente com o médico
         LocalDate dataConsulta1 = LocalDate.of(2023, 1, 15);
