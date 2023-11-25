@@ -1,1 +1,7 @@
-/target
+#maven
+target/
+
+# IntelliJ
+.idea/
+*.iml
+*.iws

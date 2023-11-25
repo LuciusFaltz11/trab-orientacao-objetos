@@ -1,6 +1,8 @@
 package com.poo.projeto_hospital;
+import java.awt.FlowLayout;
 import java.time.LocalDate;
 import java.util.Calendar;
+import javax.swing.*;
 
 /**
  * Hello world!
@@ -10,6 +12,11 @@ public class App
 {
     public static void main( String[] args )
     {
+        Login tela = new Login();
+        
+        
+        
+        
         Medico medico = new Medico("Dr. João", "21111623708", LocalDate.of(1980, 1, 1), "Cardiologia", "8:00", "18:00");
 
         // Criar um paciente
