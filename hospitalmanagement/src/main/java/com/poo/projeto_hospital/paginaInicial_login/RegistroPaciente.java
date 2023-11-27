@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -36,7 +37,10 @@ public class RegistroPaciente extends FormatacaoInicial {
         JFrame frame = new JFrame("Hospital Manager");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(768, 768);
+        frame.setPreferredSize(new Dimension(768, 768));
         frame.setResizable(false);
+
+        frame.pack();
 
         criarTitulo(frame, "Registro de Paciente");
         criaPainelImagem(frame, "hospitalmanagement/src/main/resources/images/iconeRegistro.png");
@@ -50,66 +54,96 @@ public class RegistroPaciente extends FormatacaoInicial {
      * @param frame
      */
     private static void formuláriosInfoPaciente(JFrame frame) {
-        JPanel panel = new JPanel(new GridLayout(1, 1));
-        panel.setLayout(new GridBagLayout());
+        JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.CENTER;
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setPreferredSize(new Dimension(768, 400));
 
         JLabel informacoesPessoaisLabel = new JLabel("Informações Pessoais");
         informacoesPessoaisLabel.setFont(new Font("Arial", Font.PLAIN, 18));
-        panel.add(informacoesPessoaisLabel);
+        panel.add(informacoesPessoaisLabel, gbc);
 
         JLabel nomeLabel = new JLabel("Nome");
         nomeLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+        nomeLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         JTextField nomeField = new JTextField(20);
         nomeField.setFont(new Font("Arial", Font.PLAIN, 15));
-        panel.add(nomeLabel);
-        panel.add(nomeField);
+        nomeField.setAlignmentX(Component.LEFT_ALIGNMENT);
+        panel.add(nomeLabel, gbc);
+        panel.add(nomeField, gbc);
 
         JLabel cpfLabel = new JLabel("CPF");
         cpfLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+        cpfLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         JTextField cpfField = new JTextField(20);
         cpfField.setFont(new Font("Arial", Font.PLAIN, 15));
-        panel.add(cpfLabel);
-        panel.add(cpfField);
+        cpfField.setAlignmentX(Component.LEFT_ALIGNMENT);
+        panel.add(cpfLabel, gbc);
+        panel.add(cpfField, gbc);
 
         JLabel dataNascimentoLabel = new JLabel("Data de Nascimento (dd/mm/aaaa)");
         dataNascimentoLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+        dataNascimentoLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         JTextField dataNascimentoField = new JTextField(20);
         dataNascimentoField.setFont(new Font("Arial", Font.PLAIN, 15));
-        panel.add(dataNascimentoLabel);
-        panel.add(dataNascimentoField);
+        dataNascimentoField.setAlignmentX(Component.LEFT_ALIGNMENT);
+        panel.add(dataNascimentoLabel, gbc);
+        panel.add(dataNascimentoField, gbc);
 
         JLabel sexoLabel = new JLabel("Sexo (F/M)");
         sexoLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+        sexoLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         JTextField sexoField = new JTextField(20);
         sexoField.setFont(new Font("Arial", Font.PLAIN, 15));
-        panel.add(sexoLabel);
-        panel.add(sexoField);
+        sexoField.setAlignmentX(Component.LEFT_ALIGNMENT);
+        panel.add(sexoLabel, gbc);
+        panel.add(sexoField, gbc);
 
         JLabel informacoesLoginLabel = new JLabel("Informações de Login");
         informacoesLoginLabel.setFont(new Font("Arial", Font.PLAIN, 18));
-        panel.add(informacoesLoginLabel);
+        panel.add(informacoesLoginLabel, gbc);
 
         JLabel emailLabel = new JLabel("Email");
         emailLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+        emailLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         JTextField emailField = new JTextField(20);
         emailField.setFont(new Font("Arial", Font.PLAIN, 15));
-        panel.add(emailLabel);
-        panel.add(emailField);
+        emailField.setAlignmentX(Component.LEFT_ALIGNMENT);
+        panel.add(emailLabel, gbc);
+        panel.add(emailField, gbc);
 
         JLabel senhaLabel = new JLabel("Senha (minímo 8 caracteres)");
         senhaLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+        senhaLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         JPasswordField passwordField = new JPasswordField(20);
         passwordField.setFont(new Font("Arial", Font.PLAIN, 15));
-        panel.add(senhaLabel);
-        panel.add(passwordField);
+        passwordField.setAlignmentX(Component.LEFT_ALIGNMENT);
+        panel.add(senhaLabel, gbc);
+        panel.add(passwordField, gbc);
 
         frame.getContentPane().add(panel, BorderLayout.SOUTH);
 
-        // Adiciona espaço entre a borda da direita e da esquerda
-        panel.setBorder(BorderFactory.createEmptyBorder(0, 30, 10, 30));
+        JPanel botaPanel = new JPanel();
+        botaPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        criaBotao(panel);
+        panel.add(botaPanel);
+
+        panel.setBorder(BorderFactory.createEmptyBorder(0, 60, 10, 60));
+    }
+
+    private static void criaBotao(JPanel panel) {
+        JPanel botaoPanel = new JPanel();
+        botaoPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        JButton criarContaButton = new JButton("Criar nova conta");
+        JButton voltarButton = new JButton("Voltar");
+
+        botaoPanel.add(voltarButton);
+        botaoPanel.add(criarContaButton);
+        botaoPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 10, 0));
+
+        panel.add(botaoPanel);
     }
 }
