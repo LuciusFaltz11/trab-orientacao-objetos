@@ -10,12 +10,14 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.TextField;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
@@ -44,23 +46,70 @@ public class RegistroPaciente extends FormatacaoInicial {
         frame.setVisible(true);
     }
 
+    /**
+     * @param frame
+     */
     private static void formuláriosInfoPaciente(JFrame frame) {
-        JPanel panel = new JPanel(new GridLayout(1, 2));
+        JPanel panel = new JPanel(new GridLayout(1, 1));
         panel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        JPanel leftPanel = new JPanel();
-        // Adicione os componentes ao leftPanel
+        JLabel informacoesPessoaisLabel = new JLabel("Informações Pessoais");
+        informacoesPessoaisLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+        panel.add(informacoesPessoaisLabel);
 
-        JPanel rightPanel = new JPanel();
-        // Adicione os componentes ao rightPanel
+        JLabel nomeLabel = new JLabel("Nome");
+        nomeLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+        JTextField nomeField = new JTextField(20);
+        nomeField.setFont(new Font("Arial", Font.PLAIN, 15));
+        panel.add(nomeLabel);
+        panel.add(nomeField);
 
-        panel.add(leftPanel);
-        panel.add(rightPanel);
+        JLabel cpfLabel = new JLabel("CPF");
+        cpfLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+        JTextField cpfField = new JTextField(20);
+        cpfField.setFont(new Font("Arial", Font.PLAIN, 15));
+        panel.add(cpfLabel);
+        panel.add(cpfField);
+
+        JLabel dataNascimentoLabel = new JLabel("Data de Nascimento (dd/mm/aaaa)");
+        dataNascimentoLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+        JTextField dataNascimentoField = new JTextField(20);
+        dataNascimentoField.setFont(new Font("Arial", Font.PLAIN, 15));
+        panel.add(dataNascimentoLabel);
+        panel.add(dataNascimentoField);
+
+        JLabel sexoLabel = new JLabel("Sexo (F/M)");
+        sexoLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+        JTextField sexoField = new JTextField(20);
+        sexoField.setFont(new Font("Arial", Font.PLAIN, 15));
+        panel.add(sexoLabel);
+        panel.add(sexoField);
+
+        JLabel informacoesLoginLabel = new JLabel("Informações de Login");
+        informacoesLoginLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+        panel.add(informacoesLoginLabel);
+
+        JLabel emailLabel = new JLabel("Email");
+        emailLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+        JTextField emailField = new JTextField(20);
+        emailField.setFont(new Font("Arial", Font.PLAIN, 15));
+        panel.add(emailLabel);
+        panel.add(emailField);
+
+        JLabel senhaLabel = new JLabel("Senha (minímo 8 caracteres)");
+        senhaLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+        JPasswordField passwordField = new JPasswordField(20);
+        passwordField.setFont(new Font("Arial", Font.PLAIN, 15));
+        panel.add(senhaLabel);
+        panel.add(passwordField);
 
         frame.getContentPane().add(panel, BorderLayout.SOUTH);
-    }
 
+        // Adiciona espaço entre a borda da direita e da esquerda
+        panel.setBorder(BorderFactory.createEmptyBorder(0, 30, 10, 30));
+    }
 }
