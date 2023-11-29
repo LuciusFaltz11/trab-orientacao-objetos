@@ -31,4 +31,16 @@ public class Pessoa {
         return dataNascimento;
     }
 
+    public String getCidade() {
+        return cidade;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
 }

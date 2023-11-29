@@ -221,7 +221,19 @@ public class RegistroPaciente extends FormatacaoInicial {
                     JOptionPane.showMessageDialog(null, "Sexo inválido!", "Sexo Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
+
+                Usuario usuario = new Usuario(email, senha, nome, cpf, dataNascimento, cidade, estado, sexo);
+                armazenarUsuario(usuario);
+                Login login = new Login();
+                login.main(null);
+                finalFrame.dispose();
+
             }
+
+            private void armazenarUsuario(Usuario novo) {
+                Arquivo.salvarUsuario(novo);
+            }
+
         });
 
         frame.add(botaoPanel, BorderLayout.PAGE_END);
@@ -229,4 +241,5 @@ public class RegistroPaciente extends FormatacaoInicial {
         frame.add(botaoPanel, BorderLayout.PAGE_END);
 
     }
+
 }
