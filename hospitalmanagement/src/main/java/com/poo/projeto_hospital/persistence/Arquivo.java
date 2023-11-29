@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 public class Arquivo {
 
-    private static final String NOME_ARQUIVO = "hospitalmanagement/src/main/java/com/infoFile/usuarios.txt";
+    private static final String NOME_ARQUIVO = "hospitalmanagement/src/main/java/com/poo/projeto_hospital/infoFile/usuarios.txt";
 
     public static boolean emailJaRegistrado(String email) {
         try (BufferedReader reader = new BufferedReader(new FileReader(NOME_ARQUIVO))) {
