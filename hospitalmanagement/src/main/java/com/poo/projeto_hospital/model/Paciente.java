@@ -1,16 +1,18 @@
-package com.poo.projeto_hospital;
+package com.poo.projeto_hospital.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.poo.projeto_hospital.Consulta;
+
 public class Paciente extends Pessoa {
     private List<Consulta> consultas;
     private String laudo;
 
-    public Paciente(String nome, String cpf, LocalDate dataNascimento, String laudo) {
-        super(nome, cpf, dataNascimento);
-        this.laudo = laudo;
+    public Paciente(String nome, String cpf, String dataNascimento, String cidade, String estado, String sexo) {
+        super(nome, cpf, dataNascimento, cidade, estado, sexo);
+        this.laudo = null;
         this.consultas = new ArrayList<>();
     }
 

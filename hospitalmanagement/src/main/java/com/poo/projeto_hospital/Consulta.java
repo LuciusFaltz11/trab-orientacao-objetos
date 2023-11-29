@@ -2,6 +2,8 @@ package com.poo.projeto_hospital;
 
 import java.time.LocalDate;
 
+import com.poo.projeto_hospital.model.Paciente;
+
 public class Consulta {
     private Paciente paciente;
     private Medico medico;
