@@ -1,23 +1,15 @@
 package com.poo.projeto_hospital.view.paginaInicial_login;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.awt.Insets;
 
 import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -29,14 +21,25 @@ import javax.swing.SwingUtilities;
 
 import com.poo.projeto_hospital.exception.CPFException;
 import com.poo.projeto_hospital.exception.DataException;
+import com.poo.projeto_hospital.exception.EmailException;
 import com.poo.projeto_hospital.exception.SenhaException;
 import com.poo.projeto_hospital.model.CPF;
 import com.poo.projeto_hospital.model.Data;
 import com.poo.projeto_hospital.model.Email;
+import com.poo.projeto_hospital.model.Senha;
 import com.poo.projeto_hospital.model.Usuario;
 import com.poo.projeto_hospital.persistence.Arquivo;
 
 public class RegistroPaciente extends FormatacaoInicial {
+
+    private static JTextField nomeField;
+    private static JTextField cpfField;
+    private static JTextField dataNascimentoField;
+    private static JTextField cidadeField;
+    private static JTextField estadoField;
+    private static JTextField sexoField;
+    private static JTextField emailField;
+    private static JPasswordField passwordField;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -82,37 +85,37 @@ public class RegistroPaciente extends FormatacaoInicial {
         // Nome
         JLabel nomeLabel = new JLabel("Nome");
         nomeLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        JTextField nomeField = new JTextField(20);
+        nomeField = new JTextField(20);
         nomeField.setFont(new Font("Arial", Font.PLAIN, 16));
 
         // CPF
         JLabel cpfLabel = new JLabel("CPF");
         cpfLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        JTextField cpfField = new JTextField(20);
+        cpfField = new JTextField(20);
         cpfField.setFont(new Font("Arial", Font.PLAIN, 16));
 
         // Data de Nascimento
         JLabel dataNascimentoLabel = new JLabel("Data de Nascimento(dd/mm/aaaa)");
         dataNascimentoLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        JTextField dataNascimentoField = new JTextField(20);
+        dataNascimentoField = new JTextField(20);
         dataNascimentoField.setFont(new Font("Arial", Font.PLAIN, 16));
 
         // cidade
         JLabel cidadeLabel = new JLabel("Cidade");
         cidadeLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        JTextField cidadeField = new JTextField(20);
+        cidadeField = new JTextField(20);
         cidadeField.setFont(new Font("Arial", Font.PLAIN, 16));
 
         // estado
         JLabel estadoLabel = new JLabel("Estado(sigla)");
         estadoLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        JTextField estadoField = new JTextField(20);
+        estadoField = new JTextField(20);
         estadoField.setFont(new Font("Arial", Font.PLAIN, 16));
 
         // Sexo
         JLabel sexoLabel = new JLabel("Sexo(F/M)");
         sexoLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        JTextField sexoField = new JTextField(20);
+        sexoField = new JTextField(20);
         sexoField.setFont(new Font("Arial", Font.PLAIN, 16));
 
         JLabel tituloLabel2 = new JLabel("Informações de Login");
@@ -121,13 +124,13 @@ public class RegistroPaciente extends FormatacaoInicial {
         // Email
         JLabel emailLabel = new JLabel("Email");
         emailLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        JTextField emailField = new JTextField(20);
+        emailField = new JTextField(20);
         emailField.setFont(new Font("Arial", Font.PLAIN, 16));
 
         // Senha
         JLabel senhaLabel = new JLabel("Senha(mínimo 8 caracteres)");
         senhaLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        JPasswordField passwordField = new JPasswordField(20);
+        passwordField = new JPasswordField(20);
         passwordField.setFont(new Font("Arial", Font.PLAIN, 16));
 
         formularioPanel.add(tituloLabel, gbc);
@@ -175,6 +178,49 @@ public class RegistroPaciente extends FormatacaoInicial {
         criarContaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String nome = nomeField.getText();
+                String cpf = cpfField.getText();
+                String dataNascimento = dataNascimentoField.getText();
+                String cidade = cidadeField.getText();
+                String estado = estadoField.getText();
+                String sexo = sexoField.getText();
+                String email = emailField.getText();
+                char[] senha = passwordField.getPassword();
+
+                if (nome.isEmpty() || cpf.isEmpty() || dataNascimento.isEmpty() || cidade.isEmpty()
+                        || estado.isEmpty() || sexo.isEmpty() || email.isEmpty() || senha.length == 0) {
+                    JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Campos vazios",
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                try {
+                    // Validar o CPF
+                    CPF.parser(cpf);
+                    // Validar a data de nascimento
+                    Data.isValidData(dataNascimento);
+                    // Validar o email
+                    Email.isValidEmail(email);
+                    // Validar a senha
+                    Senha.isValidSenha(senha);
+                } catch (CPFException ex) {
+                    ex.getMessage();
+                    return;
+                } catch (DataException ex) {
+                    ex.getMessage();
+                    return;
+                } catch (EmailException ex) {
+                    ex.getMessage();
+                    return;
+                } catch (SenhaException ex) {
+                    ex.getMessage();
+                    return;
+                }
+
+                if (!sexo.equals("f") && !sexo.equals("F") && !sexo.equals("m") && !sexo.equals("M")) {
+                    JOptionPane.showMessageDialog(null, "Sexo inválido!", "Sexo Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
             }
         });
 

@@ -5,7 +5,7 @@ import com.poo.projeto_hospital.exception.CPFException;
 public class CPF {
     private String cpf;
 
-    public static boolean parser(String cpf) throws Exception {
+    public static void parser(String cpf) throws CPFException {
 
         // Verificar se o CPF possui 11 dígitos
         if (cpf.length() != 11) {
@@ -41,8 +41,6 @@ public class CPF {
         if (digitoVerificador2 != Character.getNumericValue(cpf.charAt(10))) {
             throw new CPFException();
         }
-
-        return true;
     }
 
 }

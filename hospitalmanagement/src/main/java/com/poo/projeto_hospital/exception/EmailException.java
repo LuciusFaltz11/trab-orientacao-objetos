@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 public class EmailException extends Exception {
     public EmailException() {
-        super();
+        super("error");
         JOptionPane.showMessageDialog(null, "Invalid email!", "Email Error", JOptionPane.ERROR_MESSAGE);
     }
 }

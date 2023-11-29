@@ -8,14 +8,13 @@ import java.util.regex.Pattern;
 public class Email {
     private static final String EMAIL_PATTERN = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
 
-    public static boolean isValidEmail(String email) throws EmailException {
+    public static void isValidEmail(String email) throws EmailException {
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(email);
 
-        if (matcher.find()) {
-            return true;
-        } else
+        if (!matcher.find()) {
             throw new EmailException();
+        }
     }
 
 }
