@@ -21,7 +21,7 @@ public class FormatacaoInicial {
         tituloLabel.setFont(tituloLabel.getFont().deriveFont(20.0f));
         tituloPanel.add(tituloLabel);
 
-        frame.getContentPane().add(tituloPanel, BorderLayout.NORTH);
+        frame.getContentPane().add(tituloPanel, BorderLayout.PAGE_START);
     }
 
     protected static void criaPainelImagem(JFrame frame, String caminhoImagem) {
@@ -42,7 +42,7 @@ public class FormatacaoInicial {
         gbc.weighty = 1;
 
         iconePanel.add(jLabel, gbc);
-        frame.getContentPane().add(iconePanel, BorderLayout.CENTER);
+        frame.getContentPane().add(iconePanel, BorderLayout.NORTH);
     }
 
 }
