@@ -9,14 +9,11 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -95,8 +92,7 @@ public class Login extends FormatacaoInicial {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Redirecionar para a tela de registro de paciente
-                RegistroPaciente registroPaciente = new RegistroPaciente();
-                registroPaciente.main(null);
+                RegistroPaciente.main(null);
                 finalFrame.dispose(); // Close the current frame
             }
         });

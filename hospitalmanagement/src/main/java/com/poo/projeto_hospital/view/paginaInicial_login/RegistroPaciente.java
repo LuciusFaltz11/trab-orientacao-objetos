@@ -169,8 +169,7 @@ public class RegistroPaciente extends FormatacaoInicial {
         voltarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Login login = new Login();
-                login.main(null);
+                Login.main(null);
                 finalFrame.dispose();
             }
         });
@@ -224,8 +223,7 @@ public class RegistroPaciente extends FormatacaoInicial {
 
                 Usuario usuario = new Usuario(email, senha, nome, cpf, dataNascimento, cidade, estado, sexo);
                 armazenarUsuario(usuario);
-                Login login = new Login();
-                login.main(null);
+                Login.main(null);
                 finalFrame.dispose();
 
             }

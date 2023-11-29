@@ -1,7 +1,5 @@
 package com.poo.projeto_hospital.model;
 
-import java.time.LocalDate;
-
 public class Pessoa {
     private final String nome;
     private final String cpf;

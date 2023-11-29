@@ -3,7 +3,6 @@ package com.poo.projeto_hospital.model;
 import com.poo.projeto_hospital.exception.CPFException;
 
 public class CPF {
-    private String cpf;
 
     public static void parser(String cpf) throws CPFException {
 
