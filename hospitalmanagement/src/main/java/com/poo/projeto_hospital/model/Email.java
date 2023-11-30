@@ -5,6 +5,7 @@ import com.poo.projeto_hospital.exception.EmailException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//tirar espaços em branco
 public class Email {
     private static final String EMAIL_PATTERN = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
 
