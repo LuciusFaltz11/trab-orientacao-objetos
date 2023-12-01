@@ -8,8 +8,7 @@ public class Data {
     // validar dia e mes correto
     private static final String DATA_PATTERN = "^([0-9]{2})/([0-9]{2})/([0-9]{4})$";
 
-    public static void isValidData(String data) throws DataException {
-
+    public static String isValidData(String data) throws DataException {
         data = data.replaceAll(" ", "");
         Pattern pattern = Pattern.compile(DATA_PATTERN);
         Matcher matcher = pattern.matcher(data);
@@ -30,8 +29,7 @@ public class Data {
                 }
 
                 if (dia >= 1 && dia <= maxDays) {
-                    return;
-                    // A data é válida
+                    return data;
                 } else {
                     throw new DataException();
                 }
@@ -39,6 +37,7 @@ public class Data {
                 throw new DataException();
             }
 
-        }
+        } else
+            throw new DataException();
     }
 }

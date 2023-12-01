@@ -10,9 +10,9 @@ public class Medico extends Pessoa {
     private String inicioExpediente;
     private String finalExpediente;
 
-    public Medico(String nome, String cpf, LocalDate dataNascimento, String especialidade, String inicioExpediente,
+    public Medico(String nome, String cpf, String dataNascimento, String especialidade, String inicioExpediente,
             String finalExpediente) {
-        super(nome, cpf, dataNascimento);
+        super(nome, cpf, dataNascimento, null, null, null);
         this.especialidade = especialidade;
         this.agenda = new AgendaMedico();
         this.inicioExpediente = inicioExpediente;

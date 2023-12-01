@@ -195,11 +195,11 @@ public class RegistroPaciente extends FormatacaoInicial {
 
                 try {
                     // Validar o CPF
-                    CPF.parser(cpf);
+                    cpf = CPF.parser(cpf);
                     // Validar a data de nascimento
-                    Data.isValidData(dataNascimento);
+                    dataNascimento = Data.isValidData(dataNascimento);
                     // Validar o email
-                    Email.isValidEmail(email);
+                    email = Email.isValidEmail(email);
                     // Validar a senha
                     Senha.isValidSenha(senha);
                 } catch (CPFException ex) {
