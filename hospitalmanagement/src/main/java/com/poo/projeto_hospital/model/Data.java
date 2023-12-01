@@ -9,6 +9,8 @@ public class Data {
     private static final String DATA_PATTERN = "^([0-9]{2})/([0-9]{2})/([0-9]{4})$";
 
     public static void isValidData(String data) throws DataException {
+
+        data = data.replaceAll(" ", "");
         Pattern pattern = Pattern.compile(DATA_PATTERN);
         Matcher matcher = pattern.matcher(data);
 
@@ -18,17 +20,25 @@ public class Data {
             int ano = Integer.parseInt(matcher.group(3));
 
             boolean isLeapYear = (ano % 4 == 0 && ano % 100 != 0) || (ano % 400 == 0);
-            int maxDays = 31;
+            int maxDays;
 
-            if (mes % 2 == 0) {
-                maxDays = (mes == 2) ? (isLeapYear ? 29 : 28) : 30;
+            if (mes >= 1 && mes <= 12) {
+                if (mes % 2 == 0) {
+                    maxDays = (mes == 2) ? (isLeapYear ? 29 : 28) : 30;
+                } else {
+                    maxDays = (mes <= 7) ? 31 : 30;
+                }
+
+                if (dia >= 1 && dia <= maxDays) {
+                    return;
+                    // A data é válida
+                } else {
+                    throw new DataException();
+                }
             } else {
-                maxDays = (mes <= 7) ? 31 : 30;
-            }
-
-            if (dia > maxDays || dia < 1 || mes > 12 || mes < 1 || ano < 2021) {
                 throw new DataException();
             }
+
         }
     }
 }
