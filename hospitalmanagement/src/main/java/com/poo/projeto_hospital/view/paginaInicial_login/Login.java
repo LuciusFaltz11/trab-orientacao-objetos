@@ -21,7 +21,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import com.poo.projeto_hospital.controller.CriarContaLogin;
 import com.poo.projeto_hospital.controller.EntrarLogin;
 
 /**
@@ -31,6 +30,9 @@ import com.poo.projeto_hospital.controller.EntrarLogin;
 public class Login extends FormatacaoInicial {
     private JTextField emailField;
     private JPasswordField senhaField;
+
+    public Login() {
+    }
 
     public void createAndShowGUI() {
         JFrame frame = new JFrame("Hospital Manager");
@@ -79,9 +81,11 @@ public class Login extends FormatacaoInicial {
 
         JButton entrarButton = new JButton("Entrar");
         JButton criarContaButton = new JButton("Criar nova conta");
+        JButton areaMedico = new JButton("Área do médico");
 
         botaoPanel.add(entrarButton);
         botaoPanel.add(criarContaButton);
+        botaoPanel.add(areaMedico);
 
         entrarButton.addActionListener(new EntrarLogin(this));
 
