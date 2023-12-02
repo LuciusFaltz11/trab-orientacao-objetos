@@ -1,17 +1,15 @@
 package com.poo.projeto_hospital;
 
-import java.time.LocalDate;
-
 import com.poo.projeto_hospital.model.Paciente;
 
 public class Consulta {
     private Paciente paciente;
     private Medico medico;
-    private LocalDate data;
+    private String data;
     private String horario;
     private int duracaoMinutos;
 
-    public Consulta(Paciente paciente, Medico medico, LocalDate data, String horario, int duracao) {
+    public Consulta(Paciente paciente, Medico medico, String data, String horario, int duracao) {
         this.paciente = paciente;
         this.medico = medico;
         this.data = data;
@@ -31,7 +29,7 @@ public class Consulta {
         return horario;
     }
 
-    public LocalDate getData() {
+    public String getData() {
         return data;
     }
 

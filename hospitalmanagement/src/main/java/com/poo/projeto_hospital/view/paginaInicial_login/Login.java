@@ -68,7 +68,6 @@ public class Login extends FormatacaoInicial {
         formularioPanel.add(senhaField, gbc);
 
         formularioPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
         frame.getContentPane().add(formularioPanel, BorderLayout.SOUTH);
 
     }
