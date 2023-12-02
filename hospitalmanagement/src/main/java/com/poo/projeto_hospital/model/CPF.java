@@ -8,6 +8,7 @@ public class CPF {
 
         cpf = cpf.replaceAll(" ", "");
 
+        System.out.println(cpf);
         // Verificar se o CPF possui 11 dígitos
         if (cpf.length() != 11) {
             throw new CPFException();
