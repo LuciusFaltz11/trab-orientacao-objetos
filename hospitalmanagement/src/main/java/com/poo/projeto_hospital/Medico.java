@@ -1,7 +1,5 @@
 package com.poo.projeto_hospital;
 
-import java.time.LocalDate;
-
 import com.poo.projeto_hospital.model.Pessoa;
 
 public class Medico extends Pessoa {

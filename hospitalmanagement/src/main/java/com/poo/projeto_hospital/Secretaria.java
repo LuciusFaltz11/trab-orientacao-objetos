@@ -1,12 +1,11 @@
 package com.poo.projeto_hospital;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import com.poo.projeto_hospital.model.Paciente;
 
 public class Secretaria {
-    public static void agendarConsulta(Paciente paciente, Medico medico, LocalDate horario) {
+    public static void agendarConsulta(Paciente paciente, Medico medico, String horario) {
         // Verificar a disponibilidade do médico antes de agendar
         /*
          * if (verificarDisponibilidade(medico, horario)) {
