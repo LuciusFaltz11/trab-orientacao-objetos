@@ -13,25 +13,16 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-import com.poo.projeto_hospital.exception.CPFException;
-import com.poo.projeto_hospital.exception.DataException;
-import com.poo.projeto_hospital.exception.EmailException;
-import com.poo.projeto_hospital.exception.SenhaException;
-import com.poo.projeto_hospital.model.CPF;
-import com.poo.projeto_hospital.model.Data;
-import com.poo.projeto_hospital.model.Email;
-import com.poo.projeto_hospital.model.Senha;
-import com.poo.projeto_hospital.model.Usuario;
-import com.poo.projeto_hospital.persistence.Arquivo;
+import com.poo.projeto_hospital.controller.CriarContaLogin;
 
 public class RegistroPaciente extends FormatacaoInicial {
 
+    protected static JFrame frame;
     private static JTextField nomeField;
     private static JTextField cpfField;
     private static JTextField dataNascimentoField;
@@ -41,17 +32,8 @@ public class RegistroPaciente extends FormatacaoInicial {
     private static JTextField emailField;
     private static JPasswordField passwordField;
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                createAndShowGUI();
-            }
-        });
-    }
-
-    private static void createAndShowGUI() {
-        JFrame frame = new JFrame("Hospital Manager");
+    public void createAndShowGUI() {
+        frame = new JFrame("Hospital Manager");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(768, 768);
         frame.setPreferredSize(new Dimension(600, 600));
@@ -60,7 +42,7 @@ public class RegistroPaciente extends FormatacaoInicial {
         frame.pack();
 
         criarTitulo(frame, "Registro de Paciente");
-        formuláriosInfoPaciente(frame);
+        formulariosInfoPaciente(frame);
         criaBotao(frame);
 
         frame.pack();
@@ -72,7 +54,7 @@ public class RegistroPaciente extends FormatacaoInicial {
      * @param frame
      */
 
-    private static void formuláriosInfoPaciente(JFrame frame) {
+    private void formulariosInfoPaciente(JFrame frame) {
         JPanel formularioPanel = new JPanel();
         formularioPanel.setPreferredSize(new Dimension(768, 500));
         formularioPanel.setLayout(new GridBagLayout());
@@ -154,7 +136,7 @@ public class RegistroPaciente extends FormatacaoInicial {
         frame.getContentPane().add(formularioPanel, BorderLayout.CENTER);
     }
 
-    private static void criaBotao(JFrame frame) {
+    private void criaBotao(JFrame frame) {
         JPanel botaoPanel = new JPanel();
         botaoPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
@@ -169,75 +151,52 @@ public class RegistroPaciente extends FormatacaoInicial {
         voltarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Login.main(null);
+                new Login().createAndShowGUI();
                 finalFrame.dispose();
             }
         });
 
-        criarContaButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String nome = nomeField.getText();
-                String cpf = cpfField.getText();
-                String dataNascimento = dataNascimentoField.getText();
-                String cidade = cidadeField.getText();
-                String estado = estadoField.getText();
-                String sexo = sexoField.getText();
-                String email = emailField.getText();
-                char[] senha = passwordField.getPassword();
-
-                if (nome.isEmpty() || cpf.isEmpty() || dataNascimento.isEmpty() || cidade.isEmpty()
-                        || estado.isEmpty() || sexo.isEmpty() || email.isEmpty() || senha.length == 0) {
-                    JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Campos vazios",
-                            JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-
-                try {
-                    // Validar o CPF
-                    cpf = CPF.parser(cpf);
-                    // Validar a data de nascimento
-                    dataNascimento = Data.isValidData(dataNascimento);
-                    // Validar o email
-                    email = Email.isValidEmail(email);
-                    // Validar a senha
-                    Senha.isValidSenha(senha);
-                } catch (CPFException ex) {
-                    ex.getMessage();
-                    return;
-                } catch (DataException ex) {
-                    ex.getMessage();
-                    return;
-                } catch (EmailException ex) {
-                    ex.getMessage();
-                    return;
-                } catch (SenhaException ex) {
-                    ex.getMessage();
-                    return;
-                }
-
-                if (!sexo.equals("f") && !sexo.equals("F") && !sexo.equals("m") && !sexo.equals("M")) {
-                    JOptionPane.showMessageDialog(null, "Sexo inválido!", "Sexo Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-
-                Usuario usuario = new Usuario(email, senha, nome, cpf, dataNascimento, cidade, estado, sexo);
-                armazenarUsuario(usuario);
-                Login.main(null);
-                finalFrame.dispose();
-
-            }
-
-            private void armazenarUsuario(Usuario novo) {
-                Arquivo.salvarUsuario(novo);
-            }
-
-        });
-
+        criarContaButton.addActionListener(new CriarContaLogin(this));
         frame.add(botaoPanel, BorderLayout.PAGE_END);
 
         frame.add(botaoPanel, BorderLayout.PAGE_END);
 
+    }
+
+    public JTextField getCidadeField() {
+        return cidadeField;
+    }
+
+    public JTextField getCpfField() {
+        return cpfField;
+    }
+
+    public JTextField getDataNascimentoField() {
+        return dataNascimentoField;
+    }
+
+    public JTextField getEmailField() {
+        return emailField;
+    }
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    public JTextField getEstadoField() {
+        return estadoField;
+    }
+
+    public JTextField getNomeField() {
+        return nomeField;
+    }
+
+    public JPasswordField getPasswordField() {
+        return passwordField;
+    }
+
+    public JTextField getSexoField() {
+        return sexoField;
     }
 
 }
