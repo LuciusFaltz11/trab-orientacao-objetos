@@ -20,23 +20,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
+
+import com.poo.projeto_hospital.controller.CriarContaLogin;
+import com.poo.projeto_hospital.controller.EntrarLogin;
 
 /**
  *
  * @author luiza
  */
 public class Login extends FormatacaoInicial {
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                createAndShowGUI();
-            }
-        });
-    }
+    private JTextField emailField;
+    private JPasswordField senhaField;
 
-    private static void createAndShowGUI() {
+    public void createAndShowGUI() {
         JFrame frame = new JFrame("Hospital Manager");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 300);
@@ -54,7 +50,7 @@ public class Login extends FormatacaoInicial {
         frame.setVisible(true);
     }
 
-    private static void criaFormularioLogin(JFrame frame) {
+    private void criaFormularioLogin(JFrame frame) {
         JPanel formularioPanel = new JPanel();
         formularioPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -62,14 +58,14 @@ public class Login extends FormatacaoInicial {
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         JLabel emaiLabel = new JLabel("Email");
-        JTextField emailField = new JTextField(20);
+        emailField = new JTextField(20);
         JLabel senhaLabel = new JLabel("Senha");
-        JPasswordField passwordField = new JPasswordField(20);
+        senhaField = new JPasswordField(20);
 
         formularioPanel.add(emaiLabel, gbc);
         formularioPanel.add(emailField, gbc);
         formularioPanel.add(senhaLabel, gbc);
-        formularioPanel.add(passwordField, gbc);
+        formularioPanel.add(senhaField, gbc);
 
         formularioPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
@@ -77,7 +73,7 @@ public class Login extends FormatacaoInicial {
 
     }
 
-    private static void renderizaBotao(JFrame frame) {
+    private void renderizaBotao(JFrame frame) {
         JPanel botaoPanel = new JPanel();
         botaoPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         botaoPanel.setPreferredSize(new Dimension(500, 50));
@@ -87,17 +83,24 @@ public class Login extends FormatacaoInicial {
 
         botaoPanel.add(entrarButton);
         botaoPanel.add(criarContaButton);
-        final JFrame finalFrame = frame;
+
+        entrarButton.addActionListener(new EntrarLogin(this));
+
         criarContaButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
-                // Redirecionar para a tela de registro de paciente
-                RegistroPaciente.main(null);
-                finalFrame.dispose(); // Close the current frame
+                RegistroPaciente registroPaciente = new RegistroPaciente();
+                registroPaciente.createAndShowGUI();
             }
         });
 
         frame.getContentPane().add(botaoPanel, BorderLayout.PAGE_END);
     }
 
+    public JTextField getEmailField() {
+        return emailField;
+    }
+
+    public JPasswordField getSenhaField() {
+        return senhaField;
+    }
 }

@@ -36,7 +36,7 @@ public class Arquivo {
             return;
         }
 
-        try (PrintWriter writer = new PrintWriter(new FileWriter(NOME_ARQUIVO, true))) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(NOME_ARQUIVO, false))) {
             // Adiciona as informações do usuário ao arquivo
             writer.println(usuario.toFileString());
             JOptionPane.showMessageDialog(null, "Usuário cadastrado!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);

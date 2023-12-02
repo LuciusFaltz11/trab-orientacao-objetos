@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 public class SenhaException extends Exception {
     public SenhaException() {
-        super("error");
+        super("erro senha");
         JOptionPane.showMessageDialog(null, "A senha deve ter no mínimo 8 caracteres.", "Senha Inválida",
                 JOptionPane.WARNING_MESSAGE);
     }

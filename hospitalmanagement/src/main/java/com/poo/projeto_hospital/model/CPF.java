@@ -4,7 +4,7 @@ import com.poo.projeto_hospital.exception.CPFException;
 
 public class CPF {
 
-    public static void parser(String cpf) throws CPFException {
+    public static String parser(String cpf) throws CPFException {
 
         cpf = cpf.replaceAll(" ", "");
 
@@ -42,6 +42,8 @@ public class CPF {
         if (digitoVerificador2 != Character.getNumericValue(cpf.charAt(10))) {
             throw new CPFException();
         }
+
+        return cpf;
     }
 
 }
