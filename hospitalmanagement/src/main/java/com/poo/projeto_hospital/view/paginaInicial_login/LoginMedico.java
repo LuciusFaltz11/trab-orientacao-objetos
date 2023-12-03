@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.poo.projeto_hospital.controller.EntrarLogin;
+import com.poo.projeto_hospital.controller.EntrarLoginMedico;
 
 public class LoginMedico extends FormatacaoInicial {
 
@@ -62,8 +63,18 @@ public class LoginMedico extends FormatacaoInicial {
             }
         });
 
+        entrarButton.addActionListener(new EntrarLoginMedico(this));
+
         frame.getContentPane().add(botaoPanel, BorderLayout.PAGE_END);
 
+    }
+
+    public JTextField getEmailField() {
+        return emailField;
+    }
+
+    public JTextField getSenhaField() {
+        return senhaField;
     }
 
 }
