@@ -2,6 +2,7 @@ package com.poo.projeto_hospital.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -9,12 +10,10 @@ import com.poo.projeto_hospital.exception.CPFException;
 import com.poo.projeto_hospital.exception.DataException;
 import com.poo.projeto_hospital.exception.EmailException;
 import com.poo.projeto_hospital.exception.SenhaException;
-import com.poo.projeto_hospital.model.CPF;
-import com.poo.projeto_hospital.model.Data;
-import com.poo.projeto_hospital.model.Email;
-import com.poo.projeto_hospital.model.Senha;
-import com.poo.projeto_hospital.model.Usuario;
+import com.poo.projeto_hospital.model.*;
 import com.poo.projeto_hospital.persistence.Arquivo;
+import com.poo.projeto_hospital.persistence.PacientePersistence;
+import com.poo.projeto_hospital.persistence.Persistence;
 import com.poo.projeto_hospital.view.paginaInicial_login.Login;
 import com.poo.projeto_hospital.view.paginaInicial_login.RegistroPaciente;
 
@@ -79,6 +78,9 @@ public class CriarContaLogin implements ActionListener {
     }
 
     private void armazenarUsuario(Usuario novo) {
-        Arquivo.salvarUsuario(novo);
+        Persistence<Usuario> pacientePersistence = new PacientePersistence();
+        List pacientes = pacientePersistence.findAll();
+        pacientes.add(novo);
+        pacientePersistence.save(pacientes);
     }
 }

@@ -21,7 +21,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import com.poo.projeto_hospital.controller.CriarContaLogin;
 import com.poo.projeto_hospital.controller.EntrarLogin;
 
 /**
@@ -31,6 +30,9 @@ import com.poo.projeto_hospital.controller.EntrarLogin;
 public class Login extends FormatacaoInicial {
     private JTextField emailField;
     private JPasswordField senhaField;
+
+    public Login() {
+    }
 
     public void createAndShowGUI() {
         JFrame frame = new JFrame("Hospital Manager");
@@ -42,34 +44,12 @@ public class Login extends FormatacaoInicial {
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
         criarTitulo(frame, "Login");
         criaPainelImagem(frame, "hospitalmanagement/src/main/resources/images/iconeLogin.png");
-        criaFormularioLogin(frame);
+        criaFormularioLogin(frame, emailField, senhaField);
         renderizaBotao(frame);
 
         frame.pack();
         frame.setLocationRelativeTo(null); // tela no centro
         frame.setVisible(true);
-    }
-
-    private void criaFormularioLogin(JFrame frame) {
-        JPanel formularioPanel = new JPanel();
-        formularioPanel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-
-        JLabel emaiLabel = new JLabel("Email");
-        emailField = new JTextField(20);
-        JLabel senhaLabel = new JLabel("Senha");
-        senhaField = new JPasswordField(20);
-
-        formularioPanel.add(emaiLabel, gbc);
-        formularioPanel.add(emailField, gbc);
-        formularioPanel.add(senhaLabel, gbc);
-        formularioPanel.add(senhaField, gbc);
-
-        formularioPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        frame.getContentPane().add(formularioPanel, BorderLayout.SOUTH);
-
     }
 
     private void renderizaBotao(JFrame frame) {
@@ -79,16 +59,28 @@ public class Login extends FormatacaoInicial {
 
         JButton entrarButton = new JButton("Entrar");
         JButton criarContaButton = new JButton("Criar nova conta");
+        JButton areaMedico = new JButton("Área do médico");
 
         botaoPanel.add(entrarButton);
         botaoPanel.add(criarContaButton);
+        botaoPanel.add(areaMedico);
 
         entrarButton.addActionListener(new EntrarLogin(this));
 
+        final JFrame finalFrame = frame; // Declare frame as final
         criarContaButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 RegistroPaciente registroPaciente = new RegistroPaciente();
+                finalFrame.dispose(); // Use finalFrame instead of frame
                 registroPaciente.createAndShowGUI();
+            }
+        });
+
+        areaMedico.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                LoginMedico login = new LoginMedico();
+                finalFrame.dispose(); // Use finalFrame instead of frame
+                login.createAndShowGUI();
             }
         });
 

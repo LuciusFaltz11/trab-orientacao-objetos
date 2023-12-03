@@ -6,10 +6,13 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 public class FormatacaoInicial {
     protected static void criarTitulo(JFrame frame, String titulo) {
@@ -45,4 +48,25 @@ public class FormatacaoInicial {
         frame.getContentPane().add(iconePanel, BorderLayout.NORTH);
     }
 
+    protected void criaFormularioLogin(JFrame frame, JTextField emailField, JTextField senhaField) {
+        JPanel formularioPanel = new JPanel();
+        formularioPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        JLabel emaiLabel = new JLabel("Email");
+        emailField = new JTextField(20);
+        JLabel senhaLabel = new JLabel("Senha");
+        senhaField = new JPasswordField(20);
+
+        formularioPanel.add(emaiLabel, gbc);
+        formularioPanel.add(emailField, gbc);
+        formularioPanel.add(senhaLabel, gbc);
+        formularioPanel.add(senhaField, gbc);
+
+        formularioPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        frame.getContentPane().add(formularioPanel, BorderLayout.SOUTH);
+
+    }
 }
