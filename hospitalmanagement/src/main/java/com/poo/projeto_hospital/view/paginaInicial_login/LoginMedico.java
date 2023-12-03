@@ -44,31 +44,20 @@ public class LoginMedico extends FormatacaoInicial {
     private void redenrizaBotaoMedico(JFrame frame) {
         JPanel botaoPanel = new JPanel();
         botaoPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        botaoPanel.setPreferredSize(new Dimension(500, 50));
+        botaoPanel.setPreferredSize(new Dimension(400, 42));
 
         JButton entrarButton = new JButton("Entrar");
-        JButton criarContaButton = new JButton("Criar nova conta");
-        JButton areaMedico = new JButton("Área do médico");
+        JButton voltarButton = new JButton("Voltar");
 
         botaoPanel.add(entrarButton);
-        botaoPanel.add(criarContaButton);
-        botaoPanel.add(areaMedico);
-
-        entrarButton.addActionListener();
+        botaoPanel.add(voltarButton);
+        // entrarButton.addActionListener(new EntrarLogin(this));
 
         final JFrame finalFrame = frame;
-        criarContaButton.addActionListener(new ActionListener() {
+        voltarButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                RegistroPaciente registroPaciente = new RegistroPaciente();
+                Login login = new Login();
                 finalFrame.dispose();
-                registroPaciente.createAndShowGUI();
-            }
-        });
-
-        areaMedico.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                LoginMedico login = new LoginMedico();
-                finalFrame.dispose(); // Use finalFrame instead of frame
                 login.createAndShowGUI();
             }
         });
