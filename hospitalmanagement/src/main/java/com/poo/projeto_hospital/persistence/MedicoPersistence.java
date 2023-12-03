@@ -1,5 +1,6 @@
 package com.poo.projeto_hospital.persistence;
 
+<<<<<<< HEAD
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.poo.projeto_hospital.model.Usuario;
@@ -45,4 +46,8 @@ public class MedicoPersistence implements Persistence<Usuario> {
 
         return medicos;
     }
+=======
+public class MedicoPersistence {
+
+>>>>>>> a9825fa32133f4f67c1034f0105fc061911576e3
 }

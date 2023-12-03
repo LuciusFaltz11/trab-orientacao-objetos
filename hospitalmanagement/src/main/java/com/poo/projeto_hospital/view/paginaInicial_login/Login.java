@@ -67,12 +67,20 @@ public class Login extends FormatacaoInicial {
 
         entrarButton.addActionListener(new EntrarLogin(this));
 
-        final JFrame finalFrame = frame; // Declare frame as final
+        final JFrame finalFrame = frame;
+        areaMedico.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                LoginMedico loginMedico = new LoginMedico();
+                loginMedico.createAndShowGUI();
+                finalFrame.dispose();
+            }
+        });
         criarContaButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 RegistroPaciente registroPaciente = new RegistroPaciente();
                 finalFrame.dispose(); // Use finalFrame instead of frame
                 registroPaciente.createAndShowGUI();
+                finalFrame.dispose();
             }
         });
 

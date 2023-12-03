@@ -1,24 +1,29 @@
 package com.poo.projeto_hospital.view.paginaInicial_login;
 
+import com.poo.projeto_hospital.controller.EntrarLoginMedico;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
-import com.poo.projeto_hospital.controller.EntrarLogin;
-import com.poo.projeto_hospital.controller.EntrarLoginMedico;
 
 public class LoginMedico extends FormatacaoInicial {
 
     private JTextField emailField;
-    private JTextField senhaField;
+    private JPasswordField senhaField;
 
     public LoginMedico() {
     }
@@ -33,7 +38,8 @@ public class LoginMedico extends FormatacaoInicial {
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
         criarTitulo(frame, "Login");
         criaPainelImagem(frame, "hospitalmanagement/src/main/resources/images/iconeRegistroMedico.png");
-        criaFormularioLogin(frame, emailField, senhaField);
+
+        criaFormularioLogin(frame);
         redenrizaBotaoMedico(frame);
 
         frame.pack();
@@ -64,16 +70,38 @@ public class LoginMedico extends FormatacaoInicial {
         });
 
         entrarButton.addActionListener(new EntrarLoginMedico(this));
-
         frame.getContentPane().add(botaoPanel, BorderLayout.PAGE_END);
 
     }
+
+    private void criaFormularioLogin(JFrame frame) {
+        JPanel formularioPanel = new JPanel();
+        formularioPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        JLabel emaiLabel = new JLabel("Email");
+        emailField = new JTextField(20);
+        JLabel senhaLabel = new JLabel("Senha");
+        senhaField = new JPasswordField(20);
+
+        formularioPanel.add(emaiLabel, gbc);
+        formularioPanel.add(emailField, gbc);
+        formularioPanel.add(senhaLabel, gbc);
+        formularioPanel.add(senhaField, gbc);
+
+        formularioPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        frame.getContentPane().add(formularioPanel, BorderLayout.SOUTH);
+
+    }
+
 
     public JTextField getEmailField() {
         return emailField;
     }
 
-    public JTextField getSenhaField() {
+    public JPasswordField getSenhaField() {
         return senhaField;
     }
 
