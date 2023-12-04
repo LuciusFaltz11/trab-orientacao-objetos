@@ -2,6 +2,9 @@ package com.poo.projeto_hospital;
 
 import com.poo.projeto_hospital.model.Paciente;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 public class Consulta {
     private Paciente paciente;
     private Medico medico;
@@ -35,5 +38,29 @@ public class Consulta {
 
     public int getDuracaoMinutos() {
         return duracaoMinutos;
+    }
+
+    private boolean validarData(String data) {
+        SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+        formatoData.setLenient(false);
+
+        try {
+            formatoData.parse(data);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
+    }
+
+    private static boolean validarHorario(String horario) {
+        SimpleDateFormat formatoHorario = new SimpleDateFormat("HH:mm");
+        formatoHorario.setLenient(false);
+
+        try {
+            formatoHorario.parse(horario);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
     }
 }

@@ -1,7 +1,7 @@
 [
   {
     "email": "joaoSilva@gmail.com",
-    "senha": "joaosilva",
+    "senha": ["1","2","3","4","5","6","7","8"],
     "nome": "Dr. João Silva",
     "cpf": "123.456.789-01",
     "dataNascimento": "01/01/1980",
@@ -32,7 +32,7 @@
   },
   {
     "email": "mariaOliveira@gmail.com",
-    "senha": "mariaoliveira",
+    "senha": ["1","2","3","4","5","6","7","8"],
     "nome": "Dra. Maria Oliveira",
     "cpf": "987.654.321-09",
     "dataNascimento": "15/05/1985",
@@ -63,7 +63,7 @@
   },
   {
     "email": "andreSantos@gmail.com",
-    "senha": "andresantos",
+    "senha": ["1","2","3","4","5","6","7","8"],
     "nome": "Dr. André Santos",
     "cpf": "111.222.333-44",
     "dataNascimento": "10/08/1975",
@@ -94,7 +94,7 @@
   },
   {
     "email": "anaRodrigues@gmail.com",
-    "senha": "anarodrigues",
+    "senha": ["1","2","3","4","5","6","7","8"],
     "nome": "Dra. Ana Rodrigues",
     "cpf": "555.666.777-88",
     "dataNascimento": "25/11/1982",
@@ -125,7 +125,7 @@
   },
   {
     "email": "marcosSantos@gmail.com",
-    "senha": "marcossantos",
+    "senha": ["1","2","3","4","5","6","7","8"],
     "nome": "Dr. Marcos Santos",
     "cpf": "999.888.777-66",
     "dataNascimento": "03/03/1970",

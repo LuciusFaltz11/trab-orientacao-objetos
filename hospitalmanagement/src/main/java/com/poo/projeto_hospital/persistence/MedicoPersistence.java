@@ -1,20 +1,20 @@
 package com.poo.projeto_hospital.persistence;
 
-<<<<<<< HEAD
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.poo.projeto_hospital.model.Usuario;
+import com.poo.projeto_hospital.model.UsuarioMedico;
 
 import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MedicoPersistence implements Persistence<Usuario> {
+public class MedicoPersistence implements Persistence<UsuarioMedico> {
     private static final String PATH = DIRECTORY + File.separator + "pacientes.json";
 
     @Override
-    public void save(List<Usuario> itens) {
+    public void save(List<UsuarioMedico> itens) {
         Gson gson = new Gson();
         String json = gson.toJson(itens);
 
@@ -27,12 +27,12 @@ public class MedicoPersistence implements Persistence<Usuario> {
     }
 
     @Override
-    public List<Usuario> findAll() {
+    public List<UsuarioMedico> findAll() {
         Gson gson = new Gson();
 
         String json = Arquivo.le(PATH);
 
-        List<Usuario> medicos = new ArrayList<>();
+        List<UsuarioMedico> medicos = new ArrayList<>();
         if (!json.trim().equals("")) {
 
             Type tipoLista = new TypeToken<List<Usuario>>() {
@@ -46,8 +46,4 @@ public class MedicoPersistence implements Persistence<Usuario> {
 
         return medicos;
     }
-=======
-public class MedicoPersistence {
-
->>>>>>> a9825fa32133f4f67c1034f0105fc061911576e3
 }
