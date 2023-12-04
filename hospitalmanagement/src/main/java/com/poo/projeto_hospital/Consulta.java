@@ -1,17 +1,19 @@
 package com.poo.projeto_hospital;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 import com.poo.projeto_hospital.model.Paciente;
 
 public class Consulta {
     private Paciente paciente;
-    private Medico medico;
     private String data;
     private String horario;
     private int duracaoMinutos;
 
-    public Consulta(Paciente paciente, Medico medico, String data, String horario, int duracao) {
+    public Consulta(Paciente paciente, String data, String horario, int duracao) {
         this.paciente = paciente;
-        this.medico = medico;
         this.data = data;
         this.horario = horario;
         this.duracaoMinutos = duracao;
@@ -19,10 +21,6 @@ public class Consulta {
 
     public Paciente getPaciente() {
         return paciente;
-    }
-
-    public Medico getMedico() {
-        return medico;
     }
 
     public String getHorario() {
@@ -35,5 +33,23 @@ public class Consulta {
 
     public int getDuracaoMinutos() {
         return duracaoMinutos;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
+    }
+
+    public void setDuracaoMinutos(int duracaoMinutos) {
+        this.duracaoMinutos = duracaoMinutos;
+    }
+
+    @Override
+    public String toString() {
+        return "Data e Hora: " + data + " as " + horario + " | Paciente: " + paciente.getNome() + " | Duracao: "
+                + duracaoMinutos + " minutos.";
     }
 }
