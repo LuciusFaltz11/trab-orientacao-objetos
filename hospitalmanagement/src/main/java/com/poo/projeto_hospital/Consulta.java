@@ -11,12 +11,14 @@ public class Consulta {
     private String data;
     private String horario;
     private int duracaoMinutos;
+    private String descricao;
 
-    public Consulta(Paciente paciente, String data, String horario, int duracao) {
+    public Consulta(Paciente paciente, String data, String horario, int duracao,String descricao) {
         this.paciente = paciente;
         this.data = data;
         this.horario = horario;
         this.duracaoMinutos = duracao;
+        this.descricao = descricao;
     }
 
     public Paciente getPaciente() {
@@ -35,6 +37,14 @@ public class Consulta {
         return duracaoMinutos;
     }
 
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
     public void setData(String data) {
         this.data = data;
     }
@@ -46,6 +56,8 @@ public class Consulta {
     public void setDuracaoMinutos(int duracaoMinutos) {
         this.duracaoMinutos = duracaoMinutos;
     }
+
+
 
     @Override
     public String toString() {

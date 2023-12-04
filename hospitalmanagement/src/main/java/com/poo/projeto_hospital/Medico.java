@@ -1,10 +1,11 @@
 package com.poo.projeto_hospital;
 
 import com.poo.projeto_hospital.model.Pessoa;
+import com.poo.projeto_hospital.view.TelaAgenda;
 
 public class Medico extends Pessoa {
     private String especialidade;
-    private AgendaMedico agenda;
+    private TelaAgenda agenda;
     private String inicioExpediente;
     private String finalExpediente;
 
@@ -12,7 +13,7 @@ public class Medico extends Pessoa {
             String finalExpediente) {
         super(nome, cpf, dataNascimento, null, null, null);
         this.especialidade = especialidade;
-        this.agenda = new AgendaMedico();
+        this.agenda = new TelaAgenda(this);
         this.inicioExpediente = inicioExpediente;
         this.finalExpediente = finalExpediente;
     }
@@ -25,19 +26,15 @@ public class Medico extends Pessoa {
         this.especialidade = especialidade;
     }
 
-    public AgendaMedico getAgenda() {
-        return agenda;
-    }
-
-    public void setAgenda(AgendaMedico agenda) {
-        this.agenda = agenda;
-    }
-
     public String getInicioExpediente() {
         return inicioExpediente;
     }
 
     public String getFinalExpediente() {
         return finalExpediente;
+    }
+
+    public void getAgenda() {
+        agenda.desenha();
     }
 }

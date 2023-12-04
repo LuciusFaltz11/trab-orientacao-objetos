@@ -8,7 +8,8 @@ public class App {
         //Login login = new Login();
         //login.createAndShowGUI();
 
-        TelaAgenda tela = new TelaAgenda();
-        tela.desenha();
+
+        Medico medico = new Medico("Dr. Marcelo", "2020202020","20/02/2020", "Cardiologista", "08:00", "18:00");
+        medico.getAgenda();
     }
 }
