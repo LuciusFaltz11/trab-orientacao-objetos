@@ -11,7 +11,6 @@ import com.poo.projeto_hospital.exception.DataException;
 import com.poo.projeto_hospital.exception.EmailException;
 import com.poo.projeto_hospital.exception.SenhaException;
 import com.poo.projeto_hospital.model.*;
-import com.poo.projeto_hospital.persistence.Arquivo;
 import com.poo.projeto_hospital.persistence.PacientePersistence;
 import com.poo.projeto_hospital.persistence.Persistence;
 import com.poo.projeto_hospital.view.paginaInicial_login.Login;
@@ -79,7 +78,7 @@ public class CriarContaLogin implements ActionListener {
 
     private void armazenarUsuario(Usuario novo) {
         Persistence<Usuario> pacientePersistence = new PacientePersistence();
-        List pacientes = pacientePersistence.findAll();
+        List<Usuario> pacientes = pacientePersistence.findAll();
         pacientes.add(novo);
         pacientePersistence.save(pacientes);
     }

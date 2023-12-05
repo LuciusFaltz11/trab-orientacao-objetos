@@ -3,13 +3,10 @@ package com.poo.projeto_hospital.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JOptionPane;
 
 import com.poo.projeto_hospital.model.Medico;
-import com.poo.projeto_hospital.model.Usuario;
 import com.poo.projeto_hospital.persistence.MedicoPersistence;
 import com.poo.projeto_hospital.persistence.Persistence;
 import com.poo.projeto_hospital.view.paginaInicial_login.LoginMedico;
