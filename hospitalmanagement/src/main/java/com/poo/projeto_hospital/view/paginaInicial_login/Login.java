@@ -32,9 +32,12 @@ public class Login extends FormatacaoInicial {
     private JPasswordField senhaField;
 
     public Login() {
+
     }
 
     public void createAndShowGUI() {
+        emailField = new JTextField(20);
+        senhaField = new JPasswordField(20);
         JFrame frame = new JFrame("Hospital Manager");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 300);
