@@ -2,6 +2,7 @@ package com.poo.projeto_hospital;
 
 import java.util.List;
 
+import com.poo.projeto_hospital.model.Medico;
 import com.poo.projeto_hospital.model.Paciente;
 
 public class Secretaria {

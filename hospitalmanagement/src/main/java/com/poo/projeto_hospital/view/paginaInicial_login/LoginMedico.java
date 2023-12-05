@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.poo.projeto_hospital.view.paginaInicial_login;
 
 import java.awt.BorderLayout;
@@ -21,17 +17,14 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import com.poo.projeto_hospital.controller.EntrarLogin;
+import com.poo.projeto_hospital.controller.EntrarLoginMedico;
 
-/**
- *
- * @author luiza
- */
-public class Login extends FormatacaoInicial {
+public class LoginMedico extends FormatacaoInicial {
+
     private JTextField emailField;
     private JPasswordField senhaField;
 
-    public Login() {
+    public LoginMedico() {
     }
 
     public void createAndShowGUI() {
@@ -43,13 +36,39 @@ public class Login extends FormatacaoInicial {
 
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
         criarTitulo(frame, "Login");
-        criaPainelImagem(frame, "hospitalmanagement/src/main/resources/images/iconeLogin.png");
+        criaPainelImagem(frame, "hospitalmanagement/src/main/resources/images/iconeRegistroMedico.png");
         criaFormularioLogin(frame);
-        renderizaBotao(frame);
+        redenrizaBotaoMedico(frame);
 
         frame.pack();
         frame.setLocationRelativeTo(null); // tela no centro
         frame.setVisible(true);
+
+    }
+
+    private void redenrizaBotaoMedico(JFrame frame) {
+        JPanel botaoPanel = new JPanel();
+        botaoPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        botaoPanel.setPreferredSize(new Dimension(400, 42));
+
+        JButton entrarButton = new JButton("Entrar");
+        JButton voltarButton = new JButton("Voltar");
+
+        botaoPanel.add(entrarButton);
+        botaoPanel.add(voltarButton);
+        entrarButton.addActionListener(new EntrarLoginMedico(this));
+
+        final JFrame finalFrame = frame;
+        voltarButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Login login = new Login();
+                finalFrame.dispose();
+                login.createAndShowGUI();
+            }
+        });
+
+        frame.getContentPane().add(botaoPanel, BorderLayout.PAGE_END);
+
     }
 
     private void criaFormularioLogin(JFrame frame) {
@@ -74,40 +93,6 @@ public class Login extends FormatacaoInicial {
 
     }
 
-    private void renderizaBotao(JFrame frame) {
-        JPanel botaoPanel = new JPanel();
-        botaoPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        botaoPanel.setPreferredSize(new Dimension(500, 50));
-
-        JButton entrarButton = new JButton("Entrar");
-        JButton criarContaButton = new JButton("Criar nova conta");
-        JButton areaMedico = new JButton("Área do médico");
-
-        botaoPanel.add(entrarButton);
-        botaoPanel.add(criarContaButton);
-        botaoPanel.add(areaMedico);
-
-        entrarButton.addActionListener(new EntrarLogin(this));
-
-        final JFrame finalFrame = frame;
-        areaMedico.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                LoginMedico loginMedico = new LoginMedico();
-                loginMedico.createAndShowGUI();
-                finalFrame.dispose();
-            }
-        });
-        criarContaButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                RegistroPaciente registroPaciente = new RegistroPaciente();
-                registroPaciente.createAndShowGUI();
-                finalFrame.dispose();
-            }
-        });
-
-        frame.getContentPane().add(botaoPanel, BorderLayout.PAGE_END);
-    }
-
     public JTextField getEmailField() {
         return emailField;
     }
@@ -115,4 +100,5 @@ public class Login extends FormatacaoInicial {
     public JPasswordField getSenhaField() {
         return senhaField;
     }
+
 }

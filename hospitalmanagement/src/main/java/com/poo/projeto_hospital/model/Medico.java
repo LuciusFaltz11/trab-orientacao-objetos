@@ -1,12 +1,14 @@
-package com.poo.projeto_hospital;
+package com.poo.projeto_hospital.model;
 
-import com.poo.projeto_hospital.model.Pessoa;
+import com.poo.projeto_hospital.AgendaMedico;
 
 public class Medico extends Pessoa {
     private String especialidade;
     private AgendaMedico agenda;
     private String inicioExpediente;
     private String finalExpediente;
+    private String email;
+    private char[] senha;
 
     public Medico(String nome, String cpf, String dataNascimento, String especialidade, String inicioExpediente,
             String finalExpediente) {
@@ -39,5 +41,13 @@ public class Medico extends Pessoa {
 
     public String getFinalExpediente() {
         return finalExpediente;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public char[] getSenha() {
+        return senha;
     }
 }
