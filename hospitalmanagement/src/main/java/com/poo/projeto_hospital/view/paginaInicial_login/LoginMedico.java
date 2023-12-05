@@ -20,6 +20,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import com.poo.projeto_hospital.controller.EntrarLoginMedico;
+
 public class LoginMedico extends FormatacaoInicial {
 
     private JTextField emailField;
@@ -58,7 +60,7 @@ public class LoginMedico extends FormatacaoInicial {
 
         botaoPanel.add(entrarButton);
         botaoPanel.add(voltarButton);
-        // entrarButton.addActionListener(new EntrarLogin(this));
+        entrarButton.addActionListener(new EntrarLoginMedico(this));
 
         final JFrame finalFrame = frame;
         voltarButton.addActionListener(new ActionListener() {
