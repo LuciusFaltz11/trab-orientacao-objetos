@@ -12,13 +12,18 @@ import com.poo.projeto_hospital.controller.SelecionarConsulta;
 import com.poo.projeto_hospital.exception.CPFException;
 import com.poo.projeto_hospital.exception.DataException;
 import com.poo.projeto_hospital.exception.EmailException;
+import com.poo.projeto_hospital.model.CPF;
+import com.poo.projeto_hospital.model.Data;
 import com.poo.projeto_hospital.model.Email;
+import com.poo.projeto_hospital.model.Horario;
 import com.poo.projeto_hospital.model.Paciente;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class TelaAgenda {
     private final int WIDTH = 1000;
@@ -37,8 +42,11 @@ public class TelaAgenda {
     private JTextField tfSexo;
     private JTextField tfData;
     private JTextField tfHorario;
-    private JTextField tfDuracao;
     private JTextField tfDescricao;
+    private JRadioButton opcao1;
+    private JRadioButton opcao2;
+    private JRadioButton opcao3;
+    private String tfDuracao;
 
     private JList<Consulta> listConsultas;
 
@@ -85,7 +93,7 @@ public class TelaAgenda {
 
         JPanel formulario = new JPanel();
         JPanel painelLabel = new JPanel();
-        painelLabel.setLayout(new GridLayout(0, 1, H_GAP, V_GAP));
+        painelLabel.setLayout(new GridLayout(0, 1, H_GAP, 25));
         painelLabel.add(new JLabel("Nome"));
         painelLabel.add(new JLabel("CPF"));
         painelLabel.add(new JLabel("Data de Nascimento"));
@@ -94,21 +102,51 @@ public class TelaAgenda {
         painelLabel.add(new JLabel("Sexo"));
         painelLabel.add(new JLabel("Data"));
         painelLabel.add(new JLabel("Horario"));
-        painelLabel.add(new JLabel("Duracao"));
         painelLabel.add(new JLabel("Descricao"));
+        painelLabel.add(new JLabel("Duracao"));
 
+        JPanel radioPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JPanel painelField = new JPanel();
         painelField.setLayout(new GridLayout(0, 1, H_GAP, 6));
         tfNome = new JTextField(20);
         tfCpf = new JTextField(20);
         tfDatadeNascimento = new JTextField(20);
         tfCidade = new JTextField(20);
+
+        // ...
+
         tfEstado = new JTextField(20);
         tfSexo = new JTextField(20);
         tfData = new JTextField(20);
         tfHorario = new JTextField(20);
-        tfDuracao = new JTextField(20);
+        opcao1 = new JRadioButton("30 minutos");
+        opcao1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                tfDuracao = "30";
+            }
+        });
+        opcao2 = new JRadioButton("60 minutos");
+        opcao2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                tfDuracao = "60";
+            }
+        });
+        opcao3 = new JRadioButton("120 minutos");
+        opcao3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                tfDuracao = "120";
+            }
+        });
         tfDescricao = new JTextField(20);
+
+        ButtonGroup group = new ButtonGroup();
+        group.add(opcao1);
+        group.add(opcao2);
+        group.add(opcao3);
+
+        radioPanel.add(opcao1);
+        radioPanel.add(opcao2);
+        radioPanel.add(opcao3);
 
         painelField.add(tfNome);
         painelField.add(tfCpf);
@@ -118,8 +156,8 @@ public class TelaAgenda {
         painelField.add(tfSexo);
         painelField.add(tfData);
         painelField.add(tfHorario);
-        painelField.add(tfDuracao);
         painelField.add(tfDescricao);
+        painelField.add(radioPanel);
 
         formulario.add(painelLabel);
         formulario.add(painelField);
@@ -183,8 +221,17 @@ public class TelaAgenda {
             tfSexo.setText(consulta.getPaciente().getSexo());
             tfData.setText(consulta.getData().toString());
             tfHorario.setText(consulta.getHorario().toString());
-            tfDuracao.setText(String.valueOf(consulta.getDuracaoMinutos()));
             tfDescricao.setText(consulta.getDescricao());
+
+            String duracao = String.valueOf(consulta.getDuracaoMinutos());
+            duracao += " minutos";
+            if (opcao1.getText().equals(duracao)) {
+                opcao1.setSelected(true);
+            } else if (opcao2.getText().equals(duracao)) {
+                opcao2.setSelected(true);
+            } else if (opcao3.getText().equals(duracao)) {
+                opcao3.setSelected(true);
+            }
 
         }
 
@@ -193,42 +240,32 @@ public class TelaAgenda {
     public void addConsulta() {
 
         DefaultListModel<Consulta> model = (DefaultListModel<Consulta>) listConsultas.getModel();
-        Consulta novaConsulta = new Consulta(
-                new Paciente(tfNome.getText(), tfCpf.getText(), tfDatadeNascimento.getText(),
-                        tfCidade.getText(), tfEstado.getText(), tfSexo.getText()),
-                tfData.getText(), tfHorario.getText(),
-                Integer.parseInt(tfDuracao.getText()), tfDescricao.getText());
+        Consulta novaConsulta = null;
+        try {
+            novaConsulta = new Consulta(
+                    new Paciente(tfNome.getText(), CPF.parser(tfCpf.getText()), Data.isValidData(tfDatadeNascimento.getText()),
+                            tfCidade.getText(), tfEstado.getText(), tfSexo.getText()),
+                    Data.isValidData(tfData.getText()), tfHorario.getText(),
+                    Integer.parseInt(tfDuracao), tfDescricao.getText());
+        } catch (CPFException e) {
+            // Handle the CPFException here
+        } catch (DataException e) {
+
+        }
 
         // Convertendo para ArrayList para poder inserir em um índice específico
         ArrayList<Consulta> lista = Collections.list(model.elements());
 
-        int dd = Integer.parseInt(novaConsulta.getData().substring(0, 2));
-        int mm = Integer.parseInt(novaConsulta.getData().substring(3, 5));
-        int aa = Integer.parseInt(novaConsulta.getData().substring(6));
-        int hh = Integer.parseInt(novaConsulta.getHorario().replaceAll("[\\D]", ""));
-
         // Encontrando o índice correto para a nova Consulta
         int index = 0;
         for (Consulta consulta : lista) {
-            int dia = Integer.parseInt(consulta.getData().substring(0, 2));
-            int mes = Integer.parseInt(consulta.getData().substring(3, 5));
-            int ano = Integer.parseInt(consulta.getData().substring(6));
-            int horario = Integer.parseInt(consulta.getHorario().replaceAll("[\\D]", ""));
-            if (aa < ano) {
+            if (Data.compara(consulta.getData(), novaConsulta.getData()) > 0) {
                 break;
-            } else if (aa == ano) {
-                if (mm < mes) {
+            }
+            if(Data.compara(consulta.getData(), novaConsulta.getData()) == 0) {
+                if(Horario.compara(consulta.getHorario(), novaConsulta.getHorario()) > 0) {
                     break;
-                } else if (mm == mes) {
-                    if (dd < dia) {
-                        break;
-                    } else if (dd == dia) {
-                        if (hh < horario) {
-                            break;
-                        }
-                    }
                 }
-
             }
             index++;
         }
@@ -278,37 +315,22 @@ public class TelaAgenda {
             consulta.getPaciente().setSexo(tfSexo.getText());
             consulta.setData(tfData.getText());
             consulta.setHorario(tfHorario.getText());
-            consulta.setDuracaoMinutos(Integer.parseInt(tfDuracao.getText()));
+            consulta.setDuracaoMinutos(Integer.parseInt(tfDuracao));
             consulta.setDescricao(tfDescricao.getText());
 
             ArrayList<Consulta> lista = Collections.list(model.elements());
 
-            int dd = Integer.parseInt(consulta.getData().substring(0, 2));
-            int mm = Integer.parseInt(consulta.getData().substring(3, 5));
-            int aa = Integer.parseInt(consulta.getData().substring(6));
-            int hh = Integer.parseInt(consulta.getHorario().replaceAll("[\\D]", ""));
+            
 
             int index = 0;
             for (Consulta i : lista) {
-                int dia = Integer.parseInt(i.getData().substring(0, 2));
-                int mes = Integer.parseInt(i.getData().substring(3, 5));
-                int ano = Integer.parseInt(i.getData().substring(6));
-                int horario = Integer.parseInt(i.getHorario().replaceAll("[\\D]", ""));
-                if (aa < ano) {
+                if(Data.compara(i.getData(), consulta.getData()) > 0) {
                     break;
-                } else if (aa == ano) {
-                    if (mm < mes) {
+                }
+                if(Data.compara(i.getData(), consulta.getData()) == 0) {
+                    if(Horario.compara(i.getHorario(), consulta.getHorario()) > 0) {
                         break;
-                    } else if (mm == mes) {
-                        if (dd < dia) {
-                            break;
-                        } else if (dd == dia) {
-                            if (hh < horario) {
-                                break;
-                            }
-                        }
                     }
-
                 }
                 index++;
             }
