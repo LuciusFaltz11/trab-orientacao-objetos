@@ -6,20 +6,16 @@ import com.poo.projeto_hospital.model.Medico;
 import com.poo.projeto_hospital.model.Paciente;
 
 public class Secretaria {
-    public static void agendarConsulta(Paciente paciente, Medico medico, String horario) {
+    public static void agendarConsulta(Paciente paciente, Medico medico, String data, String horario, int duracao) {
         // Verificar a disponibilidade do médico antes de agendar
-        /*
-         * if (verificarDisponibilidade(medico, horario)) {
-         * Consulta consulta = new Consulta(paciente, medico, horario);
-         * medico.getAgenda().adicionarConsulta(consulta);
-         * paciente.adicionarConsulta(consulta);
-         * System.out.println("Consulta agendada com sucesso!");
-         * } else {
-         * System.out.
-         * println("Médico não disponível neste horário. Escolha outro horário ou médico."
-         * );
-         * }
-         */
+         if (verificarDisponibilidade(medico, horario)) {
+            Consulta consulta = new Consulta(paciente, medico, data, horario, duracao);
+            medico.getAgenda().adicionarConsulta(consulta);
+            paciente.adicionarConsulta(consulta);
+            System.out.println("Consulta agendada com sucesso!");
+         } else {
+             System.out.println("Médico não disponível neste horário. Escolha outro horário ou médico.");
+         }
     }
 
     public static void listarConsultasMedico(Medico medico) {
@@ -50,17 +46,14 @@ public class Secretaria {
         }
     }
 
-    /*
-     * private static boolean verificarDisponibilidade(Medico medico, LocalDate
-     * horario) {
-     * List<Consulta> consultas = medico.getAgenda().getConsultas();
-     * for (Consulta consulta : consultas) {
-     * // Verificar se o horário está ocupado
-     * if (consulta.getHorario().equals(horario)) {
-     * return false; // Horário ocupado
-     * }
-     * }
-     * return true; // Horário disponível
-     * }
-     */
+
+     private static boolean verificarDisponibilidade(Medico medico, String horario) {
+     List<Consulta> consultas = medico.getAgenda().getConsultas();
+        for (Consulta consulta : consultas) {
+            if (consulta.getHorario().equals(horario)) {
+                return false;
+            }
+        }
+        return true; // Horário disponível
+     }
 }

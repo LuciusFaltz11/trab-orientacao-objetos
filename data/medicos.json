@@ -1,7 +1,7 @@
 [
   {
     "email": "joaoSilva@gmail.com",
-    "senha": ["j", "o", "a", "o", "s", "i", "l", "v", "a"],
+    "senha": ["1", "2", "3", "4", "5", "6", "7", "8"],
     "nome": "Dr. João Silva",
     "cpf": "123.456.789-01",
     "dataNascimento": "01/01/1980",
@@ -32,7 +32,7 @@
   },
   {
     "email": "mariaOliveira@gmail.com",
-    "senha": ["m", "a", "r", "i", "a", "o", "l", "i", "v", "e", "i", "r", "a"],
+    "senha": ["1", "2", "3", "4", "5", "6", "7", "8"],
     "nome": "Dra. Maria Oliveira",
     "cpf": "987.654.321-09",
     "dataNascimento": "15/05/1985",
@@ -63,7 +63,7 @@
   },
   {
     "email": "andreSantos@gmail.com",
-    "senha": ["a", "n", "d", "r", "e", "s", "a", "n", "t", "o", "s"],
+    "senha": ["1", "2", "3", "4", "5", "6", "7", "8"],
     "nome": "Dr. André Santos",
     "cpf": "111.222.333-44",
     "dataNascimento": "10/08/1975",
@@ -93,8 +93,8 @@
     "finalExpediente": "17:00"
   },
   {
-    "email": "anaRodrigues@gmai.com",
-    "senha": ["a", "n", "a", "r", "o", "d", "r", "i", "g", "u", "e", "s"],
+    "email": "anaRodrigues@gmail.com",
+    "senha": ["1", "2", "3", "4", "5", "6", "7", "8"],
     "nome": "Dra. Ana Rodrigues",
     "cpf": "555.666.777-88",
     "dataNascimento": "25/11/1982",
@@ -125,7 +125,7 @@
   },
   {
     "email": "marcosSantos@gmail.com",
-    "senha": ["m", "a", "r", "c", "o", "s", "s", "a", "n", "t", "o", "s"],
+    "senha": ["1", "2", "3", "4", "5", "6", "7", "8"],
     "nome": "Dr. Marcos Santos",
     "cpf": "999.888.777-66",
     "dataNascimento": "03/03/1970",

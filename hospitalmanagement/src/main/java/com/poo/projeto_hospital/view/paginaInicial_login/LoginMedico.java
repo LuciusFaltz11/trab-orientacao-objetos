@@ -1,8 +1,11 @@
 package com.poo.projeto_hospital.view.paginaInicial_login;
 
+import com.poo.projeto_hospital.controller.EntrarLoginMedico;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -37,6 +40,7 @@ public class LoginMedico extends FormatacaoInicial {
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
         criarTitulo(frame, "Login");
         criaPainelImagem(frame, "hospitalmanagement/src/main/resources/images/iconeRegistroMedico.png");
+
         criaFormularioLogin(frame);
         redenrizaBotaoMedico(frame);
 
@@ -67,6 +71,7 @@ public class LoginMedico extends FormatacaoInicial {
             }
         });
 
+        entrarButton.addActionListener(new EntrarLoginMedico(this));
         frame.getContentPane().add(botaoPanel, BorderLayout.PAGE_END);
 
     }
@@ -92,6 +97,7 @@ public class LoginMedico extends FormatacaoInicial {
         frame.getContentPane().add(formularioPanel, BorderLayout.SOUTH);
 
     }
+
 
     public JTextField getEmailField() {
         return emailField;

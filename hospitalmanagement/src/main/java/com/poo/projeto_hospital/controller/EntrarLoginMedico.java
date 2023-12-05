@@ -46,4 +46,5 @@ public class EntrarLoginMedico implements ActionListener {
                 JOptionPane.ERROR_MESSAGE);
     }
 
+    }
 }

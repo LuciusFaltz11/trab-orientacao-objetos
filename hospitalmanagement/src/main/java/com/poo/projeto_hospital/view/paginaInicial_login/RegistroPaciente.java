@@ -158,8 +158,6 @@ public class RegistroPaciente extends FormatacaoInicial {
         criarContaButton.addActionListener(new CriarContaLogin(this));
         frame.add(botaoPanel, BorderLayout.PAGE_END);
 
-        frame.add(botaoPanel, BorderLayout.PAGE_END);
-
     }
 
     public JTextField getCidadeField() {

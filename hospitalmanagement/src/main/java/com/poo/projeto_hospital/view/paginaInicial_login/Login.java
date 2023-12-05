@@ -32,9 +32,12 @@ public class Login extends FormatacaoInicial {
     private JPasswordField senhaField;
 
     public Login() {
+
     }
 
     public void createAndShowGUI() {
+        emailField = new JTextField(20);
+        senhaField = new JPasswordField(20);
         JFrame frame = new JFrame("Hospital Manager");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 300);
@@ -44,34 +47,12 @@ public class Login extends FormatacaoInicial {
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
         criarTitulo(frame, "Login");
         criaPainelImagem(frame, "hospitalmanagement/src/main/resources/images/iconeLogin.png");
-        criaFormularioLogin(frame);
+        criaFormularioLogin(frame, emailField, senhaField);
         renderizaBotao(frame);
 
         frame.pack();
         frame.setLocationRelativeTo(null); // tela no centro
         frame.setVisible(true);
-    }
-
-    private void criaFormularioLogin(JFrame frame) {
-        JPanel formularioPanel = new JPanel();
-        formularioPanel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-
-        JLabel emaiLabel = new JLabel("Email");
-        emailField = new JTextField(20);
-        JLabel senhaLabel = new JLabel("Senha");
-        senhaField = new JPasswordField(20);
-
-        formularioPanel.add(emaiLabel, gbc);
-        formularioPanel.add(emailField, gbc);
-        formularioPanel.add(senhaLabel, gbc);
-        formularioPanel.add(senhaField, gbc);
-
-        formularioPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        frame.getContentPane().add(formularioPanel, BorderLayout.SOUTH);
-
     }
 
     private void renderizaBotao(JFrame frame) {
@@ -100,8 +81,17 @@ public class Login extends FormatacaoInicial {
         criarContaButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 RegistroPaciente registroPaciente = new RegistroPaciente();
+                finalFrame.dispose(); // Use finalFrame instead of frame
                 registroPaciente.createAndShowGUI();
                 finalFrame.dispose();
+            }
+        });
+
+        areaMedico.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                LoginMedico login = new LoginMedico();
+                finalFrame.dispose(); // Use finalFrame instead of frame
+                login.createAndShowGUI();
             }
         });
 

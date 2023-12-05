@@ -8,6 +8,7 @@ public class Pessoa {
     private final String estado;
     private final String sexo;
 
+
     public Pessoa(String nome, String cpf, String dataNascimento, String cidade, String estado, String sexo) {
         this.nome = nome;
         this.cpf = cpf;
