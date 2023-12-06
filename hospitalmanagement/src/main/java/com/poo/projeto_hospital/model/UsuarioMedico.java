@@ -1,6 +1,6 @@
 package com.poo.projeto_hospital.model;
 
-import com.poo.projeto_hospital.Medico;
+import com.poo.projeto_hospital.model.Medico;
 
 public class UsuarioMedico extends Medico {
     private String email;

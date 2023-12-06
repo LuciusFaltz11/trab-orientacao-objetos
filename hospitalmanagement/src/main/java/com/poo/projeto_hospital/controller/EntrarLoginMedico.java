@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import com.poo.projeto_hospital.model.Medico;
+import com.poo.projeto_hospital.model.UsuarioMedico;
 import com.poo.projeto_hospital.persistence.MedicoPersistence;
 import com.poo.projeto_hospital.persistence.Persistence;
 import com.poo.projeto_hospital.view.paginaInicial_login.LoginMedico;
@@ -29,8 +30,9 @@ public class EntrarLoginMedico implements ActionListener {
             return;
         }
 
-        Persistence<Medico> medicoPersistence = new MedicoPersistence();
-        List<Medico> medicos = medicoPersistence.findAll();
+        // decidir entre usurioMedico e medico
+        Persistence<UsuarioMedico> medicoPersistence = new MedicoPersistence();
+        List<UsuarioMedico> medicos = medicoPersistence.findAll();
         for (Medico medico : medicos) {
             if (medico.getEmail().equals(email) && Arrays.equals(medico.getSenha(), senha)) {
                 JOptionPane.showMessageDialog(null, "Login realizado com sucesso!", "Login",
@@ -46,5 +48,4 @@ public class EntrarLoginMedico implements ActionListener {
                 JOptionPane.ERROR_MESSAGE);
     }
 
-    }
 }

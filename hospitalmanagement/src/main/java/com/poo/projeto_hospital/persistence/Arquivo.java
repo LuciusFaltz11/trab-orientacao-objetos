@@ -2,7 +2,12 @@ package com.poo.projeto_hospital.persistence;
 
 import com.poo.projeto_hospital.model.Usuario;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import javax.swing.JOptionPane;
 
 public class Arquivo {
@@ -59,7 +64,7 @@ public class Arquivo {
                 content.append(line).append("\n");
             }
         } catch (IOException e) {
-            //e.printStackTrace();
+            // e.printStackTrace();
         }
 
         return content.toString();

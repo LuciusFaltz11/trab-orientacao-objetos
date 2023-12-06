@@ -7,6 +7,8 @@ public class CPF {
     public static String parser(String cpf) throws CPFException {
 
         cpf = cpf.replaceAll(" ", "");
+        cpf = cpf.replaceAll("\\.", "");
+        cpf = cpf.replaceAll("-", "");
 
         System.out.println(cpf);
         // Verificar se o CPF possui 11 dígitos

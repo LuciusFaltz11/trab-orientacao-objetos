@@ -40,4 +40,32 @@ public class Data {
         } else
             throw new DataException();
     }
+
+    public static int compara (String Data1, String Data2) {
+
+        int dia1 = Integer.parseInt(Data1.substring(0,2));
+        int mes1 = Integer.parseInt(Data1.substring(3,5));
+        int ano1 = Integer.parseInt(Data1.substring(6));
+
+        int dia2 = Integer.parseInt(Data2.substring(0,2));
+        int mes2 = Integer.parseInt(Data2.substring(3,5));
+        int ano2 = Integer.parseInt(Data2.substring(6));
+
+        if(ano1 > ano2)
+            return 1;
+        else if(ano1 < ano2)
+            return -1;
+        else if(mes1 > mes2)
+            return 1;
+        else if(mes1 < mes2)
+            return -1;
+        else if(dia1 > dia2)
+            return 1;
+        else if(dia1 < dia2)
+            return -1;
+        else
+
+        return 0;
+
+    }
 }
