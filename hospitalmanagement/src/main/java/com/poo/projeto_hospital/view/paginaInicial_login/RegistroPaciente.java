@@ -16,7 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
 import com.poo.projeto_hospital.controller.CriarContaLogin;
 
@@ -157,8 +156,6 @@ public class RegistroPaciente extends FormatacaoInicial {
         });
 
         criarContaButton.addActionListener(new CriarContaLogin(this));
-        frame.add(botaoPanel, BorderLayout.PAGE_END);
-
         frame.add(botaoPanel, BorderLayout.PAGE_END);
 
     }

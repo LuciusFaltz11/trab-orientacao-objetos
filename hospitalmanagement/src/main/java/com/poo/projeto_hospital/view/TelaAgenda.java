@@ -3,7 +3,7 @@ package com.poo.projeto_hospital.view;
 import javax.swing.*;
 
 import com.poo.projeto_hospital.Consulta;
-import com.poo.projeto_hospital.Medico;
+import com.poo.projeto_hospital.model.Medico;
 import com.poo.projeto_hospital.controller.AdicionarConsulta;
 import com.poo.projeto_hospital.controller.EditarConsulta;
 import com.poo.projeto_hospital.controller.GerenciarConsultas;
@@ -243,7 +243,8 @@ public class TelaAgenda {
         Consulta novaConsulta = null;
         try {
             novaConsulta = new Consulta(
-                    new Paciente(tfNome.getText(), CPF.parser(tfCpf.getText()), Data.isValidData(tfDatadeNascimento.getText()),
+                    new Paciente(tfNome.getText(), CPF.parser(tfCpf.getText()),
+                            Data.isValidData(tfDatadeNascimento.getText()),
                             tfCidade.getText(), tfEstado.getText(), tfSexo.getText()),
                     Data.isValidData(tfData.getText()), tfHorario.getText(),
                     Integer.parseInt(tfDuracao), tfDescricao.getText());
@@ -262,8 +263,8 @@ public class TelaAgenda {
             if (Data.compara(consulta.getData(), novaConsulta.getData()) > 0) {
                 break;
             }
-            if(Data.compara(consulta.getData(), novaConsulta.getData()) == 0) {
-                if(Horario.compara(consulta.getHorario(), novaConsulta.getHorario()) > 0) {
+            if (Data.compara(consulta.getData(), novaConsulta.getData()) == 0) {
+                if (Horario.compara(consulta.getHorario(), novaConsulta.getHorario()) > 0) {
                     break;
                 }
             }
@@ -320,15 +321,13 @@ public class TelaAgenda {
 
             ArrayList<Consulta> lista = Collections.list(model.elements());
 
-            
-
             int index = 0;
             for (Consulta i : lista) {
-                if(Data.compara(i.getData(), consulta.getData()) > 0) {
+                if (Data.compara(i.getData(), consulta.getData()) > 0) {
                     break;
                 }
-                if(Data.compara(i.getData(), consulta.getData()) == 0) {
-                    if(Horario.compara(i.getHorario(), consulta.getHorario()) > 0) {
+                if (Data.compara(i.getData(), consulta.getData()) == 0) {
+                    if (Horario.compara(i.getHorario(), consulta.getHorario()) > 0) {
                         break;
                     }
                 }

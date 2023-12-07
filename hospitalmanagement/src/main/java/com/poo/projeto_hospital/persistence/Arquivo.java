@@ -47,6 +47,14 @@ public class Arquivo {
         }
     }
 
+    public static void salva(String filePath, String content) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, false))) {
+            writer.write(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static String le(String filePath) {
         StringBuilder content = new StringBuilder();
 
@@ -56,17 +64,9 @@ public class Arquivo {
                 content.append(line).append("\n");
             }
         } catch (IOException e) {
-            //e.printStackTrace();
+            // e.printStackTrace();
         }
 
         return content.toString();
-    }
-
-    public static void salva(String filePath, String content) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, false))) {
-            writer.write(content);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

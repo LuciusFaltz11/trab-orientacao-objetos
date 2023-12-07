@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Created-By: Apache Maven 3.6.3
+Built-By: luiza
+Build-Jdk: 11.0.21
+Class-Path: gson-2.10.jar
+Main-Class: com.poo.projeto_hospital.App
+

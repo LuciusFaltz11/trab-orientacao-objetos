@@ -10,22 +10,20 @@ import com.poo.projeto_hospital.Consulta;
 import com.google.gson.reflect.TypeToken;
 
 public class ConsultaPersistence implements Persistence<Consulta> {
-    private static final String PATH = DIRECTORY+ File.separator +"consultas.json";
+    private static final String PATH = DIRECTORY + File.separator + "consultas.json";
+
     @Override
     public void save(List<Consulta> itens) {
         Gson gson = new Gson();
         String json = gson.toJson(itens);
 
         File diretorio = new File(DIRECTORY);
-        if(!diretorio.exists())
+        if (!diretorio.exists())
             diretorio.mkdirs();
 
         Arquivo.salva(PATH, json);
-
-
     }
 
-    
     @Override
 
     public List<Consulta> findAll() {
@@ -35,7 +33,8 @@ public class ConsultaPersistence implements Persistence<Consulta> {
 
         List<Consulta> consultas = new ArrayList<>();
         if (!json.trim().equals("")) {
-            java.lang.reflect.Type tipoLista = new TypeToken<List<Consulta>>() {}.getType();
+            java.lang.reflect.Type tipoLista = new TypeToken<List<Consulta>>() {
+            }.getType();
             consultas = gson.fromJson(json, tipoLista);
 
             if (consultas == null)
@@ -43,5 +42,38 @@ public class ConsultaPersistence implements Persistence<Consulta> {
         }
 
         return consultas;
+    }
+
+    public List<Consulta> findByPaciente(String cpf) {
+        List<Consulta> consultas = findAll();
+        List<Consulta> consultasPaciente = new ArrayList<>();
+
+        for (Consulta consulta : consultas) {
+            if (consulta.getPaciente().getCpf().equals(cpf)) {
+                consultasPaciente.add(consulta);
+            }
+        }
+
+        return consultasPaciente;
+    }
+
+    public List<Consulta> findByMedico(String cpf) {
+        List<Consulta> consultas = findAll();
+        List<Consulta> consultasMedico = new ArrayList<>();
+
+        for (Consulta consulta : consultas) {
+            if (consulta.getMedico().getCpf().equals(cpf)) {
+                consultasMedico.add(consulta);
+            }
+        }
+
+        return consultasMedico;
+    }
+
+    // funcao para salvar a consulta
+    public void save(Consulta consulta) {
+        List<Consulta> consultas = findAll();
+        consultas.add(consulta);
+        save(consultas);
     }
 }
