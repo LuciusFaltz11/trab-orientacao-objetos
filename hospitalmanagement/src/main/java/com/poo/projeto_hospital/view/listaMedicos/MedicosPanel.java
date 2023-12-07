@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.poo.projeto_hospital.persistence.Persistence.DIRECTORY;
+import java.lang.reflect.Field;
 
 public class MedicosPanel extends JPanel {
     private JList<Medico> medicosList;
@@ -59,10 +60,9 @@ public class MedicosPanel extends JPanel {
     private List<Medico> filtrarMedicosPorEspecialidade(List<Medico> medicos, String especialidade) {
         List<Medico> medicosFiltrados = new ArrayList<>();
         for (Medico medico : medicos) {
-            if (medico != null) {
-                if (medico.getEspecialidade().equalsIgnoreCase(especialidade)) {
-                    medicosFiltrados.add(medico);
-                }
+            if (medico != null && medico.getEspecialidade() != null
+                    && medico.getEspecialidade().equalsIgnoreCase(especialidade)) {
+                medicosFiltrados.add(medico);
             }
         }
         return medicosFiltrados;
@@ -76,7 +76,15 @@ public class MedicosPanel extends JPanel {
         MedicosPanel panel = new MedicosPanel();
         frame.add(panel.ListaMedicosPanel());
 
-        frame.setVisible(true);
+        // Make the defaultCloseOperation field accessible
+        try {
+            Field defaultCloseOperationField = JFrame.class.getDeclaredField("defaultCloseOperation");
+            defaultCloseOperationField.setAccessible(true);
+        } catch (NoSuchFieldException | SecurityException e) {
+            e.printStackTrace();
+        }
 
+        frame.setVisible(true);
     }
+
 }

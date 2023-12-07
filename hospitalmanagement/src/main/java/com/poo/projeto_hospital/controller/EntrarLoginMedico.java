@@ -40,16 +40,16 @@ public class EntrarLoginMedico implements ActionListener {
             if (usuarioMedico.getEmail().equals(email) && Arrays.equals(usuarioMedico.getSenha(), senha)) {
                 JOptionPane.showMessageDialog(null, "Login realizado com sucesso!", "Login",
                         JOptionPane.INFORMATION_MESSAGE);
-                // UsuarioMedico novo = usuarioMedico;
-                /// novo.getAgenda();
+                // Medico novo = usuarioMedico;
+                // novo.getAgenda();
                 return;
             } else if (usuarioMedico.getEmail().equals(email) && !Arrays.equals(usuarioMedico.getSenha(), senha)) {
                 JOptionPane.showMessageDialog(null, "Senha incorreta.", "Erro", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            JOptionPane.showMessageDialog(null, "Médico não cadastrado.", "Erro",
-                    JOptionPane.ERROR_MESSAGE);
         }
+        JOptionPane.showMessageDialog(null, "Médico não cadastrado.", "Erro",
+                JOptionPane.ERROR_MESSAGE);
     }
 
 }

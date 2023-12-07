@@ -23,7 +23,6 @@ public class MedicoPersistence implements Persistence<Medico> {
             diretorio.mkdirs();
 
         Arquivo.salva(PATH, json);
-
     }
 
     @Override
@@ -34,7 +33,6 @@ public class MedicoPersistence implements Persistence<Medico> {
 
         List<Medico> medicos = new ArrayList<>();
         if (!json.trim().equals("")) {
-
             Type tipoLista = new TypeToken<List<Medico>>() {
             }.getType();
             medicos = gson.fromJson(json, tipoLista);
@@ -42,8 +40,9 @@ public class MedicoPersistence implements Persistence<Medico> {
             if (medicos == null) {
                 medicos = new ArrayList<>();
             }
-        } else
+        } else {
             System.out.println("nao foi possivel ler o arquivo");
+        }
 
         return medicos;
     }
