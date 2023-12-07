@@ -44,7 +44,14 @@ public class Medico extends Pessoa {
     public char[] getSenha() {
         return senha;
     }
+
     public void getAgenda() {
         agenda.desenha();
+    }
+
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return super.toString();
     }
 }

@@ -2,7 +2,7 @@ package com.poo.projeto_hospital.view.listaMedicos;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.poo.projeto_hospital.model.UsuarioMedico;
+import com.poo.projeto_hospital.model.Medico;
 import com.poo.projeto_hospital.persistence.Arquivo;
 
 import javax.swing.*;
@@ -16,7 +16,7 @@ import java.util.List;
 import static com.poo.projeto_hospital.persistence.Persistence.DIRECTORY;
 
 public class MedicosPanel extends JPanel {
-    private JList<UsuarioMedico> medicosList;
+    private JList<Medico> medicosList;
 
     public JScrollPane ListaMedicosPanel() {
         // Configuração do layout e da JList
@@ -32,20 +32,20 @@ public class MedicosPanel extends JPanel {
     }
 
     private void atualizarListaMedicos() {
-        List<UsuarioMedico> medicos = obterListaMedicos();
+        List<Medico> medicos = obterListaMedicos();
         System.out.println(medicos.size());
-        medicosList.setListData(medicos.toArray(new UsuarioMedico[0]));
+        medicosList.setListData(medicos.toArray(new Medico[0]));
     }
 
-    private List<UsuarioMedico> obterListaMedicos() {
+    private List<Medico> obterListaMedicos() {
         final String PATH = DIRECTORY + File.separator + "medicos.json";
         Gson gson = new Gson();
 
         String json = Arquivo.le(PATH);
 
-        List<UsuarioMedico> medicos = new ArrayList<>();
+        List<Medico> medicos = new ArrayList<>();
         if (!json.trim().equals("")) {
-            Type tipoLista = new TypeToken<List<UsuarioMedico>>() {
+            Type tipoLista = new TypeToken<List<Medico>>() {
             }.getType();
             medicos = gson.fromJson(json, tipoLista);
 
@@ -56,9 +56,9 @@ public class MedicosPanel extends JPanel {
         return medicos;
     }
 
-    private List<UsuarioMedico> filtrarMedicosPorEspecialidade(List<UsuarioMedico> medicos, String especialidade) {
-        List<UsuarioMedico> medicosFiltrados = new ArrayList<>();
-        for (UsuarioMedico medico : medicos) {
+    private List<Medico> filtrarMedicosPorEspecialidade(List<Medico> medicos, String especialidade) {
+        List<Medico> medicosFiltrados = new ArrayList<>();
+        for (Medico medico : medicos) {
             if (medico != null) {
                 if (medico.getEspecialidade().equalsIgnoreCase(especialidade)) {
                     medicosFiltrados.add(medico);
