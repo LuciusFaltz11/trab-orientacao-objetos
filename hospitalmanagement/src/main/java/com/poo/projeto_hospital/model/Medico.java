@@ -7,18 +7,17 @@ import com.poo.projeto_hospital.view.TelaAgenda;
 
 public class Medico extends Pessoa {
     @SerializedName("defaultCloseOperation")
-    private String especialidade;
-    private TelaAgenda agenda;
-    private String inicioExpediente;
-    private String finalExpediente;
-    private String email;
-    private char[] senha;
+    protected String especialidade;
+    // protected TelaAgenda agenda;
+    protected String inicioExpediente;
+    protected String finalExpediente;
 
-    public Medico(String nome, String cpf, String dataNascimento, String especialidade, String inicioExpediente,
+    public Medico(String nome, String cpf, String dataNascimento, String cidade, String estado, String sexo,
+            String especialidade, String inicioExpediente,
             String finalExpediente) {
-        super(nome, cpf, dataNascimento, null, null, null);
+        super(nome, cpf, dataNascimento, cidade, estado, sexo);
         this.especialidade = especialidade;
-        this.agenda = new TelaAgenda(this);
+        // this.agenda = new TelaAgenda(this);
         this.inicioExpediente = inicioExpediente;
         this.finalExpediente = finalExpediente;
     }
@@ -39,17 +38,11 @@ public class Medico extends Pessoa {
         return finalExpediente;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public char[] getSenha() {
-        return senha;
-    }
-
-    public void getAgenda() {
-        agenda.desenha();
-    }
+    /*
+     * public void getAgenda() {
+     * agenda.desenha();
+     * }
+     */
 
     @Override
     public String toString() {

@@ -9,24 +9,6 @@
     "estado": "SP",
     "sexo": "M",
     "especialidade": "Cardiologia",
-    "agenda": {
-      "consultas": [
-        {
-          "paciente": {},
-          "medico": null,
-          "data": "01/02/2023",
-          "horario": "10:00",
-          "duracaoMinutos": 30
-        },
-        {
-          "paciente": {},
-          "medico": null,
-          "data": "15/02/2023",
-          "horario": "15:30",
-          "duracaoMinutos": 45
-        }
-      ]
-    },
     "inicioExpediente": "08:00",
     "finalExpediente": "18:00"
   },
@@ -40,24 +22,6 @@
     "estado": "RJ",
     "sexo": "F",
     "especialidade": "Dermatologia",
-    "agenda": {
-      "consultas": [
-        {
-          "paciente": {},
-          "medico": null,
-          "data": "05/03/2023",
-          "horario": "09:30",
-          "duracaoMinutos": 60
-        },
-        {
-          "paciente": {},
-          "medico": null,
-          "data": "20/03/2023",
-          "horario": "14:00",
-          "duracaoMinutos": 30
-        }
-      ]
-    },
     "inicioExpediente": "09:00",
     "finalExpediente": "17:30"
   },
@@ -71,24 +35,6 @@
     "estado": "MG",
     "sexo": "M",
     "especialidade": "Ortopedia",
-    "agenda": {
-      "consultas": [
-        {
-          "paciente": {},
-          "medico": null,
-          "data": "08/04/2023",
-          "horario": "11:45",
-          "duracaoMinutos": 45
-        },
-        {
-          "paciente": {},
-          "medico": null,
-          "data": "22/04/2023",
-          "horario": "16:30",
-          "duracaoMinutos": 30
-        }
-      ]
-    },
     "inicioExpediente": "07:30",
     "finalExpediente": "17:00"
   },
@@ -102,24 +48,6 @@
     "estado": "DF",
     "sexo": "F",
     "especialidade": "Ginecologia",
-    "agenda": {
-      "consultas": [
-        {
-          "paciente": {},
-          "medico": null,
-          "data": "12/05/2023",
-          "horario": "10:15",
-          "duracaoMinutos": 60
-        },
-        {
-          "paciente": {},
-          "medico": null,
-          "data": "28/05/2023",
-          "horario": "14:45",
-          "duracaoMinutos": 45
-        }
-      ]
-    },
     "inicioExpediente": "08:30",
     "finalExpediente": "18:30"
   },
@@ -133,24 +61,6 @@
     "estado": "RS",
     "sexo": "M",
     "especialidade": "Oftalmologia",
-    "agenda": {
-      "consultas": [
-        {
-          "paciente": {},
-          "medico": null,
-          "data": "18/06/2023",
-          "horario": "09:00",
-          "duracaoMinutos": 30
-        },
-        {
-          "paciente": {},
-          "medico": null,
-          "data": "03/07/2023",
-          "horario": "15:30",
-          "duracaoMinutos": 60
-        }
-      ]
-    },
     "inicioExpediente": "09:00",
     "finalExpediente": "17:00"
   }

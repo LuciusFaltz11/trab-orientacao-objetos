@@ -5,8 +5,9 @@ public class UsuarioMedico extends Medico {
     private char[] senha;
 
     public UsuarioMedico(String email, char[] senha, String nome, String cpf, String dataNascimento,
-            String especialidade, String inicioExpediente, String finalExpediente) {
-        super(nome, cpf, dataNascimento, especialidade, inicioExpediente, finalExpediente);
+            String cidade, String estado, String sexo, String especialidade, String inicioExpediente,
+            String finalExpediente) {
+        super(nome, cpf, dataNascimento, cidade, estado, sexo, especialidade, inicioExpediente, finalExpediente);
         this.email = email;
         this.senha = senha;
     }
@@ -24,6 +25,12 @@ public class UsuarioMedico extends Medico {
     public char[] getSenha() {
         return senha;
     }
+
+    /*
+     * public Agenda getAgenda() {
+     * return agenda;
+     * }
+     */
 
     @Override
     public String toString() {

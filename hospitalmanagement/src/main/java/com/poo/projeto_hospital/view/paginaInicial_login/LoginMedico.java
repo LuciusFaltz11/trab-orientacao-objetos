@@ -26,19 +26,20 @@ public class LoginMedico extends FormatacaoInicial {
 
     public JTextField emailField;
     public JPasswordField senhaField;
+    protected JFrame frame;
 
     public LoginMedico() {
     }
 
     public void createAndShowGUI() {
-        JFrame frame = new JFrame("Hospital Manager");
+        frame = new JFrame("Hospital Manager");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 300);
         frame.setPreferredSize(new Dimension(500, 350));
         frame.setResizable(false);
 
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
-        criarTitulo(frame, "Login");
+        criarTitulo(frame, "Login do médico");
         criaPainelImagem(frame, "hospitalmanagement/src/main/resources/images/iconeRegistroMedico.png");
 
         criaFormularioLogin(frame);
@@ -104,6 +105,10 @@ public class LoginMedico extends FormatacaoInicial {
 
     public JPasswordField getSenhaField() {
         return senhaField;
+    }
+
+    public JFrame getFrame() {
+        return frame;
     }
 
 }

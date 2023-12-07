@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-import com.poo.projeto_hospital.model.Medico;
 import com.poo.projeto_hospital.model.UsuarioMedico;
 import com.poo.projeto_hospital.persistence.MedicoPersistence;
 import com.poo.projeto_hospital.persistence.Persistence;
@@ -32,10 +31,11 @@ public class EntrarLoginMedico implements ActionListener {
 
         Persistence<UsuarioMedico> medicoPersistence = new MedicoPersistence();
         List<UsuarioMedico> medicos = medicoPersistence.findAll();
-        for (Medico medico : medicos) {
+        for (UsuarioMedico medico : medicos) {
             if (medico.getEmail().equals(email) && Arrays.equals(medico.getSenha(), senha)) {
                 JOptionPane.showMessageDialog(null, "Login realizado com sucesso!", "Login",
                         JOptionPane.INFORMATION_MESSAGE);
+                this.loginMedico.getFrame().dispose();
                 return;
             } else if (medico.getEmail().equals(email) && !Arrays.equals(medico.getSenha(), senha)) {
                 JOptionPane.showMessageDialog(null, "Senha incorreta.", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -46,5 +46,4 @@ public class EntrarLoginMedico implements ActionListener {
         JOptionPane.showMessageDialog(null, "Médico não cadastrado.", "Erro",
                 JOptionPane.ERROR_MESSAGE);
     }
-
 }

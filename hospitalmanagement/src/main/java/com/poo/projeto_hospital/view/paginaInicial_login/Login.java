@@ -74,6 +74,7 @@ public class Login extends FormatacaoInicial {
         areaMedico.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 LoginMedico loginMedico = new LoginMedico();
+                finalFrame.dispose();
                 loginMedico.createAndShowGUI();
                 finalFrame.dispose();
             }
