@@ -34,7 +34,7 @@ public class EntrarLoginMedico implements ActionListener {
         }
 
         // decidir entre usurioMedico e medico
-        Persistence<Medico> medicoPersistence = new MedicoPersistence();
+        MedicoPersistence medicoPersistence = new MedicoPersistence();
         List<Medico> medicos = medicoPersistence.findAll();
         for (Medico usuarioMedico : medicos) {
             if (usuarioMedico.getEmail().equals(email) && Arrays.equals(usuarioMedico.getSenha(), senha)) {

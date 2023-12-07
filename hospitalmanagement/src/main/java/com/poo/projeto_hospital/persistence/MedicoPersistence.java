@@ -6,6 +6,8 @@ import com.poo.projeto_hospital.model.Medico;
 import com.poo.projeto_hospital.model.Usuario;
 
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,15 +35,10 @@ public class MedicoPersistence implements Persistence<Medico> {
 
         List<Medico> medicos = new ArrayList<>();
         if (!json.trim().equals("")) {
+
             Type tipoLista = new TypeToken<List<Medico>>() {
             }.getType();
             medicos = gson.fromJson(json, tipoLista);
-
-            if (medicos == null) {
-                medicos = new ArrayList<>();
-            }
-        } else {
-            System.out.println("nao foi possivel ler o arquivo");
         }
 
         return medicos;

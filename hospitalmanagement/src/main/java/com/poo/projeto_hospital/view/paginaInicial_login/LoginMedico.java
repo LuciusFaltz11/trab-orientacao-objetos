@@ -24,8 +24,8 @@ import com.poo.projeto_hospital.controller.EntrarLoginMedico;
 
 public class LoginMedico extends FormatacaoInicial {
 
-    private JTextField emailField;
-    private JPasswordField senhaField;
+    public JTextField emailField;
+    public JPasswordField senhaField;
 
     public LoginMedico() {
     }
@@ -97,7 +97,6 @@ public class LoginMedico extends FormatacaoInicial {
         frame.getContentPane().add(formularioPanel, BorderLayout.SOUTH);
 
     }
-
 
     public JTextField getEmailField() {
         return emailField;

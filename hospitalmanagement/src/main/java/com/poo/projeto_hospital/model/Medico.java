@@ -1,10 +1,12 @@
 package com.poo.projeto_hospital.model;
 
+import com.google.gson.annotations.SerializedName;
 import com.poo.projeto_hospital.AgendaMedico;
 import com.poo.projeto_hospital.model.Pessoa;
 import com.poo.projeto_hospital.view.TelaAgenda;
 
 public class Medico extends Pessoa {
+    @SerializedName("defaultCloseOperation")
     private String especialidade;
     private TelaAgenda agenda;
     private String inicioExpediente;
