@@ -17,6 +17,7 @@ import com.poo.projeto_hospital.model.Data;
 import com.poo.projeto_hospital.model.Email;
 import com.poo.projeto_hospital.model.Horario;
 import com.poo.projeto_hospital.model.Paciente;
+import com.poo.projeto_hospital.model.UsuarioMedico;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class TelaAgenda {
     private final int V_GAP = 10;
     private final int H_GAP = 5;
 
-    private Medico medico;
+    private UsuarioMedico medico;
     private JFrame tela;
 
     private JTextField tfNome;
@@ -50,7 +51,7 @@ public class TelaAgenda {
 
     private JList<Consulta> listConsultas;
 
-    public TelaAgenda(Medico medico) {
+    public TelaAgenda(UsuarioMedico medico) {
         this.medico = medico;
     }
 
@@ -247,7 +248,7 @@ public class TelaAgenda {
                             Data.isValidData(tfDatadeNascimento.getText()),
                             tfCidade.getText(), tfEstado.getText(), tfSexo.getText()),
                     Data.isValidData(tfData.getText()), tfHorario.getText(),
-                    Integer.parseInt(tfDuracao), tfDescricao.getText());
+                    Integer.parseInt(tfDuracao),medico, tfDescricao.getText());
         } catch (CPFException e) {
             // Handle the CPFException here
         } catch (DataException e) {
