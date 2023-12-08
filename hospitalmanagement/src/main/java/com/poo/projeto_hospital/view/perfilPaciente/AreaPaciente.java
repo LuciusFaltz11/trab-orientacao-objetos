@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.poo.projeto_hospital.Consulta;
 import com.poo.projeto_hospital.model.Paciente;
+import com.poo.projeto_hospital.model.Usuario;
 import com.poo.projeto_hospital.model.UsuarioMedico;
 import com.poo.projeto_hospital.persistence.MedicoPersistence;
 
@@ -35,9 +36,9 @@ import javax.swing.border.Border;
 import javax.swing.JScrollPane;
 
 public class AreaPaciente {
-    protected Paciente paciente;
+    protected Usuario paciente;
 
-    public AreaPaciente(Paciente paciente) {
+    public AreaPaciente(Usuario paciente) {
         this.paciente = paciente;
     }
 
@@ -101,20 +102,31 @@ public class AreaPaciente {
         Border border = BorderFactory.createEtchedBorder();
         consultasPanel.setBorder(border);
 
+        JLabel tituloLabel = new JLabel("Consultas");
+        tituloLabel.setFont(new Font(null, Font.BOLD, 20));
+        consultasPanel.add(tituloLabel);
+
         List<Consulta> consultas = paciente.getConsultas();
 
         if (consultas == null || consultas.isEmpty()) {
             JLabel semConsultasLabel = new JLabel("Você não tem consultas agendadas.");
             consultasPanel.add(semConsultasLabel);
         } else {
-            final JComboBox<Consulta> consultasComboBox = new JComboBox<Consulta>();
-            for (Consulta consulta : consultas) {
-                consultasComboBox.addItem(consulta);
-            }
+            JTextArea consultasTextArea = new JTextArea();
+            consultasTextArea.setEditable(false);
+            consultasTextArea.setPreferredSize(new Dimension(400, 200));
 
-            JScrollPane scrollPane = new JScrollPane(consultasComboBox); // Wrap the JComboBox in a JScrollPane
-            scrollPane.setPreferredSize(new Dimension(450, 200)); // Set the preferred size of the scroll pane
-            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); // Enable vertical scroll bar
+            StringBuilder consultasText = new StringBuilder();
+            for (Consulta consulta : consultas) {
+                consultasText.append(consulta.toString(true)).append("\n");
+            }
+            consultasTextArea.setText(consultasText.toString());
+
+            JScrollPane scrollPane = new JScrollPane(consultasTextArea);
+            scrollPane.setPreferredSize(new Dimension(450, 150));
+            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // Remove horizontal scroll
+                                                                                             // bar
 
             consultasPanel.add(scrollPane);
         }

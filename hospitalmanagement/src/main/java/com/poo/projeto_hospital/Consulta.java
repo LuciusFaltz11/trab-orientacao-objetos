@@ -122,12 +122,16 @@ public class Consulta {
         return medico.findByCpf(cpfMedico).getNome();
     }
 
-
-
     @Override
     public String toString() {
         return "Data e Hora: " + data + " as " + horario + " | Paciente: " + getPacienteNome() + " | Duracao: "
                 + duracaoMinutos + " minutos.";
+    }
+
+    public String toString(boolean paciente) {
+        return "Data e Hora: " + this.data + " as " + this.horario + " | Medico: " + this.getNomeMedico()
+                + " | Duracao: "
+                + this.duracaoMinutos + " minutos.";
     }
 
     public String getCpfPaciente() {
