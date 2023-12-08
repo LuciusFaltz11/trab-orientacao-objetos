@@ -1,17 +1,1 @@
-[
-  {
-    "cpfPaciente": "12345678909",
-    "cpfMedico": "12345678901",
-    "data": "20/12/2023",
-    "horario": "16:30",
-    "duracaoMinutos": 60
-  },
-  {
-    "cpfPaciente": "13593634678",
-    "cpfMedico": "999.888.777-66",
-    "data": "07/12/2023",
-    "horario": "23:30",
-    "duracaoMinutos": 60,
-    "descricao": "Consulta de rotina"
-  }
-]
+[{"cpfPaciente":"13593634678","cpfMedico":"999.888.777-66","data":"07/12/2023","horario":"23:30","duracaoMinutos":60,"descricao":"Consulta de rotina"},{"cpfPaciente":"12345678909","cpfMedico":"12345678901","data":"20/12/2023","horario":"16:30","duracaoMinutos":60}]

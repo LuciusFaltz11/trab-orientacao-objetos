@@ -20,7 +20,7 @@ import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 import javax.swing.JScrollPane;
 
-public class AreaPaciente {
+public class AreaPaciente extends PadraoPerfilPaciente {
     protected Usuario paciente;
 
     public AreaPaciente(Usuario paciente) {
@@ -28,60 +28,19 @@ public class AreaPaciente {
     }
 
     public void createAndShowGUI() {
-        JFrame frame = new JFrame("Perfil do paciente");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 300);
-        frame.setPreferredSize(new Dimension(500, 350));
-        frame.setResizable(false);
-        // acoesPaciente(frame);
+        JFrame frame = criarFrame("Perfil do paciente");
         createToolbar(frame);
         criarMensagem(frame);
         consultasPaciente(frame);
 
-        frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
-        frame.pack();
-        frame.setLocationRelativeTo(null); // tela no centro
         frame.setVisible(true);
-    }
 
-    void acoesPaciente(JFrame frame) {
-        JPanel botaoPanel = new JPanel();
-        botaoPanel.setLayout(new FlowLayout(FlowLayout.CENTER)); // Center align the buttons
-        botaoPanel.setPreferredSize(new Dimension(100, 50));
-
-        JButton voltarButton = new JButton("Sair");
-        JButton marcarConsultaButton = new JButton("Marcar consulta");
-        JButton editarPerfilButton = new JButton("Editar perfil");
-        JButton cancelarConsultaButton = new JButton("Cancelar consulta");
-
-        botaoPanel.add(marcarConsultaButton);
-        botaoPanel.add(editarPerfilButton);
-        botaoPanel.add(cancelarConsultaButton);
-        botaoPanel.add(voltarButton);
-        frame.add(botaoPanel);
-    }
-
-    void createToolbar(JFrame frame) {
-        JToolBar toolbar = new JToolBar();
-        toolbar.setFloatable(false);
-
-        JButton marcarConsultaButton = new JButton("Marcar consulta");
-        JButton editarPerfilButton = new JButton("Editar perfil");
-        JButton cancelarConsultaButton = new JButton("Cancelar consulta");
-        JButton sairButton = new JButton("Sair");
-
-        toolbar.add(marcarConsultaButton);
-        toolbar.add(editarPerfilButton);
-        toolbar.add(cancelarConsultaButton);
-        toolbar.add(sairButton);
-
-        frame.add(toolbar);
     }
 
     void consultasPaciente(JFrame frame) {
         JPanel consultasPanel = new JPanel();
         consultasPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        consultasPanel.setPreferredSize(new Dimension(500, 300));
+        consultasPanel.setPreferredSize(new Dimension(500, 250));
 
         // Create a border for the panel
         Border border = BorderFactory.createEtchedBorder();
@@ -119,7 +78,7 @@ public class AreaPaciente {
             consultasPanel.add(scrollPane);
         }
 
-        frame.add(consultasPanel);
+        frame.getContentPane().add(consultasPanel);
     }
 
     void criarMensagem(JFrame frame) {

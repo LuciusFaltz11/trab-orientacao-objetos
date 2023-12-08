@@ -4,6 +4,8 @@ import com.poo.projeto_hospital.exception.DataException;
 import com.poo.projeto_hospital.model.Usuario;
 import com.poo.projeto_hospital.persistence.PacientePersistence;
 import com.poo.projeto_hospital.view.perfilPaciente.AreaPaciente;
+import com.poo.projeto_hospital.view.perfilPaciente.EditarPerfil;
+import com.poo.projeto_hospital.view.perfilPaciente.MarcarConsulta;
 
 public class App {
     public static void main(String[] args) throws DataException {
@@ -31,8 +33,14 @@ public class App {
         PacientePersistence encontrar = new PacientePersistence();
         Usuario paciente = encontrar.findByCpf("13593634678");
 
-        AreaPaciente area = new AreaPaciente(paciente);
-        area.createAndShowGUI();
+        // AreaPaciente area = new AreaPaciente(paciente);
+        // area.createAndShowGUI();
+
+        // MarcarConsulta marcarConsulta = new MarcarConsulta(paciente);
+        // marcarConsulta.createAndShowGUI();
+
+        EditarPerfil editarPerfil = new EditarPerfil(paciente);
+        editarPerfil.createAndShowGUI();
 
     }
 }
