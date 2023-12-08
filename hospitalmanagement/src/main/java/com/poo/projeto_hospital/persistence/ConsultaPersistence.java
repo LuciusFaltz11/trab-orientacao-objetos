@@ -1,6 +1,5 @@
 package com.poo.projeto_hospital.persistence;
 
-import java.awt.Window.Type;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +46,7 @@ public class ConsultaPersistence implements Persistence<Consulta> {
     public List<Consulta> findByPaciente(String cpf) {
         List<Consulta> consultas = findAll();
         List<Consulta> consultasPaciente = new ArrayList<>();
-        
+
         for (Consulta consulta : consultas) {
             if (consulta.getCpfPaciente().equals(cpf)) {
                 consultasPaciente.add(consulta);

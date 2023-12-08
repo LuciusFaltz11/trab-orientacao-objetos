@@ -1,11 +1,5 @@
 package com.poo.projeto_hospital;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-
-import com.poo.projeto_hospital.model.Paciente;
-import com.poo.projeto_hospital.model.UsuarioMedico;
 import com.poo.projeto_hospital.persistence.MedicoPersistence;
 import com.poo.projeto_hospital.persistence.PacientePersistence;
 

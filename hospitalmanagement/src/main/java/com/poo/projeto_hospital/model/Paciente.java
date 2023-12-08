@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.poo.projeto_hospital.Consulta;
 import com.poo.projeto_hospital.persistence.ConsultaPersistence;
-import com.poo.projeto_hospital.persistence.PacientePersistence;
 
 public class Paciente extends Pessoa {
     private List<Consulta> consultas;

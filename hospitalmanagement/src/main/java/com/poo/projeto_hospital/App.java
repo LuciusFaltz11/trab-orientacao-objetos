@@ -1,15 +1,8 @@
 package com.poo.projeto_hospital;
 
 import com.poo.projeto_hospital.exception.DataException;
-import com.poo.projeto_hospital.exception.HorarioException;
-import com.poo.projeto_hospital.model.Medico;
-import com.poo.projeto_hospital.model.Paciente;
 import com.poo.projeto_hospital.model.Usuario;
-import com.poo.projeto_hospital.model.UsuarioMedico;
-import com.poo.projeto_hospital.persistence.ConsultaPersistence;
 import com.poo.projeto_hospital.persistence.PacientePersistence;
-import com.poo.projeto_hospital.view.TelaAgenda;
-import com.poo.projeto_hospital.view.paginaInicial_login.Login;
 import com.poo.projeto_hospital.view.perfilPaciente.AreaPaciente;
 
 public class App {

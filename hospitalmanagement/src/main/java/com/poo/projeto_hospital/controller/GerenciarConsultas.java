@@ -2,7 +2,6 @@ package com.poo.projeto_hospital.controller;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -14,7 +13,7 @@ import com.poo.projeto_hospital.persistence.ConsultaPersistence;
 import com.poo.projeto_hospital.persistence.Persistence;
 import com.poo.projeto_hospital.view.TelaAgenda;
 
-public class GerenciarConsultas implements WindowListener{
+public class GerenciarConsultas implements WindowListener {
     private final TelaAgenda tela;
 
     public GerenciarConsultas(TelaAgenda tela) {
@@ -23,8 +22,7 @@ public class GerenciarConsultas implements WindowListener{
 
     @Override
     public void windowOpened(WindowEvent e) {
-        
-         
+
         Persistence<Consulta> consultaPersistence = new ConsultaPersistence();
         List<Consulta> all = consultaPersistence.findAll();
         Collections.sort(all, new Comparator<Consulta>() {
@@ -39,7 +37,6 @@ public class GerenciarConsultas implements WindowListener{
             }
         });
         tela.carregaConsultas(all);
-        
 
     }
 

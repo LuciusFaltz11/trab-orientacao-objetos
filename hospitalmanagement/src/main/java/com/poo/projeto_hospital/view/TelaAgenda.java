@@ -3,22 +3,15 @@ package com.poo.projeto_hospital.view;
 import javax.swing.*;
 
 import com.poo.projeto_hospital.Consulta;
-import com.poo.projeto_hospital.model.Medico;
 import com.poo.projeto_hospital.controller.AdicionarConsulta;
 import com.poo.projeto_hospital.controller.EditarConsulta;
 import com.poo.projeto_hospital.controller.GerenciarConsultas;
 import com.poo.projeto_hospital.controller.RemoverConsulta;
 import com.poo.projeto_hospital.controller.SelecionarConsulta;
-import com.poo.projeto_hospital.exception.CPFException;
 import com.poo.projeto_hospital.exception.DataException;
-import com.poo.projeto_hospital.exception.EmailException;
 import com.poo.projeto_hospital.exception.HorarioException;
-import com.poo.projeto_hospital.model.CPF;
 import com.poo.projeto_hospital.model.Data;
-import com.poo.projeto_hospital.model.Email;
 import com.poo.projeto_hospital.model.Horario;
-import com.poo.projeto_hospital.model.Paciente;
-import com.poo.projeto_hospital.model.UsuarioMedico;
 import com.poo.projeto_hospital.persistence.ConsultaPersistence;
 import com.poo.projeto_hospital.persistence.Persistence;
 
@@ -83,7 +76,6 @@ public class TelaAgenda {
         painel.setPreferredSize(new Dimension((2 * WIDTH) / 3, HEIGHT));
         painel.setLayout(new BorderLayout());
 
-        
         listConsultas.addListSelectionListener(new SelecionarConsulta(this));
 
         painel.add(new JScrollPane(listConsultas), BorderLayout.CENTER);
@@ -248,35 +240,34 @@ public class TelaAgenda {
 
     }
 
-    public void addConsulta(String cpfP,String cpfM, String data, String horario, String duracao, String descricao) throws DataException {
+    public void addConsulta(String cpfP, String cpfM, String data, String horario, String duracao, String descricao)
+            throws DataException {
 
         DefaultListModel<Consulta> model = (DefaultListModel<Consulta>) listConsultas.getModel();
         Consulta novaConsulta = null;
-        
-        try{
-            novaConsulta = new Consulta(cpfP,cpfM, Data.isValidData(data), Horario.isValidHorario(horario), Integer.parseInt(duracao), descricao);
-        }
-        catch(DataException e){
+
+        try {
+            novaConsulta = new Consulta(cpfP, cpfM, Data.isValidData(data), Horario.isValidHorario(horario),
+                    Integer.parseInt(duracao), descricao);
+        } catch (DataException e) {
             throw new DataException();
-        }
-        catch(HorarioException e){
+        } catch (HorarioException e) {
             throw new HorarioException();
         }
 
         Persistence<Consulta> consultaPersistence = new ConsultaPersistence();
         List<Consulta> consultas = consultaPersistence.findAll();
 
-        for(Consulta c : consultas){
-            if(Data.compara(c.getData(), novaConsulta.getData()) == 0){
-                if(Horario.compara(c.getHorario(), novaConsulta.getHorario()) == 0){
+        for (Consulta c : consultas) {
+            if (Data.compara(c.getData(), novaConsulta.getData()) == 0) {
+                if (Horario.compara(c.getHorario(), novaConsulta.getHorario()) == 0) {
                     throw new HorarioException();
-                }
-                else if(Horario.compara(novaConsulta.getHorario(), c.getHorario())>=0 && Horario.compara(novaConsulta.getHorario(),Horario.soma(c.getHorario(), c.getDuracaoMinutos())) <= 0 ){
+                } else if (Horario.compara(novaConsulta.getHorario(), c.getHorario()) >= 0 && Horario
+                        .compara(novaConsulta.getHorario(), Horario.soma(c.getHorario(), c.getDuracaoMinutos())) <= 0) {
                     throw new HorarioException();
                 }
             }
         }
-        
 
         model.addElement(novaConsulta);
 
@@ -328,11 +319,10 @@ public class TelaAgenda {
                     }
                     index++;
                 }
-            }
-            catch(HorarioException e){
+            } catch (HorarioException e) {
                 return;
             }
-                
+
             lista.add(index, consulta);
 
             DefaultListModel<Consulta> novoModelo = new DefaultListModel<>();
