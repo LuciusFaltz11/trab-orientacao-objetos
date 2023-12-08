@@ -3,14 +3,15 @@ package com.poo.projeto_hospital;
 import com.poo.projeto_hospital.exception.DataException;
 import com.poo.projeto_hospital.model.Usuario;
 import com.poo.projeto_hospital.persistence.PacientePersistence;
+import com.poo.projeto_hospital.view.paginaInicial_login.Login;
 import com.poo.projeto_hospital.view.perfilPaciente.AreaPaciente;
 import com.poo.projeto_hospital.view.perfilPaciente.EditarPerfil;
 import com.poo.projeto_hospital.view.perfilPaciente.MarcarConsulta;
 
 public class App {
     public static void main(String[] args) throws DataException {
-        // Login login = new Login();
-        // login.createAndShowGUI();
+        Login login = new Login();
+        login.createAndShowGUI();
 
         /*
          * TelaAgenda telaAgenda = new TelaAgenda("999.888.777-66s");
@@ -30,17 +31,20 @@ public class App {
          * 
          */
 
-        PacientePersistence encontrar = new PacientePersistence();
-        Usuario paciente = encontrar.findByCpf("13593634678");
-
-        // AreaPaciente area = new AreaPaciente(paciente);
-        // area.createAndShowGUI();
-
-        // MarcarConsulta marcarConsulta = new MarcarConsulta(paciente);
-        // marcarConsulta.createAndShowGUI();
-
-        EditarPerfil editarPerfil = new EditarPerfil(paciente);
-        editarPerfil.createAndShowGUI();
-
+        /*
+         * 
+         * PacientePersistence encontrar = new PacientePersistence();
+         * Usuario paciente = encontrar.findByCpf("13593634678");
+         * 
+         * // AreaPaciente area = new AreaPaciente(paciente);
+         * // area.createAndShowGUI();
+         * 
+         * // MarcarConsulta marcarConsulta = new MarcarConsulta(paciente);
+         * // marcarConsulta.createAndShowGUI();
+         * 
+         * EditarPerfil editarPerfil = new EditarPerfil(paciente);
+         * editarPerfil.createAndShowGUI();
+         * 
+         */
     }
 }

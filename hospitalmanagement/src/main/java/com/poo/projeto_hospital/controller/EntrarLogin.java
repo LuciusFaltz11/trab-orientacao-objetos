@@ -4,6 +4,7 @@ import com.poo.projeto_hospital.model.Usuario;
 import com.poo.projeto_hospital.persistence.PacientePersistence;
 import com.poo.projeto_hospital.persistence.Persistence;
 import com.poo.projeto_hospital.view.paginaInicial_login.Login;
+import com.poo.projeto_hospital.view.perfilPaciente.AreaPaciente;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,6 +38,8 @@ public class EntrarLogin implements ActionListener {
             if (paciente.getEmail().equals(email) && Arrays.equals(paciente.getSenha(), senha)) {
                 JOptionPane.showMessageDialog(null, "Login realizado com sucesso!", "Login",
                         JOptionPane.INFORMATION_MESSAGE);
+                new AreaPaciente(paciente).createAndShowGUI();
+                login.getFrame().dispose();
                 return;
             }
         }
