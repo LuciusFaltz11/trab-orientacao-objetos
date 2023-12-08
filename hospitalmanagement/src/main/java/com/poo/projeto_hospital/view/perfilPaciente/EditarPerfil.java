@@ -25,13 +25,14 @@ public class EditarPerfil extends PadraoPerfilPaciente {
     JTextField estadoTextField;
     JTextField emailTextField;
     JPasswordField senhaTextField;
+    JFrame frame;
 
     public EditarPerfil(Usuario paciente) {
         this.paciente = paciente;
     }
 
     public void createAndShowGUI() {
-        JFrame frame = criarFrame("Dados pessoais");
+        frame = criarFrame("Dados pessoais");
 
         createToolbar(frame);
         criarTitulo(frame, "Editar Perfil");
@@ -59,7 +60,7 @@ public class EditarPerfil extends PadraoPerfilPaciente {
         dadosPanel.add(ageLabel);
         dadosPanel.add(ageTextField);
 
-        JLabel genderLabel = new JLabel("Sexo:");
+        JLabel genderLabel = new JLabel("Sexo(F/M):");
         genderTextField = new JTextField(paciente.getSexo());
         genderTextField.setPreferredSize(new Dimension(100, 20)); // Decrease the size of the text field
         dadosPanel.add(genderLabel);
@@ -91,7 +92,7 @@ public class EditarPerfil extends PadraoPerfilPaciente {
         dadosPanel.add(emailLabel);
         dadosPanel.add(emailTextField);
 
-        JLabel senhaLabel = new JLabel("Senha:");
+        JLabel senhaLabel = new JLabel("Senha(mínimo 8 caracteres):");
         senhaTextField = new JPasswordField();
         dadosPanel.add(senhaLabel);
         dadosPanel.add(senhaTextField);
@@ -158,5 +159,9 @@ public class EditarPerfil extends PadraoPerfilPaciente {
 
     public JPasswordField getSenhaTextField() {
         return senhaTextField;
+    }
+
+    public JFrame getFrame() {
+        return frame;
     }
 }

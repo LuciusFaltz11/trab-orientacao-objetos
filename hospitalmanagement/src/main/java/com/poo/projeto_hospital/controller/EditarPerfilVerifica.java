@@ -11,6 +11,7 @@ import com.poo.projeto_hospital.model.Email;
 import com.poo.projeto_hospital.model.Senha;
 import com.poo.projeto_hospital.model.Usuario;
 import com.poo.projeto_hospital.model.UsuarioMedico;
+import com.poo.projeto_hospital.view.perfilPaciente.AreaPaciente;
 import com.poo.projeto_hospital.view.perfilPaciente.EditarPerfil;
 
 public class EditarPerfilVerifica implements ActionListener {
@@ -45,6 +46,11 @@ public class EditarPerfilVerifica implements ActionListener {
         }
 
         // trocar as informações do paciente e salvar no paciente
+
+        JOptionPane.showMessageDialog(null, "Dados atualizados com sucesso!", "Alteração de dados",
+                JOptionPane.INFORMATION_MESSAGE);
+        alteraPerfil.getFrame().dispose();
+        new AreaPaciente(alteraPerfil.getPaciente()).createAndShowGUI();
 
     }
 
