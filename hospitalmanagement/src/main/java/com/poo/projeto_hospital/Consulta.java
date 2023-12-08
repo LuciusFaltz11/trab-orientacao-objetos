@@ -128,12 +128,6 @@ public class Consulta {
                 + duracaoMinutos + " minutos.";
     }
 
-    public String toString(boolean paciente) {
-        return "Data e Hora: " + this.data + " as " + this.horario + " | Medico: " + this.getNomeMedico()
-                + " | Duracao: "
-                + this.duracaoMinutos + " minutos.";
-    }
-
     public String getCpfPaciente() {
         return cpfPaciente;
     }
@@ -144,5 +138,9 @@ public class Consulta {
 
     public String setCPFmedico(String cpfMedico) {
         return this.cpfMedico = cpfMedico;
+    }
+
+    public String getDetalhesConsulta() {
+        return "Data e Hora: " + data + " às " + horario + ", Médico: " + getNomeMedico();
     }
 }

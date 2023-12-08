@@ -110,23 +110,26 @@ public class AreaPaciente {
 
         if (consultas == null || consultas.isEmpty()) {
             JLabel semConsultasLabel = new JLabel("Você não tem consultas agendadas.");
+            semConsultasLabel.setFont(semConsultasLabel.getFont().deriveFont(Font.BOLD));
             consultasPanel.add(semConsultasLabel);
         } else {
             JTextArea consultasTextArea = new JTextArea();
             consultasTextArea.setEditable(false);
             consultasTextArea.setPreferredSize(new Dimension(400, 200));
+            consultasTextArea.setLineWrap(true);
+            consultasTextArea.setWrapStyleWord(true);
+            consultasTextArea.setFont(new Font(null, Font.PLAIN, 15));
 
             StringBuilder consultasText = new StringBuilder();
             for (Consulta consulta : consultas) {
-                consultasText.append(consulta.toString(true)).append("\n");
+                consultasText.append(consulta.getDetalhesConsulta()).append("\n");
             }
             consultasTextArea.setText(consultasText.toString());
 
             JScrollPane scrollPane = new JScrollPane(consultasTextArea);
             scrollPane.setPreferredSize(new Dimension(450, 150));
             scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-            scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // Remove horizontal scroll
-                                                                                             // bar
+            scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
             consultasPanel.add(scrollPane);
         }

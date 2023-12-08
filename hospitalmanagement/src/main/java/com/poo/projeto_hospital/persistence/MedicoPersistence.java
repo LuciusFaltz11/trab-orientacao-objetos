@@ -48,14 +48,12 @@ public class MedicoPersistence implements Persistence<UsuarioMedico> {
 
     public UsuarioMedico findByCpf(String cpf) {
         List<UsuarioMedico> medicos = findAll();
-        UsuarioMedico medico = null;
 
-        for (UsuarioMedico m : medicos) {
-            if (m.getCpf().equals(cpf)) {
-                medico = m;
-                break;
+        for (UsuarioMedico medico : medicos) {
+            if (medico.getCpf().equals(cpf)) {
+                return medico;
             }
         }
-        return medico;
+        return null;
     }
 }
