@@ -19,7 +19,7 @@ public class App {
          TelaAgenda telaAgenda = new TelaAgenda("999.888.777-66s");
          try {
             // nao faz sentido lancar excecao para os CPF, eles ja seriam validados, ja estao no arquivo de pacientes
-         telaAgenda.addConsulta("13593634678", "14072295671", "07/12/2023", "22:00", "60", "Consulta de rotina");
+         telaAgenda.addConsulta("13593634678", "00072295672", "07/12/2023", "22:00", "60", "Diarreia");
          }
          catch (DataException e){
             System.out.println(e.getMessage());
