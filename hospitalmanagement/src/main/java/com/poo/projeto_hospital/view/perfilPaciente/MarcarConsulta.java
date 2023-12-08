@@ -17,7 +17,7 @@ public class MarcarConsulta extends PadraoPerfilPaciente {
     public void createAndShowGUI() {
         JFrame frame = criarFrame("Perfil do paciente");
 
-        createToolbar(frame);
+        createToolbar(frame, paciente);
         criarTitulo(frame, "Marcar Consulta");
 
         frame.setVisible(true);

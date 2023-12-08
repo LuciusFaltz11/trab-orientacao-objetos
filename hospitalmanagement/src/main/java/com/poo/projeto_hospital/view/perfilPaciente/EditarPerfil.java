@@ -34,7 +34,7 @@ public class EditarPerfil extends PadraoPerfilPaciente {
     public void createAndShowGUI() {
         frame = criarFrame("Dados pessoais");
 
-        createToolbar(frame);
+        createToolbar(frame, paciente);
         criarTitulo(frame, "Editar Perfil");
         alterarDados(frame);
         criarBotoes(frame);
