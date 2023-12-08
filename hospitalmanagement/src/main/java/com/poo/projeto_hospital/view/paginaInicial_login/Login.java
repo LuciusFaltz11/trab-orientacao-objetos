@@ -26,6 +26,7 @@ import com.poo.projeto_hospital.controller.EntrarLogin;
 public class Login extends FormatacaoInicial {
     private JTextField emailField;
     private JPasswordField senhaField;
+    JFrame frame;
 
     public Login() {
 
@@ -34,7 +35,7 @@ public class Login extends FormatacaoInicial {
     public void createAndShowGUI() {
         emailField = new JTextField(20);
         senhaField = new JPasswordField(20);
-        JFrame frame = new JFrame("Hospital Manager");
+        frame = new JFrame("Hospital Manager");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 300);
         frame.setPreferredSize(new Dimension(500, 350));
@@ -102,4 +103,9 @@ public class Login extends FormatacaoInicial {
     public JPasswordField getSenhaField() {
         return senhaField;
     }
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
 }

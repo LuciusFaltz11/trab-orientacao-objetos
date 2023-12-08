@@ -29,7 +29,7 @@ public class AreaPaciente extends PadraoPerfilPaciente {
 
     public void createAndShowGUI() {
         JFrame frame = criarFrame("Perfil do paciente");
-        createToolbar(frame);
+        createToolbar(frame, paciente);
         criarMensagem(frame);
         consultasPaciente(frame);
 
