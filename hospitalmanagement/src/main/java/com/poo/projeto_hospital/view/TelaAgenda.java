@@ -54,8 +54,8 @@ public class TelaAgenda {
 
     private JList<Consulta> listConsultas;
 
-    public TelaAgenda(String medico) {
-        this.cpfMedico = medico;
+    public TelaAgenda(String cpfMedico) {
+        this.cpfMedico = cpfMedico;
         DefaultListModel<Consulta> model = new DefaultListModel<>();
         listConsultas = new JList<>(model);
 
@@ -267,11 +267,11 @@ public class TelaAgenda {
         List<Consulta> consultas = consultaPersistence.findAll();
 
         for(Consulta c : consultas){
-            if(Data.compara(c.getData(), novaConsulta.getData()) == 0){
+            if(Data.compara(c.getData(), novaConsulta.getData()) == 0 && c.getCpfMedico() == novaConsulta.getCpfMedico()){
                 if(Horario.compara(c.getHorario(), novaConsulta.getHorario()) == 0){
                     throw new HorarioException();
                 }
-                else if(Horario.compara(novaConsulta.getHorario(), c.getHorario())>=0 && Horario.compara(novaConsulta.getHorario(),Horario.soma(c.getHorario(), c.getDuracaoMinutos())) <= 0 ){
+                else if(Horario.compara(novaConsulta.getHorario(), c.getHorario())>=0 && Horario.compara(novaConsulta.getHorario(),Horario.soma(c.getHorario(), c.getDuracaoMinutos())) < 0 ){
                     throw new HorarioException();
                 }
             }
@@ -349,6 +349,10 @@ public class TelaAgenda {
 
         tela.pack();
 
+    }
+
+    public String getCpfMedico() {
+        return cpfMedico;
     }
 
 }
