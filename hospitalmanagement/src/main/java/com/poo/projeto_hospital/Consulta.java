@@ -11,25 +11,24 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class Consulta {
-    private Paciente paciente;
+    String cpfPaciente;
+    String cpfMedico;
     private String data;
     private String horario;
     private int duracaoMinutos;
-    private UsuarioMedico medico;
     private String descricao;
 
-    public Consulta(Paciente paciente, String data, String horario, int duracao, UsuarioMedico medico,
-            String descricao) {
-        this.paciente = paciente;
+    public Consulta(String cpfPaciente, String cpfMedico, String data, String horario, int duracao, String descricao) {
+        this.cpfPaciente = cpfPaciente;
+        this.cpfMedico = cpfMedico;
         this.data = data;
         this.horario = horario;
         this.duracaoMinutos = duracao;
         this.descricao = descricao;
-        this.medico = medico;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
+    public String getCpfMedico() {
+        return cpfMedico;
     }
 
     public String getHorario() {
@@ -96,7 +95,7 @@ public class Consulta {
                 + duracaoMinutos + " minutos.";
     }
 
-    public UsuarioMedico getMedico() {
-        return medico;
+    public String getCpfPaciente() {
+        return cpfPaciente;
     }
 }

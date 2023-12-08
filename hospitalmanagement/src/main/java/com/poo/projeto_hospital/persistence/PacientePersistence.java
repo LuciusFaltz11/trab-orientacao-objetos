@@ -44,4 +44,18 @@ public class PacientePersistence implements Persistence<Usuario> {
 
         return pacientes;
     }
+
+    public Usuario findByCpf(String cpf) {
+        List<Usuario> pacientes = findAll();
+        Usuario paciente = null;
+
+        for (Usuario p : pacientes) {
+            if (p.getCpf().equals(cpf)) {
+                paciente = p;
+                break;
+            }
+        }
+        return paciente;
+    }
+
 }

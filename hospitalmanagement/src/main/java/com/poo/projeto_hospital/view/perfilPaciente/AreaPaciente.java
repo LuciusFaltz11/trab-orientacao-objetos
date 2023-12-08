@@ -95,7 +95,7 @@ public class AreaPaciente {
     void consultasPaciente(JFrame frame) {
         JPanel consultasPanel = new JPanel();
         consultasPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        consultasPanel.setPreferredSize(new Dimension(300, 50));
+        consultasPanel.setPreferredSize(new Dimension(500, 300));
 
         // Create a border for the panel
         Border border = BorderFactory.createEtchedBorder();
@@ -113,7 +113,8 @@ public class AreaPaciente {
             }
 
             JScrollPane scrollPane = new JScrollPane(consultasComboBox); // Wrap the JComboBox in a JScrollPane
-            scrollPane.setPreferredSize(new Dimension(300, 50)); // Set the preferred size of the scroll pane
+            scrollPane.setPreferredSize(new Dimension(450, 200)); // Set the preferred size of the scroll pane
+            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); // Enable vertical scroll bar
 
             consultasPanel.add(scrollPane);
         }
