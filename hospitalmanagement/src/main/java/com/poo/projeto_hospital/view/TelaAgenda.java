@@ -278,7 +278,9 @@ public class TelaAgenda {
         }
         
 
-        model.addElement(novaConsulta);
+        consultas.add(novaConsulta);
+
+        consultaPersistence.save(consultas);
 
     }
 
