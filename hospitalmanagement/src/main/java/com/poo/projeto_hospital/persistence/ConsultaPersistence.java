@@ -47,9 +47,9 @@ public class ConsultaPersistence implements Persistence<Consulta> {
     public List<Consulta> findByPaciente(String cpf) {
         List<Consulta> consultas = findAll();
         List<Consulta> consultasPaciente = new ArrayList<>();
-
+        
         for (Consulta consulta : consultas) {
-            if (consulta.getPaciente().getCpf().equals(cpf)) {
+            if (consulta.getCpfPaciente().equals(cpf)) {
                 consultasPaciente.add(consulta);
             }
         }
@@ -62,7 +62,7 @@ public class ConsultaPersistence implements Persistence<Consulta> {
         List<Consulta> consultasMedico = new ArrayList<>();
 
         for (Consulta consulta : consultas) {
-            if (consulta.getMedico().getCpf().equals(cpf)) {
+            if (consulta.getCpfMedico().equals(cpf)) {
                 consultasMedico.add(consulta);
             }
         }

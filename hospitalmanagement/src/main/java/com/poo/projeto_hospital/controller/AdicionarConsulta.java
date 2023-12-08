@@ -14,6 +14,6 @@ public class AdicionarConsulta implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        tela.addConsulta();
+        //tela.addConsulta();
     }
 }

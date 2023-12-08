@@ -39,5 +39,33 @@ public class Horario {
         }
     }
 
+    public static String soma(String horario, int minutos) throws HorarioException {
+        horario = isValidHorario(horario);
+
+        int hora = Integer.parseInt(horario.substring(0, 2));
+        int minuto = Integer.parseInt(horario.substring(3));
+
+        minuto += minutos;
+
+        while (minuto >= 60) {
+            hora++;
+            minuto -= 60;
+        }
+
+        if (hora >= 24)
+            hora -= 24;
+
+        String horaString = String.valueOf(hora);
+        String minutoString = String.valueOf(minuto);
+
+        if (horaString.length() == 1)
+            horaString = "0" + horaString;
+
+        if (minutoString.length() == 1)
+            minutoString = "0" + minutoString;
+
+        return horaString + ":" + minutoString;
+    }
+
 
 }
