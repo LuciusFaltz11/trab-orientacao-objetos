@@ -8,19 +8,5 @@ import javax.swing.JFrame;
 import com.poo.projeto_hospital.model.Usuario;
 
 public class MarcarConsulta extends PadraoPerfilPaciente {
-    protected Usuario paciente;
-
-    public MarcarConsulta(Usuario paciente) {
-        this.paciente = paciente;
-    }
-
-    public void createAndShowGUI() {
-        JFrame frame = criarFrame("Perfil do paciente");
-
-        createToolbar(frame, paciente);
-        criarTitulo(frame, "Marcar Consulta");
-
-        frame.setVisible(true);
-    }
 
 }
