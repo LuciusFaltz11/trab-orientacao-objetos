@@ -36,11 +36,11 @@ public class App {
         // AreaPaciente area = new AreaPaciente(paciente);
         // area.createAndShowGUI();
 
-        // MarcarConsulta marcarConsulta = new MarcarConsulta(paciente);
-        // marcarConsulta.createAndShowGUI();
+        MarcarConsulta marcarConsulta = new MarcarConsulta(paciente);
+        marcarConsulta.createAndShowGUI();
 
-        EditarPerfil editarPerfil = new EditarPerfil(paciente);
-        editarPerfil.createAndShowGUI();
+        //EditarPerfil editarPerfil = new EditarPerfil(paciente);
+        //editarPerfil.createAndShowGUI();
 
     }
 }
