@@ -58,4 +58,23 @@ public class PacientePersistence implements Persistence<Usuario> {
         return paciente;
     }
 
+    public void alterarDados(Usuario paciente) {
+        List<Usuario> pacientes = findAll();
+
+        for (Usuario p : pacientes) {
+            if (p.getCpf().equals(paciente.getCpf())) {
+                p.setNome(paciente.getNome());
+                p.setCidade(paciente.getCidade());
+                p.setEstado(paciente.getEstado());
+                p.setDataNascimento(paciente.getDataNascimento());
+                p.setSexo(paciente.getSexo());
+                p.setEmail(paciente.getEmail());
+                p.setSenha(paciente.getSenha());
+                break;
+            }
+        }
+
+        save(pacientes);
+    }
+
 }
