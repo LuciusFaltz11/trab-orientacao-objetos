@@ -58,9 +58,12 @@ public class LoginMedico extends FormatacaoInicial {
 
         JButton entrarButton = new JButton("Entrar");
         JButton voltarButton = new JButton("Voltar");
+        JButton criarContaButton = new JButton("Registrar novo médico");
 
         botaoPanel.add(entrarButton);
         botaoPanel.add(voltarButton);
+        botaoPanel.add(criarContaButton);
+
         entrarButton.addActionListener(new EntrarLoginMedico(this));
 
         final JFrame finalFrame = frame;
@@ -69,6 +72,14 @@ public class LoginMedico extends FormatacaoInicial {
                 Login login = new Login();
                 finalFrame.dispose();
                 login.createAndShowGUI();
+            }
+        });
+
+        criarContaButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                RegistroMedico registroMedico = new RegistroMedico();
+                finalFrame.dispose();
+                registroMedico.createAndShowGUI();
             }
         });
 
