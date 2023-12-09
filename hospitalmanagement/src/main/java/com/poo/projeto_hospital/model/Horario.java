@@ -1,5 +1,7 @@
 package com.poo.projeto_hospital.model;
 
+import javax.swing.JOptionPane;
+
 import com.poo.projeto_hospital.exception.HorarioException;
 
 public class Horario {
@@ -10,6 +12,8 @@ public class Horario {
         if (horario.matches(HORARIO_PATTERN)) {
             return horario;
         } else {
+            JOptionPane.showMessageDialog(null, "Horário inválido!", "Horário inválido",
+                    JOptionPane.ERROR_MESSAGE);
             throw new HorarioException();
         }
     }
@@ -66,6 +70,5 @@ public class Horario {
 
         return horaString + ":" + minutoString;
     }
-
 
 }
