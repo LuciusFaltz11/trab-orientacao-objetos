@@ -117,7 +117,6 @@ public class MarcarConsulta extends PadraoPerfilPaciente {
         comboBox.setMaximumSize(new Dimension(250, 30));
 
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
-        System.out.println("Inserindo coisas no panel do medico");
         panel.add(label);
         panel.add(Box.createRigidArea(new Dimension(0, 10))); // Adiciona um espaço entre a label e o comboBox
         panel.add(comboBox);
@@ -230,9 +229,7 @@ public class MarcarConsulta extends PadraoPerfilPaciente {
             framePrincipal.dispose();
             new AreaPaciente(paciente).createAndShowGUI();
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Erro ao marcar consulta", "Erro", JOptionPane.ERROR_MESSAGE);
-            System.out.println("Erro ao marcar consulta");
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao marcar consulta \n" + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 
