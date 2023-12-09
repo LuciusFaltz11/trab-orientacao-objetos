@@ -1,10 +1,12 @@
 package com.poo.projeto_hospital.persistence;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.poo.projeto_hospital.model.UsuarioMedico;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -45,4 +47,60 @@ public class MedicoPersistence implements Persistence<UsuarioMedico> {
 
         return medicos;
     }
+
+    public UsuarioMedico findByCpf(String cpf) {
+        List<UsuarioMedico> medicos = findAll();
+
+        for (UsuarioMedico medico : medicos) {
+            String cpfMedico = medico.getCpf().replaceAll("[^0-9]", "");
+            cpf = cpf.replaceAll("[^0-9]", "");
+            if (cpfMedico.equals(cpf)) {
+                return medico;
+            }
+        }
+        return null;
+    }
+
+    public List<String> listaEspecialidades() {
+        List<UsuarioMedico> medicos = findAll();
+        List<String> especialidades = new ArrayList<>();
+        for (UsuarioMedico medico : medicos) {
+            if (!especialidades.contains(medico.getEspecialidade())) {
+                System.out.println(medico.getEspecialidade());
+                especialidades.add(medico.getEspecialidade());
+            }
+        }
+        return especialidades;
+    }
+
+    public List<UsuarioMedico> filterMedicoByEspecialidade(String especialidade) {
+        List<UsuarioMedico> medicos = findAll();
+        List<UsuarioMedico> medicosEspecialidade = new ArrayList<>();
+        for (UsuarioMedico medico : medicos) {
+            if (medico.getEspecialidade().equals(especialidade)) {
+                medicosEspecialidade.add(medico);
+            }
+        }
+        return medicosEspecialidade;
+    }
+
+    public List<UsuarioMedico> modificaLista() {
+        Gson gson = new Gson();
+
+        String json = Arquivo.le(PATH);
+
+        List<UsuarioMedico> medicos = new ArrayList<>();
+        if (!json.trim().equals("")) {
+
+            Type tipoLista = new TypeToken<List<UsuarioMedico>>() {
+            }.getType();
+            medicos = gson.fromJson(json, tipoLista);
+
+            if (medicos == null)
+                medicos = new ArrayList<>();
+        }
+
+        return medicos;
+    }
+
 }

@@ -7,16 +7,12 @@ package com.poo.projeto_hospital.view.paginaInicial_login;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -30,6 +26,7 @@ import com.poo.projeto_hospital.controller.EntrarLogin;
 public class Login extends FormatacaoInicial {
     private JTextField emailField;
     private JPasswordField senhaField;
+    JFrame frame;
 
     public Login() {
 
@@ -38,7 +35,7 @@ public class Login extends FormatacaoInicial {
     public void createAndShowGUI() {
         emailField = new JTextField(20);
         senhaField = new JPasswordField(20);
-        JFrame frame = new JFrame("Hospital Manager");
+        frame = new JFrame("Hospital Manager");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 300);
         frame.setPreferredSize(new Dimension(500, 350));
@@ -106,4 +103,9 @@ public class Login extends FormatacaoInicial {
     public JPasswordField getSenhaField() {
         return senhaField;
     }
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
 }

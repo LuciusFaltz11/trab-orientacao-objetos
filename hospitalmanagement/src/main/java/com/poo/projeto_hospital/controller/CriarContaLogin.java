@@ -12,7 +12,6 @@ import com.poo.projeto_hospital.exception.EmailException;
 import com.poo.projeto_hospital.exception.SenhaException;
 import com.poo.projeto_hospital.model.*;
 import com.poo.projeto_hospital.persistence.PacientePersistence;
-import com.poo.projeto_hospital.persistence.Persistence;
 import com.poo.projeto_hospital.view.paginaInicial_login.Login;
 import com.poo.projeto_hospital.view.paginaInicial_login.RegistroPaciente;
 
@@ -70,15 +69,31 @@ public class CriarContaLogin implements ActionListener {
         }
 
         Usuario usuario = new Usuario(email, senha, nome, cpf, dataNascimento, cidade, estado, sexo);
-        armazenarUsuario(usuario);
+
+        try {
+            armazenarUsuario(usuario);
+        } catch (RuntimeException ex) {
+            JOptionPane.showMessageDialog(null, "Paciente já cadastrado", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // armazenarUsuario(usuario);
         JOptionPane.showMessageDialog(null, "Conta criada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         registroPaciente.getFrame().dispose();
         new Login().createAndShowGUI();
     }
 
     private void armazenarUsuario(Usuario novo) {
-        Persistence<Usuario> pacientePersistence = new PacientePersistence();
+        PacientePersistence pacientePersistence = new PacientePersistence();
         List<Usuario> pacientes = pacientePersistence.findAll();
+
+        if (pacientePersistence.findByCpf(novo.getCpf()) != null)
+            throw new RuntimeException("CPF já cadastrado!");
+
+        if (pacientePersistence.findByEmail(novo.getEmail()) != null)
+            throw new RuntimeException("Email já cadastrado!");
+
+
         pacientes.add(novo);
         pacientePersistence.save(pacientes);
     }

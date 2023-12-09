@@ -1,31 +1,35 @@
 package com.poo.projeto_hospital;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-
-import com.poo.projeto_hospital.model.Paciente;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import com.poo.projeto_hospital.persistence.MedicoPersistence;
+import com.poo.projeto_hospital.persistence.PacientePersistence;
 
 public class Consulta {
-    private Paciente paciente;
+    int id;
+    String cpfPaciente;
+    String cpfMedico;
     private String data;
     private String horario;
     private int duracaoMinutos;
     private String descricao;
+    
 
-    public Consulta(Paciente paciente, String data, String horario, int duracao,String descricao) {
-        this.paciente = paciente;
+    // validar os parametros do construtor (data e horario)
+    public Consulta(int id, String cpfPaciente, String cpfMedico, String data, String horario, int duracao, String descricao) {
+        this.id = id;
+        this.cpfPaciente = cpfPaciente;
+        this.cpfMedico = cpfMedico;
         this.data = data;
         this.horario = horario;
         this.duracaoMinutos = duracao;
         this.descricao = descricao;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
+    public int getId() {
+        return id;
+    }
+
+    public String getCpfMedico() {
+        return cpfMedico;
     }
 
     public String getHorario() {
@@ -40,30 +44,6 @@ public class Consulta {
         return duracaoMinutos;
     }
 
-    private boolean validarData(String data) {
-        SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
-        formatoData.setLenient(false);
-
-        try {
-            formatoData.parse(data);
-            return true;
-        } catch (ParseException e) {
-            return false;
-        }
-    }
-
-    private static boolean validarHorario(String horario) {
-        SimpleDateFormat formatoHorario = new SimpleDateFormat("HH:mm");
-        formatoHorario.setLenient(false);
-
-        try {
-            formatoHorario.parse(horario);
-            return true;
-        } catch (ParseException e) {
-            return false;
-        }
-
-    }
     public String getDescricao() {
         return descricao;
     }
@@ -84,11 +64,68 @@ public class Consulta {
         this.duracaoMinutos = duracaoMinutos;
     }
 
+    public String getPacienteNome() {
+        PacientePersistence paciente = new PacientePersistence();
+        return paciente.findByCpf(cpfPaciente).getNome();
+    }
 
+    public String getPacienteSexo() {
+        PacientePersistence paciente = new PacientePersistence();
+        return paciente.findByCpf(cpfPaciente).getSexo();
+    }
+
+    public String getPacienteDataNascimento() {
+        PacientePersistence paciente = new PacientePersistence();
+        return paciente.findByCpf(cpfPaciente).getDataNascimento();
+    }
+
+    public String getPacienteCidade() {
+        PacientePersistence paciente = new PacientePersistence();
+        return paciente.findByCpf(cpfPaciente).getCidade();
+    }
+
+    public String getPacienteEstado() {
+        PacientePersistence paciente = new PacientePersistence();
+        return paciente.findByCpf(cpfPaciente).getEstado();
+    }
+
+    public String getNomeMedico() {
+        MedicoPersistence medico = new MedicoPersistence();
+        return medico.findByCpf(cpfMedico).getNome();
+    }
+
+    public String getEspecialidadeMedico() {
+        MedicoPersistence medico = new MedicoPersistence();
+        return medico.findByCpf(cpfMedico).getEspecialidade();
+    }
 
     @Override
     public String toString() {
-        return "Data e Hora: " + data + " as " + horario + " | Paciente: " + paciente.getNome() + " | Duracao: "
+        return "Data e Hora: " + data + " as " + horario + " | Paciente: " + getPacienteNome() + " | Duracao: "
                 + duracaoMinutos + " minutos.";
     }
+
+    public String getCpfPaciente() {
+        return cpfPaciente;
+    }
+
+    public String setCPFpaciente(String cpfPaciente) {
+        return this.cpfPaciente = cpfPaciente;
+    }
+
+    public String setCPFmedico(String cpfMedico) {
+        return this.cpfMedico = cpfMedico;
+    }
+
+    public String getDetalhesConsulta() {
+        return "Data e Hora: " + data + " às " + horario + ", Médico: " + getNomeMedico() + ", Especialidade: "
+                + getEspecialidadeMedico() + ".";
+    }
+
+    public String getDetalhesConsultaToCancel() {
+        return "Dia" + data + " às " + horario + ", com: " + getNomeMedico() + " - "
+                + getEspecialidadeMedico() + ".";
+    }
+
+    
 }

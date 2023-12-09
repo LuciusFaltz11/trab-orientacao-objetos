@@ -34,6 +34,6 @@ public class UsuarioMedico extends Medico {
 
     @Override
     public String toString() {
-        return String.format("Nome: %s\nEspecialidade: %s", getNome(), getEspecialidade());
+        return String.format("Nome: %s\nCPF: %s\nData de Nascimento: %s\nCidade: %s\nEstado: %s\nSexo: %s\nEspecialidade: %s\nInicio do Expediente: %s\nFinal do Expediente: %s\n", getNome(), getCpf(), getDataNascimento(), getCidade(), getEstado(), getSexo(), getEspecialidade(), getInicioExpediente(), getFinalExpediente());
     }
 }
