@@ -11,9 +11,11 @@ import java.util.List;
 
 import javax.swing.*;
 
+import com.poo.projeto_hospital.controller.RetornarAreaPaciente;
 import com.poo.projeto_hospital.model.ItemComboBox;
 import com.poo.projeto_hospital.model.Usuario;
 import com.poo.projeto_hospital.model.UsuarioMedico;
+import com.poo.projeto_hospital.persistence.ConsultaPersistence;
 import com.poo.projeto_hospital.persistence.MedicoPersistence;
 import com.poo.projeto_hospital.view.TelaAgenda;
 
@@ -216,7 +218,14 @@ public class MarcarConsulta extends PadraoPerfilPaciente {
         }
         TelaAgenda tela = new TelaAgenda(medicoSelecionado);
         try{
-            tela.addConsulta(paciente.getCpf(), medicoSelecionado, dataNascimentoField.getText(), horarioSelecionado, "60", descricaoField.getText());
+            ConsultaPersistence consultaPersistence = new ConsultaPersistence();
+            List<Integer> ids = consultaPersistence.getConsultaIds();
+            int id = 0;
+            if(!ids.isEmpty()){
+                id = ids.get(ids.size() - 1) + 1;
+            }
+
+            tela.addConsulta(id, paciente.getCpf(), medicoSelecionado, dataNascimentoField.getText(), horarioSelecionado, "60", descricaoField.getText());
             JOptionPane.showMessageDialog(null, "Colsulta marcada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
             framePrincipal.dispose();
             new AreaPaciente(paciente).createAndShowGUI();
@@ -231,18 +240,9 @@ public class MarcarConsulta extends PadraoPerfilPaciente {
         JPanel botaoPanel = new JPanel();
         botaoPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         botaoPanel.setPreferredSize(new Dimension(500, 50));
-
         JButton voltarButton = new JButton("Voltar");
-
+        voltarButton.addActionListener(new RetornarAreaPaciente(paciente, frame));
         botaoPanel.add(voltarButton);
-
-        voltarButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new AreaPaciente(paciente).createAndShowGUI();
-                frame.dispose();
-            }
-        });
-
         frame.getContentPane().add(botaoPanel, BorderLayout.PAGE_END);
     }
 }

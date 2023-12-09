@@ -59,7 +59,6 @@ public class AreaPaciente extends PadraoPerfilPaciente {
         } else {
             JTextArea consultasTextArea = new JTextArea();
             consultasTextArea.setEditable(false);
-            consultasTextArea.setPreferredSize(new Dimension(400, 200));
             consultasTextArea.setLineWrap(true);
             consultasTextArea.setWrapStyleWord(true);
             consultasTextArea.setFont(new Font(null, Font.PLAIN, 15));
@@ -71,7 +70,7 @@ public class AreaPaciente extends PadraoPerfilPaciente {
             consultasTextArea.setText(consultasText.toString());
 
             JScrollPane scrollPane = new JScrollPane(consultasTextArea);
-            scrollPane.setPreferredSize(new Dimension(450, 150));
+            scrollPane.setPreferredSize(new Dimension(450, 200));
             scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
             scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 

@@ -240,14 +240,14 @@ public class TelaAgenda {
 
     }
 
-    public void addConsulta(String cpfP, String cpfM, String data, String horario, String duracao, String descricao)
+    public void addConsulta(int id, String cpfP, String cpfM, String data, String horario, String duracao, String descricao)
             throws DataException {
 
         DefaultListModel<Consulta> model = (DefaultListModel<Consulta>) listConsultas.getModel();
         Consulta novaConsulta = null;
 
         try {
-            novaConsulta = new Consulta(cpfP, cpfM, Data.isValidData(data), Horario.isValidHorario(horario),
+            novaConsulta = new Consulta(id, cpfP, cpfM, Data.isValidData(data), Horario.isValidHorario(horario),
                     Integer.parseInt(duracao), descricao);
         } catch (DataException e) {
             throw new DataException();

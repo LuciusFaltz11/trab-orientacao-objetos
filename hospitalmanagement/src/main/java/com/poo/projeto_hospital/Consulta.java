@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class Consulta {
+    int id;
     String cpfPaciente;
     String cpfMedico;
     private String data;
@@ -15,13 +16,18 @@ public class Consulta {
     private String descricao;
 
     // validar os parametros do construtor (data e horario)
-    public Consulta(String cpfPaciente, String cpfMedico, String data, String horario, int duracao, String descricao) {
+    public Consulta(int id, String cpfPaciente, String cpfMedico, String data, String horario, int duracao, String descricao) {
+        this.id = id;
         this.cpfPaciente = cpfPaciente;
         this.cpfMedico = cpfMedico;
         this.data = data;
         this.horario = horario;
         this.duracaoMinutos = duracao;
         this.descricao = descricao;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getCpfMedico() {
@@ -91,6 +97,11 @@ public class Consulta {
         return medico.findByCpf(cpfMedico).getNome();
     }
 
+    public String getEspecialidadeMedico() {
+        MedicoPersistence medico = new MedicoPersistence();
+        return medico.findByCpf(cpfMedico).getEspecialidade();
+    }
+
     @Override
     public String toString() {
         return "Data e Hora: " + data + " as " + horario + " | Paciente: " + getPacienteNome() + " | Duracao: "
@@ -110,6 +121,12 @@ public class Consulta {
     }
 
     public String getDetalhesConsulta() {
-        return "Data e Hora: " + data + " às " + horario + ", Médico: " + getNomeMedico();
+        return "Data e Hora: " + data + " às " + horario + ", Médico: " + getNomeMedico() + ", Especialidade: "
+                + getEspecialidadeMedico() + ".";
+    }
+
+    public String getDetalhesConsultaToCancel() {
+        return "Dia" + data + " às " + horario + ", com: " + getNomeMedico() + " - "
+                + getEspecialidadeMedico() + ".";
     }
 }

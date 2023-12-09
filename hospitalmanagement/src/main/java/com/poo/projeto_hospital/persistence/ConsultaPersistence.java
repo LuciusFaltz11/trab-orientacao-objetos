@@ -46,9 +46,10 @@ public class ConsultaPersistence implements Persistence<Consulta> {
     public List<Consulta> findByPaciente(String cpf) {
         List<Consulta> consultas = findAll();
         List<Consulta> consultasPaciente = new ArrayList<>();
-
+        cpf = cpf.replaceAll("[^0-9]", "");
         for (Consulta consulta : consultas) {
-            if (consulta.getCpfPaciente().equals(cpf)) {
+            String cpfPaciente = consulta.getCpfPaciente().replaceAll("[^0-9]", "");
+            if (cpfPaciente.equals(cpf)) {
                 consultasPaciente.add(consulta);
             }
         }
@@ -59,9 +60,10 @@ public class ConsultaPersistence implements Persistence<Consulta> {
     public List<Consulta> findByMedico(String cpf) {
         List<Consulta> consultas = findAll();
         List<Consulta> consultasMedico = new ArrayList<>();
-
+        cpf = cpf.replaceAll("[^0-9]", "");
         for (Consulta consulta : consultas) {
-            if (consulta.getCpfMedico().equals(cpf)) {
+            String cpfMedico = consulta.getCpfMedico().replaceAll("[^0-9]", "");
+            if (cpfMedico.equals(cpf)) {
                 consultasMedico.add(consulta);
             }
         }
@@ -75,4 +77,39 @@ public class ConsultaPersistence implements Persistence<Consulta> {
         consultas.add(consulta);
         save(consultas);
     }
+
+    public List<Integer> getConsultaIds() {
+        List<Consulta> consultas = findAll();
+        List<Integer> consultaIds = new ArrayList<>();
+
+        for (Consulta consulta : consultas) {
+            // Adicione o ID da consulta à lista (assumindo que o ID é uma propriedade chamada "id" na classe Consulta)
+            consultaIds.add(consulta.getId());  // Substitua "getId()" pelo método que retorna o ID da sua consulta
+        }
+
+        return consultaIds;
+    }
+
+    public Consulta findById(int id) {
+        List<Consulta> consultas = findAll();
+        for (Consulta consulta : consultas) {
+            if (consulta.getId() == id) {
+                return consulta;
+            }
+        }
+        return null;
+    }
+
+    public boolean removeById(int id) {
+        List<Consulta> consultas = findAll();
+        for (Consulta consulta : consultas) {
+            if (consulta.getId() == id) {
+                consultas.remove(consulta);
+                save(consultas);
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

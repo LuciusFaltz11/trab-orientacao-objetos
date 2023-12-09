@@ -48,7 +48,7 @@ public abstract class PadraoPerfilPaciente {
         cancelarConsultaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
-                //new CancelarConsulta(finalPaciente).createAndShowGUI();
+                new CancelarConsulta(finalPaciente).createAndShowGUI();
                 finalFrame.dispose();
             }
         });
