@@ -209,7 +209,8 @@ public class MarcarConsulta extends PadraoPerfilPaciente {
             if (!ids.isEmpty()) {
                 id = ids.get(ids.size() - 1) + 1;
             }
-            tela.addConsulta(id, paciente.getCpf(), medicoSelecionado, dataValida, horarioSelecionado, "60", descricaoField.getText());
+            tela.addConsulta(id, paciente.getCpf(), medicoSelecionado, dataNascimentoField.getText(), horarioSelecionado, descricaoField.getText());
+
             JOptionPane.showMessageDialog(null, "Colsulta marcada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
             framePrincipal.dispose();
             new AreaPaciente(paciente).createAndShowGUI();

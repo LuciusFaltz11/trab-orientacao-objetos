@@ -7,6 +7,5 @@ public class App {
     public static void main(String[] args) throws DataException {
         Login login = new Login();
         login.createAndShowGUI();
-
     }
 }

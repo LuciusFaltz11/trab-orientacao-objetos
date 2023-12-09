@@ -40,10 +40,6 @@ public class TelaAgenda {
     private JTextField tfData;
     private JTextField tfHorario;
     private JTextField tfDescricao;
-    private JRadioButton opcao1;
-    private JRadioButton opcao2;
-    private JRadioButton opcao3;
-    private String tfDuracao;
 
     private JList<Consulta> listConsultas;
 
@@ -90,7 +86,7 @@ public class TelaAgenda {
 
         JPanel formulario = new JPanel();
         JPanel painelLabel = new JPanel();
-        painelLabel.setLayout(new GridLayout(0, 1, H_GAP, 25));
+        painelLabel.setLayout(new GridLayout(0, 1, H_GAP, 15));
         painelLabel.add(new JLabel("Nome"));
         painelLabel.add(new JLabel("CPF"));
         painelLabel.add(new JLabel("Data de Nascimento"));
@@ -99,12 +95,10 @@ public class TelaAgenda {
         painelLabel.add(new JLabel("Sexo"));
         painelLabel.add(new JLabel("Data"));
         painelLabel.add(new JLabel("Horario"));
-        painelLabel.add(new JLabel("Descricao"));
-        painelLabel.add(new JLabel("Duracao"));
+        painelLabel.add(new JLabel("Laudo"));
 
-        JPanel radioPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JPanel painelField = new JPanel();
-        painelField.setLayout(new GridLayout(0, 1, H_GAP, 6));
+        painelField.setLayout(new GridLayout(0, 1, H_GAP, 11));
         tfNome = new JTextField(20);
         tfNome.setEditable(false);
         tfCpf = new JTextField(20);
@@ -122,34 +116,8 @@ public class TelaAgenda {
         tfSexo.setEditable(false);
         tfData = new JTextField(20);
         tfHorario = new JTextField(20);
-        opcao1 = new JRadioButton("30 minutos");
-        opcao1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                tfDuracao = "30";
-            }
-        });
-        opcao2 = new JRadioButton("60 minutos");
-        opcao2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                tfDuracao = "60";
-            }
-        });
-        opcao3 = new JRadioButton("120 minutos");
-        opcao3.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                tfDuracao = "120";
-            }
-        });
+
         tfDescricao = new JTextField(20);
-
-        ButtonGroup group = new ButtonGroup();
-        group.add(opcao1);
-        group.add(opcao2);
-        group.add(opcao3);
-
-        radioPanel.add(opcao1);
-        radioPanel.add(opcao2);
-        radioPanel.add(opcao3);
 
         painelField.add(tfNome);
         painelField.add(tfCpf);
@@ -160,7 +128,6 @@ public class TelaAgenda {
         painelField.add(tfData);
         painelField.add(tfHorario);
         painelField.add(tfDescricao);
-        painelField.add(radioPanel);
 
         formulario.add(painelLabel);
         formulario.add(painelField);
@@ -168,8 +135,8 @@ public class TelaAgenda {
         painel.setLayout(new BorderLayout());
         painel.add(formulario, BorderLayout.CENTER);
 
-        JButton btnLaudo = new JButton("Laudo");
-        btnLaudo.addActionListener(new AdicionarConsulta(this));
+        JButton btnLaudo = new JButton("Salvar Laudo");
+        btnLaudo.addActionListener(new EditarConsulta(this));
 
         JButton btnRemover = new JButton("Desmarcar");
         btnRemover.addActionListener(new RemoverConsulta(this));
@@ -178,9 +145,10 @@ public class TelaAgenda {
         btnEditar.addActionListener(new EditarConsulta(this));
 
         JPanel botoes = new JPanel();
-        botoes.add(btnLaudo);
+        // botoes.add(btnLaudo);
         botoes.add(btnRemover);
         botoes.add(btnEditar);
+        botoes.add(btnLaudo);
 
         painel.add(botoes, BorderLayout.SOUTH);
 
@@ -226,21 +194,11 @@ public class TelaAgenda {
             tfHorario.setText(consulta.getHorario().toString());
             tfDescricao.setText(consulta.getDescricao());
 
-            String duracao = String.valueOf(consulta.getDuracaoMinutos());
-            duracao += " minutos";
-            if (opcao1.getText().equals(duracao)) {
-                opcao1.setSelected(true);
-            } else if (opcao2.getText().equals(duracao)) {
-                opcao2.setSelected(true);
-            } else if (opcao3.getText().equals(duracao)) {
-                opcao3.setSelected(true);
-            }
-
         }
 
     }
 
-    public void addConsulta(int id, String cpfP, String cpfM, String data, String horario, String duracao, String descricao)
+    public void addConsulta(int id, String cpfP, String cpfM, String data, String horario, String descricao)
             throws DataException {
 
         DefaultListModel<Consulta> model = (DefaultListModel<Consulta>) listConsultas.getModel();
@@ -248,7 +206,7 @@ public class TelaAgenda {
 
         try {
             novaConsulta = new Consulta(id, cpfP, cpfM, Data.isValidData(data), Horario.isValidHorario(horario),
-                    Integer.parseInt(duracao), descricao);
+                    60, descricao);
         } catch (DataException e) {
             throw new DataException();
         } catch (HorarioException e) {
@@ -258,14 +216,15 @@ public class TelaAgenda {
         Persistence<Consulta> consultaPersistence = new ConsultaPersistence();
         List<Consulta> consultas = consultaPersistence.findAll();
 
-        for(Consulta c : consultas){
-            if(Data.compara(c.getData(), novaConsulta.getData()) == 0 && c.getCpfMedico().equals(novaConsulta.getCpfMedico())){
-                if(Horario.compara(c.getHorario(), novaConsulta.getHorario()) == 0){
+        for (Consulta c : consultas) {
+            if (Data.compara(c.getData(), novaConsulta.getData()) == 0
+                    && c.getCpfMedico().equals(novaConsulta.getCpfMedico())) {
+                if (Horario.compara(c.getHorario(), novaConsulta.getHorario()) == 0) {
                     JOptionPane.showMessageDialog(null, "Horario indisponivel");
-                    return; 
-                }
-                else if(Horario.compara(novaConsulta.getHorario(), c.getHorario())>=0 && Horario.compara(novaConsulta.getHorario(),Horario.soma(c.getHorario(), c.getDuracaoMinutos())) < 0 ){
-                   JOptionPane.showMessageDialog(null, "Horario indisponivel");
+                    return;
+                } else if (Horario.compara(novaConsulta.getHorario(), c.getHorario()) >= 0 && Horario
+                        .compara(novaConsulta.getHorario(), Horario.soma(c.getHorario(), c.getDuracaoMinutos())) < 0) {
+                    JOptionPane.showMessageDialog(null, "Horario indisponivel");
                     return;
                 }
             }
@@ -304,7 +263,7 @@ public class TelaAgenda {
             consulta.setCPFpaciente(tfCpf.getText());
             consulta.setData(tfData.getText());
             consulta.setHorario(tfHorario.getText());
-            consulta.setDuracaoMinutos(Integer.parseInt(tfDuracao));
+            consulta.setDuracaoMinutos(60);
             consulta.setDescricao(tfDescricao.getText());
 
             ArrayList<Consulta> lista = Collections.list(model.elements());
@@ -336,6 +295,14 @@ public class TelaAgenda {
 
             // Definindo o novo modelo como o modelo da lista
             listConsultas.setModel(novoModelo);
+
+            ConsultaPersistence consultaPersistence = new ConsultaPersistence();
+            List<Consulta> consultas = consultaPersistence.findAll();
+
+            consultaPersistence.removeById(consulta.getId());
+            consultaPersistence.save(consulta);
+
+            // consultaPersistence.save(consultas);
 
         }
 

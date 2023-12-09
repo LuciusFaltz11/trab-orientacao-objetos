@@ -2,6 +2,7 @@ package com.poo.projeto_hospital.controller;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -13,7 +14,7 @@ import com.poo.projeto_hospital.persistence.ConsultaPersistence;
 import com.poo.projeto_hospital.persistence.Persistence;
 import com.poo.projeto_hospital.view.TelaAgenda;
 
-public class GerenciarConsultas implements WindowListener {
+public class GerenciarConsultas implements WindowListener{
     private final TelaAgenda tela;
 
     public GerenciarConsultas(TelaAgenda tela) {
@@ -22,9 +23,10 @@ public class GerenciarConsultas implements WindowListener {
 
     @Override
     public void windowOpened(WindowEvent e) {
+        
+         
         ConsultaPersistence consultaPersistence = new ConsultaPersistence();
         List<Consulta> all = consultaPersistence.findByMedico(tela.getCpfMedico());
-
         Collections.sort(all, new Comparator<Consulta>() {
             @Override
             public int compare(Consulta o1, Consulta o2) {
@@ -37,6 +39,7 @@ public class GerenciarConsultas implements WindowListener {
             }
         });
         tela.carregaConsultas(all);
+        
 
     }
 
@@ -44,13 +47,17 @@ public class GerenciarConsultas implements WindowListener {
     public void windowClosing(WindowEvent e) {
         Persistence<Consulta> consultaPersistence = new ConsultaPersistence();
         List<Consulta> all = consultaPersistence.findAll();
+        
         for (Consulta consulta : tela.listaConsultas()) {
+            int i = 0;
             for(Consulta aux : all){
                 if(consulta.getCpfPaciente() == aux.getCpfPaciente() && consulta.getCpfMedico() == aux.getCpfMedico() ){
-                    all.remove(aux);
+                    all.remove(i);
                     all.add(consulta);
+                    i++;
                     break;
                 }
+                i++;
             }
         }
         consultaPersistence.save(all);

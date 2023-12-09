@@ -11,6 +11,7 @@ public class Consulta {
     private String horario;
     private int duracaoMinutos;
     private String descricao;
+    
 
     // validar os parametros do construtor (data e horario)
     public Consulta(int id, String cpfPaciente, String cpfMedico, String data, String horario, int duracao, String descricao) {
@@ -125,4 +126,6 @@ public class Consulta {
         return "Dia" + data + " às " + horario + ", com: " + getNomeMedico() + " - "
                 + getEspecialidadeMedico() + ".";
     }
+
+    
 }
