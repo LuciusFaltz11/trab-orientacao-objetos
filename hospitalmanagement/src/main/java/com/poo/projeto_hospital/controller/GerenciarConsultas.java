@@ -48,12 +48,15 @@ public class GerenciarConsultas implements WindowListener{
         Persistence<Consulta> consultaPersistence = new ConsultaPersistence();
         List<Consulta> all = consultaPersistence.findAll();
         for (Consulta consulta : tela.listaConsultas()) {
+            int i = 0;
             for(Consulta aux : all){
                 if(consulta.getCpfPaciente() == aux.getCpfPaciente() && consulta.getCpfMedico() == aux.getCpfMedico() ){
-                    all.remove(aux);
+                    all.remove(i);
                     all.add(consulta);
+                    i++;
                     break;
                 }
+                i++;
             }
         }
         consultaPersistence.save(all);
