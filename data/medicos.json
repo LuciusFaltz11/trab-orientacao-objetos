@@ -1,1 +1,106 @@
-[{"email":"joaoSilva@gmail.com","senha":["1","2","3","4","5","6","7","8"],"especialidade":"Cardiologia","inicioExpediente":"08:00","finalExpediente":"18:00","nome":"Dr. João Silva","cpf":"123.456.789-01","dataNascimento":"01/01/1980","cidade":"São Paulo","estado":"SP","sexo":"M"},{"email":"mariaOliveira@gmail.com","senha":["1","2","3","4","5","6","7","8"],"especialidade":"Dermatologia","inicioExpediente":"09:00","finalExpediente":"17:30","nome":"Dra. Maria Oliveira","cpf":"987.654.321-09","dataNascimento":"15/05/1985","cidade":"Rio de Janeiro","estado":"RJ","sexo":"F"},{"email":"andreSantos@gmail.com","senha":["1","2","3","4","5","6","7","8"],"especialidade":"Ortopedia","inicioExpediente":"07:30","finalExpediente":"17:00","nome":"Dr. André Santos","cpf":"111.222.333-44","dataNascimento":"10/08/1975","cidade":"Belo Horizonte","estado":"MG","sexo":"M"},{"email":"anaRodrigues@gmail.com","senha":["1","2","3","4","5","6","7","8"],"especialidade":"Ginecologia","inicioExpediente":"08:30","finalExpediente":"18:30","nome":"Dra. Ana Rodrigues","cpf":"555.666.777-88","dataNascimento":"25/11/1982","cidade":"Brasília","estado":"DF","sexo":"F"},{"email":"marcosSantos@gmail.com","senha":["1","2","3","4","5","6","7","8"],"especialidade":"Oftalmologia","inicioExpediente":"09:00","finalExpediente":"17:00","nome":"Dr. Marcos Santos","cpf":"999.888.777-66","dataNascimento":"03/03/1970","cidade":"Porto Alegre","estado":"RS","sexo":"M"},{"email":"gabriel@gmail.com","senha":["1","2","3","4","5","6","7","8"],"especialidade":"ortopedista","inicioExpediente":"10:00","finalExpediente":"14:00","nome":"gabriel","cpf":"16676994747","dataNascimento":"04/12/1990","cidade":"sp","estado":"sp","sexo":"m"},{"email":"luiza@gmail.com","senha":["1","8","7","8","5","1","7","3","7","6","2"],"especialidade":"ortopedista","inicioExpediente":"10:00","finalExpediente":"22:00","nome":"luiza","cpf":"18785173762","dataNascimento":"23/09/2023","cidade":"rj","estado":"rj","sexo":"f"},{"email":"eu@gmail.com","senha":["1","2","3","4","5","6","7","8"],"especialidade":"eu","inicioExpediente":"10:00","finalExpediente":"12:00","nome":"EU","cpf":"18785173762","dataNascimento":"20/01/2000","cidade":"eu","estado":"eu","sexo":"m"}]
+[
+  {
+    "email": "joaoSilva@gmail.com",
+    "senha": ["1", "2", "3", "4", "5", "6", "7", "8"],
+    "especialidade": "Cardiologia",
+    "inicioExpediente": "08:00",
+    "finalExpediente": "18:00",
+    "nome": "Dr. João Silva",
+    "cpf": "12345678901",
+    "dataNascimento": "01/01/1980",
+    "cidade": "São Paulo",
+    "estado": "SP",
+    "sexo": "M"
+  },
+  {
+    "email": "mariaOliveira@gmail.com",
+    "senha": ["1", "2", "3", "4", "5", "6", "7", "8"],
+    "especialidade": "Dermatologia",
+    "inicioExpediente": "09:00",
+    "finalExpediente": "17:30",
+    "nome": "Dra. Maria Oliveira",
+    "cpf": "987.654.321-09",
+    "dataNascimento": "15/05/1985",
+    "cidade": "Rio de Janeiro",
+    "estado": "RJ",
+    "sexo": "F"
+  },
+  {
+    "email": "andreSantos@gmail.com",
+    "senha": ["1", "2", "3", "4", "5", "6", "7", "8"],
+    "especialidade": "Ortopedia",
+    "inicioExpediente": "07:30",
+    "finalExpediente": "17:00",
+    "nome": "Dr. André Santos",
+    "cpf": "111.222.333-44",
+    "dataNascimento": "10/08/1975",
+    "cidade": "Belo Horizonte",
+    "estado": "MG",
+    "sexo": "M"
+  },
+  {
+    "email": "anaRodrigues@gmail.com",
+    "senha": ["1", "2", "3", "4", "5", "6", "7", "8"],
+    "especialidade": "Ginecologia",
+    "inicioExpediente": "08:30",
+    "finalExpediente": "18:30",
+    "nome": "Dra. Ana Rodrigues",
+    "cpf": "555.666.777-88",
+    "dataNascimento": "25/11/1982",
+    "cidade": "Brasília",
+    "estado": "DF",
+    "sexo": "F"
+  },
+  {
+    "email": "marcosSantos@gmail.com",
+    "senha": ["1", "2", "3", "4", "5", "6", "7", "8"],
+    "especialidade": "Oftalmologia",
+    "inicioExpediente": "09:00",
+    "finalExpediente": "17:00",
+    "nome": "Dr. Marcos Santos",
+    "cpf": "999.888.777-66",
+    "dataNascimento": "03/03/1970",
+    "cidade": "Porto Alegre",
+    "estado": "RS",
+    "sexo": "M"
+  },
+  {
+    "email": "gabriel@gmail.com",
+    "senha": ["1", "2", "3", "4", "5", "6", "7", "8"],
+    "especialidade": "ortopedista",
+    "inicioExpediente": "10:00",
+    "finalExpediente": "14:00",
+    "nome": "gabriel",
+    "cpf": "16676994747",
+    "dataNascimento": "04/12/1990",
+    "cidade": "sp",
+    "estado": "sp",
+    "sexo": "m"
+  },
+  {
+    "email": "luiza@gmail.com",
+    "senha": ["1", "8", "7", "8", "5", "1", "7", "3", "7", "6", "2"],
+    "especialidade": "ortopedista",
+    "inicioExpediente": "10:00",
+    "finalExpediente": "22:00",
+    "nome": "luiza",
+    "cpf": "18785173762",
+    "dataNascimento": "23/09/2023",
+    "cidade": "rj",
+    "estado": "rj",
+    "sexo": "f"
+  },
+  {
+    "email": "eu@gmail.com",
+    "senha": ["1", "2", "3", "4", "5", "6", "7", "8"],
+    "especialidade": "eu",
+    "inicioExpediente": "10:00",
+    "finalExpediente": "12:00",
+    "nome": "EU",
+    "cpf": "18785173762",
+    "dataNascimento": "20/01/2000",
+    "cidade": "eu",
+    "estado": "eu",
+    "sexo": "m"
+  }
+]
