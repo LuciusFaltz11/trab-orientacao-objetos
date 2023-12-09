@@ -22,9 +22,9 @@ public class GerenciarConsultas implements WindowListener {
 
     @Override
     public void windowOpened(WindowEvent e) {
+        ConsultaPersistence consultaPersistence = new ConsultaPersistence();
+        List<Consulta> all = consultaPersistence.findByMedico(tela.getCpfMedico());
 
-        Persistence<Consulta> consultaPersistence = new ConsultaPersistence();
-        List<Consulta> all = consultaPersistence.findAll();
         Collections.sort(all, new Comparator<Consulta>() {
             @Override
             public int compare(Consulta o1, Consulta o2) {
@@ -42,8 +42,18 @@ public class GerenciarConsultas implements WindowListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
-        Persistence<Consulta> ConsultaPersistence = new ConsultaPersistence();
-        ConsultaPersistence.save(tela.listaConsultas());
+        Persistence<Consulta> consultaPersistence = new ConsultaPersistence();
+        List<Consulta> all = consultaPersistence.findAll();
+        for (Consulta consulta : tela.listaConsultas()) {
+            for(Consulta aux : all){
+                if(consulta.getCpfPaciente() == aux.getCpfPaciente() && consulta.getCpfMedico() == aux.getCpfMedico() ){
+                    all.remove(aux);
+                    all.add(consulta);
+                    break;
+                }
+            }
+        }
+        consultaPersistence.save(all);
     }
 
     @Override
