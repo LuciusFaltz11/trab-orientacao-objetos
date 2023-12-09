@@ -12,9 +12,11 @@ import java.util.List;
 import javax.swing.*;
 
 import com.poo.projeto_hospital.controller.RetornarAreaPaciente;
-import com.poo.projeto_hospital.model.ItemComboBox;
-import com.poo.projeto_hospital.model.Usuario;
-import com.poo.projeto_hospital.model.UsuarioMedico;
+import com.poo.projeto_hospital.exception.CPFException;
+import com.poo.projeto_hospital.exception.DataException;
+import com.poo.projeto_hospital.exception.EmailException;
+import com.poo.projeto_hospital.exception.SenhaException;
+import com.poo.projeto_hospital.model.*;
 import com.poo.projeto_hospital.persistence.ConsultaPersistence;
 import com.poo.projeto_hospital.persistence.MedicoPersistence;
 import com.poo.projeto_hospital.view.TelaAgenda;
@@ -197,38 +199,23 @@ public class MarcarConsulta extends PadraoPerfilPaciente {
         return botao;
     }
 
-    public static boolean validarData(String dataString) {
-        // Define o formato esperado da data
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        formato.setLenient(false);
-
-        try {
-            Date data = formato.parse(dataString);
-            return true; // Se conseguir, a data é válida
-        } catch (ParseException e) {
-            return false;
-        }
-    }
-
     private static void marcarConsulta(final JFrame framePrincipal) {
-        if(!validarData(dataNascimentoField.getText())){
-            JOptionPane.showMessageDialog(null, "Data inválida", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        TelaAgenda tela = new TelaAgenda(medicoSelecionado);
-        try{
+        try {
+            String dataValida = Data.isValidData(dataNascimentoField.getText());
+            TelaAgenda tela = new TelaAgenda(medicoSelecionado);
             ConsultaPersistence consultaPersistence = new ConsultaPersistence();
             List<Integer> ids = consultaPersistence.getConsultaIds();
             int id = 0;
-            if(!ids.isEmpty()){
+            if (!ids.isEmpty()) {
                 id = ids.get(ids.size() - 1) + 1;
             }
-
-            tela.addConsulta(id, paciente.getCpf(), medicoSelecionado, dataNascimentoField.getText(), horarioSelecionado, "60", descricaoField.getText());
+            tela.addConsulta(id, paciente.getCpf(), medicoSelecionado, dataValida, horarioSelecionado, "60", descricaoField.getText());
             JOptionPane.showMessageDialog(null, "Colsulta marcada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
             framePrincipal.dispose();
             new AreaPaciente(paciente).createAndShowGUI();
-        }catch(Exception e){
+        } catch (DataException e) {
+            JOptionPane.showMessageDialog(null, "Data inválida!", "Erro", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao marcar consulta \n" + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }

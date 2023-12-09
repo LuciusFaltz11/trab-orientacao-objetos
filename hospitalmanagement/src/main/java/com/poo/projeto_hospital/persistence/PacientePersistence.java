@@ -60,6 +60,19 @@ public class PacientePersistence implements Persistence<Usuario> {
         return paciente;
     }
 
+    public Usuario findByEmail(String email) {
+        List<Usuario> pacientes = findAll();
+        Usuario paciente = null;
+
+        for (Usuario p : pacientes) {
+            if (p.getEmail().equals(email)) {
+                paciente = p;
+                break;
+            }
+        }
+        return paciente;
+    }
+
     public void alterarDados(Usuario paciente) {
         List<Usuario> pacientes = findAll();
 

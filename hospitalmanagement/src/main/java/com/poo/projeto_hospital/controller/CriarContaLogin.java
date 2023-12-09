@@ -90,6 +90,10 @@ public class CriarContaLogin implements ActionListener {
         if (pacientePersistence.findByCpf(novo.getCpf()) != null)
             throw new RuntimeException("CPF já cadastrado!");
 
+        if (pacientePersistence.findByEmail(novo.getEmail()) != null)
+            throw new RuntimeException("Email já cadastrado!");
+
+
         pacientes.add(novo);
         pacientePersistence.save(pacientes);
     }
