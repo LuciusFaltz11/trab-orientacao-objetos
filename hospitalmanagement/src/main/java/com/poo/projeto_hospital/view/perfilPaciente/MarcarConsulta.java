@@ -191,16 +191,18 @@ public class MarcarConsulta extends PadraoPerfilPaciente {
         formato.setLenient(false);
 
         try {
-            // Tenta fazer o parsing da string para uma data
             Date data = formato.parse(dataString);
             return true; // Se conseguir, a data é válida
         } catch (ParseException e) {
-            // Se ocorrer uma exceção, a data é inválida
             return false;
         }
     }
 
     private static void marcarConsulta() {
+        if(!validarData(dataNascimentoField.getText())){
+            JOptionPane.showMessageDialog(null, "Data inválida", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         TelaAgenda tela = new TelaAgenda(medicoSelecionado);
         try{
             System.out.println("CPF do paciente: " + paciente.getCpf());
@@ -214,7 +216,5 @@ public class MarcarConsulta extends PadraoPerfilPaciente {
             System.out.println("Erro ao marcar consulta");
             System.out.println(e.getMessage());
         }
-
     }
-
 }
