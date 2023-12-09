@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.poo.projeto_hospital.Consulta;
 import com.poo.projeto_hospital.persistence.ConsultaPersistence;
-import com.poo.projeto_hospital.persistence.PacientePersistence;
 
 public class Paciente extends Pessoa {
     private List<Consulta> consultas;
@@ -17,13 +16,8 @@ public class Paciente extends Pessoa {
         this.consultas = new ArrayList<>();
     }
 
-    public void adicionarConsulta(Consulta consulta) {
-        consultas.add(consulta);
-    }
-
     public List<Consulta> getConsultas() {
         ConsultaPersistence consultaPersistence = new ConsultaPersistence();
-        List<Consulta> consultas = consultaPersistence.findByPaciente(this.getCpf());
-        return consultas;
+        return consultaPersistence.findByPaciente(this.getCpf());
     }
 }

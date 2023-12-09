@@ -48,14 +48,37 @@ public class MedicoPersistence implements Persistence<UsuarioMedico> {
 
     public UsuarioMedico findByCpf(String cpf) {
         List<UsuarioMedico> medicos = findAll();
-        UsuarioMedico medico = null;
 
-        for (UsuarioMedico m : medicos) {
-            if (m.getCpf().equals(cpf)) {
-                medico = m;
-                break;
+        for (UsuarioMedico medico : medicos) {
+            String cpfMedico = medico.getCpf().replaceAll("[^0-9]", "");
+            cpf = cpf.replaceAll("[^0-9]", "");
+            if (cpfMedico.equals(cpf)) {
+                return medico;
             }
         }
-        return medico;
+        return null;
+    }
+
+    public List<String> listaEspecialidades() {
+        List<UsuarioMedico> medicos = findAll();
+        List<String> especialidades = new ArrayList<>();
+        for(UsuarioMedico medico : medicos){
+            if(!especialidades.contains(medico.getEspecialidade())){
+                System.out.println(medico.getEspecialidade());
+                especialidades.add(medico.getEspecialidade());
+            }
+        }
+        return especialidades;
+    }
+
+    public List<UsuarioMedico> filterMedicoByEspecialidade(String especialidade){
+        List<UsuarioMedico> medicos = findAll();
+        List<UsuarioMedico> medicosEspecialidade = new ArrayList<>();
+        for(UsuarioMedico medico : medicos){
+            if(medico.getEspecialidade().equals(especialidade)){
+                medicosEspecialidade.add(medico);
+            }
+        }
+        return medicosEspecialidade;
     }
 }

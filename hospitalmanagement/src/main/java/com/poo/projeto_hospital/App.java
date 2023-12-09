@@ -1,25 +1,35 @@
 package com.poo.projeto_hospital;
 
+import java.util.List;
+
 import com.poo.projeto_hospital.exception.DataException;
 import com.poo.projeto_hospital.exception.HorarioException;
-import com.poo.projeto_hospital.model.Medico;
-import com.poo.projeto_hospital.model.Paciente;
 import com.poo.projeto_hospital.model.Usuario;
-import com.poo.projeto_hospital.model.UsuarioMedico;
 import com.poo.projeto_hospital.persistence.ConsultaPersistence;
+import com.poo.projeto_hospital.persistence.PacientePersistence;
+import com.poo.projeto_hospital.persistence.Persistence;
 import com.poo.projeto_hospital.view.TelaAgenda;
 import com.poo.projeto_hospital.view.paginaInicial_login.Login;
 import com.poo.projeto_hospital.view.perfilPaciente.AreaPaciente;
+import com.poo.projeto_hospital.view.perfilPaciente.EditarPerfil;
+import com.poo.projeto_hospital.view.perfilPaciente.MarcarConsulta;
 
 public class App {
-    public static void main(String[] args) {
-        // Login login = new Login();
-        // login.createAndShowGUI();
+    public static void main(String[] args) throws DataException {
+        //Login login = new Login();
+        //login.createAndShowGUI();
 
-         TelaAgenda telaAgenda = new TelaAgenda("14072295671");
+        ConsultaPersistence consultaPersistence = new ConsultaPersistence();
+         List<Integer> ids = consultaPersistence.getConsultaIds();
+            int id = 0;
+            if (!ids.isEmpty()) {
+                id = ids.get(ids.size() - 1) + 1;
+            }
+
+         TelaAgenda telaAgenda = new TelaAgenda("99988877766");
          try {
             // nao faz sentido lancar excecao para os CPF, eles ja seriam validados, ja estao no arquivo de pacientes
-         telaAgenda.addConsulta("13593634678", "00072295672", "07/12/2023", "09:00", "Diarreia");
+         telaAgenda.addConsulta(id,"13593634678", "00072295672", "07/12/2023", "09:00", "Diarreia");
          }
          catch (DataException e){
             System.out.println(e.getMessage());

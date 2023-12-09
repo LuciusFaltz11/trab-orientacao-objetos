@@ -3,22 +3,15 @@ package com.poo.projeto_hospital.view;
 import javax.swing.*;
 
 import com.poo.projeto_hospital.Consulta;
-import com.poo.projeto_hospital.model.Medico;
 import com.poo.projeto_hospital.controller.AdicionarConsulta;
 import com.poo.projeto_hospital.controller.EditarConsulta;
 import com.poo.projeto_hospital.controller.GerenciarConsultas;
 import com.poo.projeto_hospital.controller.RemoverConsulta;
 import com.poo.projeto_hospital.controller.SelecionarConsulta;
-import com.poo.projeto_hospital.exception.CPFException;
 import com.poo.projeto_hospital.exception.DataException;
-import com.poo.projeto_hospital.exception.EmailException;
 import com.poo.projeto_hospital.exception.HorarioException;
-import com.poo.projeto_hospital.model.CPF;
 import com.poo.projeto_hospital.model.Data;
-import com.poo.projeto_hospital.model.Email;
 import com.poo.projeto_hospital.model.Horario;
-import com.poo.projeto_hospital.model.Paciente;
-import com.poo.projeto_hospital.model.UsuarioMedico;
 import com.poo.projeto_hospital.persistence.ConsultaPersistence;
 import com.poo.projeto_hospital.persistence.Persistence;
 
@@ -79,7 +72,6 @@ public class TelaAgenda {
         painel.setPreferredSize(new Dimension((2 * WIDTH) / 3, HEIGHT));
         painel.setLayout(new BorderLayout());
 
-        
         listConsultas.addListSelectionListener(new SelecionarConsulta(this));
 
         painel.add(new JScrollPane(listConsultas), BorderLayout.CENTER);
@@ -104,9 +96,7 @@ public class TelaAgenda {
         painelLabel.add(new JLabel("Data"));
         painelLabel.add(new JLabel("Horario"));
         painelLabel.add(new JLabel("Laudo"));
-        
 
-        
         JPanel painelField = new JPanel();
         painelField.setLayout(new GridLayout(0, 1, H_GAP, 11));
         tfNome = new JTextField(20);
@@ -126,12 +116,8 @@ public class TelaAgenda {
         tfSexo.setEditable(false);
         tfData = new JTextField(20);
         tfHorario = new JTextField(20);
-        
+
         tfDescricao = new JTextField(20);
-
-       
-
-        
 
         painelField.add(tfNome);
         painelField.add(tfCpf);
@@ -142,7 +128,6 @@ public class TelaAgenda {
         painelField.add(tfData);
         painelField.add(tfHorario);
         painelField.add(tfDescricao);
-        
 
         formulario.add(painelLabel);
         formulario.add(painelField);
@@ -150,8 +135,8 @@ public class TelaAgenda {
         painel.setLayout(new BorderLayout());
         painel.add(formulario, BorderLayout.CENTER);
 
-        //JButton btnLaudo = new JButton("Laudo");
-        //btnLaudo.addActionListener(new AdicionarConsulta(this));
+        JButton btnLaudo = new JButton("Salvar Laudo");
+        btnLaudo.addActionListener(new EditarConsulta(this));
 
         JButton btnRemover = new JButton("Desmarcar");
         btnRemover.addActionListener(new RemoverConsulta(this));
@@ -160,9 +145,10 @@ public class TelaAgenda {
         btnEditar.addActionListener(new EditarConsulta(this));
 
         JPanel botoes = new JPanel();
-        //botoes.add(btnLaudo);
+        // botoes.add(btnLaudo);
         botoes.add(btnRemover);
         botoes.add(btnEditar);
+        botoes.add(btnLaudo);
 
         painel.add(botoes, BorderLayout.SOUTH);
 
@@ -208,43 +194,41 @@ public class TelaAgenda {
             tfHorario.setText(consulta.getHorario().toString());
             tfDescricao.setText(consulta.getDescricao());
 
-            
-
         }
 
     }
 
-    public void addConsulta(String cpfP,String cpfM, String data, String horario, String descricao) throws DataException {
+    public void addConsulta(int id, String cpfP, String cpfM, String data, String horario, String descricao)
+            throws DataException {
 
         DefaultListModel<Consulta> model = (DefaultListModel<Consulta>) listConsultas.getModel();
         Consulta novaConsulta = null;
-        
-        try{
-            novaConsulta = new Consulta(cpfP,cpfM, Data.isValidData(data), Horario.isValidHorario(horario), 60, descricao);
-        }
-        catch(DataException e){
+
+        try {
+            novaConsulta = new Consulta(id, cpfP, cpfM, Data.isValidData(data), Horario.isValidHorario(horario),
+                    60, descricao);
+        } catch (DataException e) {
             throw new DataException();
-        }
-        catch(HorarioException e){
+        } catch (HorarioException e) {
             throw new HorarioException();
         }
 
         Persistence<Consulta> consultaPersistence = new ConsultaPersistence();
         List<Consulta> consultas = consultaPersistence.findAll();
 
-        for(Consulta c : consultas){
-            if(Data.compara(c.getData(), novaConsulta.getData()) == 0 && c.getCpfMedico().equals(novaConsulta.getCpfMedico())){
-                if(Horario.compara(c.getHorario(), novaConsulta.getHorario()) == 0){
+        for (Consulta c : consultas) {
+            if (Data.compara(c.getData(), novaConsulta.getData()) == 0
+                    && c.getCpfMedico().equals(novaConsulta.getCpfMedico())) {
+                if (Horario.compara(c.getHorario(), novaConsulta.getHorario()) == 0) {
                     JOptionPane.showMessageDialog(null, "Horario indisponivel");
-                    return; 
-                }
-                else if(Horario.compara(novaConsulta.getHorario(), c.getHorario())>=0 && Horario.compara(novaConsulta.getHorario(),Horario.soma(c.getHorario(), c.getDuracaoMinutos())) < 0 ){
-                   JOptionPane.showMessageDialog(null, "Horario indisponivel");
+                    return;
+                } else if (Horario.compara(novaConsulta.getHorario(), c.getHorario()) >= 0 && Horario
+                        .compara(novaConsulta.getHorario(), Horario.soma(c.getHorario(), c.getDuracaoMinutos())) < 0) {
+                    JOptionPane.showMessageDialog(null, "Horario indisponivel");
                     return;
                 }
             }
         }
-        
 
         consultas.add(novaConsulta);
 
@@ -298,11 +282,10 @@ public class TelaAgenda {
                     }
                     index++;
                 }
-            }
-            catch(HorarioException e){
+            } catch (HorarioException e) {
                 return;
             }
-                
+
             lista.add(index, consulta);
 
             DefaultListModel<Consulta> novoModelo = new DefaultListModel<>();
@@ -313,13 +296,13 @@ public class TelaAgenda {
             // Definindo o novo modelo como o modelo da lista
             listConsultas.setModel(novoModelo);
 
-            Persistence<Consulta> consultaPersistence = new ConsultaPersistence();
+            ConsultaPersistence consultaPersistence = new ConsultaPersistence();
             List<Consulta> consultas = consultaPersistence.findAll();
 
-            consultas.remove(consulta);
-            consultas.add(consulta);
+            consultaPersistence.removeById(consulta.getId());
+            consultaPersistence.save(consulta);
 
-            //consultaPersistence.save(consultas);
+            // consultaPersistence.save(consultas);
 
         }
 

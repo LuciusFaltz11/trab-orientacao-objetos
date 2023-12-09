@@ -47,6 +47,7 @@ public class GerenciarConsultas implements WindowListener{
     public void windowClosing(WindowEvent e) {
         Persistence<Consulta> consultaPersistence = new ConsultaPersistence();
         List<Consulta> all = consultaPersistence.findAll();
+        
         for (Consulta consulta : tela.listaConsultas()) {
             int i = 0;
             for(Consulta aux : all){

@@ -1,11 +1,5 @@
 package com.poo.projeto_hospital;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-
-import com.poo.projeto_hospital.model.Paciente;
-import com.poo.projeto_hospital.model.UsuarioMedico;
 import com.poo.projeto_hospital.persistence.MedicoPersistence;
 import com.poo.projeto_hospital.persistence.PacientePersistence;
 
@@ -13,21 +7,28 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class Consulta {
+    int id;
     String cpfPaciente;
     String cpfMedico;
     private String data;
     private String horario;
     private int duracaoMinutos;
     private String descricao;
+    
 
     // validar os parametros do construtor (data e horario)
-    public Consulta(String cpfPaciente, String cpfMedico, String data, String horario, int duracao, String descricao) {
+    public Consulta(int id, String cpfPaciente, String cpfMedico, String data, String horario, int duracao, String descricao) {
+        this.id = id;
         this.cpfPaciente = cpfPaciente;
         this.cpfMedico = cpfMedico;
         this.data = data;
         this.horario = horario;
         this.duracaoMinutos = duracao;
         this.descricao = descricao;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getCpfMedico() {
@@ -46,31 +47,6 @@ public class Consulta {
         return duracaoMinutos;
     }
 
-    // validar data: já tem uma funçãao para isso
-    private boolean validarData(String data) {
-        SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
-        formatoData.setLenient(false);
-
-        try {
-            formatoData.parse(data);
-            return true;
-        } catch (ParseException e) {
-            return false;
-        }
-    }
-
-    private static boolean validarHorario(String horario) {
-        SimpleDateFormat formatoHorario = new SimpleDateFormat("HH:mm");
-        formatoHorario.setLenient(false);
-
-        try {
-            formatoHorario.parse(horario);
-            return true;
-        } catch (ParseException e) {
-            return false;
-        }
-
-    }
 
     public String getDescricao() {
         return descricao;
@@ -122,7 +98,10 @@ public class Consulta {
         return medico.findByCpf(cpfMedico).getNome();
     }
 
-
+    public String getEspecialidadeMedico() {
+        MedicoPersistence medico = new MedicoPersistence();
+        return medico.findByCpf(cpfMedico).getEspecialidade();
+    }
 
     @Override
     public String toString() {
@@ -141,4 +120,16 @@ public class Consulta {
     public String setCPFmedico(String cpfMedico) {
         return this.cpfMedico = cpfMedico;
     }
+
+    public String getDetalhesConsulta() {
+        return "Data e Hora: " + data + " às " + horario + ", Médico: " + getNomeMedico() + ", Especialidade: "
+                + getEspecialidadeMedico() + ".";
+    }
+
+    public String getDetalhesConsultaToCancel() {
+        return "Dia" + data + " às " + horario + ", com: " + getNomeMedico() + " - "
+                + getEspecialidadeMedico() + ".";
+    }
+
+    
 }

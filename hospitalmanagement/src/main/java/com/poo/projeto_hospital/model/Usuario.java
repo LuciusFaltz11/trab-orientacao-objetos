@@ -24,4 +24,12 @@ public class Usuario extends Paciente {
     public char[] getSenha() {
         return senha;
     }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setSenha(char[] senha) {
+        this.senha = senha;
+    }
 }
