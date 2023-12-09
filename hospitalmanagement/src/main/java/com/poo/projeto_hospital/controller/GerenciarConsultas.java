@@ -7,12 +7,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import com.poo.projeto_hospital.Consulta;
+import com.poo.projeto_hospital.model.Consulta;
 import com.poo.projeto_hospital.model.Data;
 import com.poo.projeto_hospital.model.Horario;
 import com.poo.projeto_hospital.persistence.ConsultaPersistence;
 import com.poo.projeto_hospital.persistence.Persistence;
 import com.poo.projeto_hospital.view.TelaAgenda;
+import com.poo.projeto_hospital.view.paginaInicial_login.Login;
 
 public class GerenciarConsultas implements WindowListener{
     private final TelaAgenda tela;
@@ -60,7 +61,9 @@ public class GerenciarConsultas implements WindowListener{
                 i++;
             }
         }
-        consultaPersistence.save(all);
+        Login login = new Login();
+        login.createAndShowGUI();
+       
     }
 
     @Override

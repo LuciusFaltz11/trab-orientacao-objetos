@@ -2,7 +2,6 @@ package com.poo.projeto_hospital.view;
 
 import javax.swing.*;
 
-import com.poo.projeto_hospital.Consulta;
 import com.poo.projeto_hospital.controller.AdicionarConsulta;
 import com.poo.projeto_hospital.controller.EditarConsulta;
 import com.poo.projeto_hospital.controller.GerenciarConsultas;
@@ -10,6 +9,7 @@ import com.poo.projeto_hospital.controller.RemoverConsulta;
 import com.poo.projeto_hospital.controller.SelecionarConsulta;
 import com.poo.projeto_hospital.exception.DataException;
 import com.poo.projeto_hospital.exception.HorarioException;
+import com.poo.projeto_hospital.model.Consulta;
 import com.poo.projeto_hospital.model.Data;
 import com.poo.projeto_hospital.model.Horario;
 import com.poo.projeto_hospital.persistence.ConsultaPersistence;
@@ -55,7 +55,8 @@ public class TelaAgenda {
         tela = new JFrame("Agenda");
         tela.addWindowListener(new GerenciarConsultas(this));
         tela.setSize(WIDTH, HEIGHT);
-        tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        tela.setLocationRelativeTo(null);
+        tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         tela.setVisible(true);
         tela.setLayout(new BorderLayout());
 

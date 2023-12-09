@@ -1,4 +1,4 @@
-package com.poo.projeto_hospital;
+package com.poo.projeto_hospital.model;
 
 import com.poo.projeto_hospital.persistence.MedicoPersistence;
 import com.poo.projeto_hospital.persistence.PacientePersistence;

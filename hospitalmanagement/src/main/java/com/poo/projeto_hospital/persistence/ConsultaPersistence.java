@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
-import com.poo.projeto_hospital.Consulta;
 import com.google.gson.reflect.TypeToken;
+import com.poo.projeto_hospital.model.Consulta;
 
 public class ConsultaPersistence implements Persistence<Consulta> {
     private static final String PATH = DIRECTORY + File.separator + "consultas.json";

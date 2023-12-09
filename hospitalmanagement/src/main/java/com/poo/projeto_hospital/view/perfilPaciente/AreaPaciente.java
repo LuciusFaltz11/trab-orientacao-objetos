@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import com.poo.projeto_hospital.Consulta;
+import com.poo.projeto_hospital.model.Consulta;
 import com.poo.projeto_hospital.model.Usuario;
 
 import java.util.List;

@@ -19,8 +19,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
-import com.poo.projeto_hospital.Consulta;
 import com.poo.projeto_hospital.controller.GerenciarConsultas;
+import com.poo.projeto_hospital.model.Consulta;
 
 
 public class Laudo extends JFrame {

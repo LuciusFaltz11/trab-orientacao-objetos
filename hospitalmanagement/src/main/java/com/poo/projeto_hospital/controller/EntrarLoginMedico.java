@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import com.poo.projeto_hospital.model.UsuarioMedico;
 import com.poo.projeto_hospital.persistence.MedicoPersistence;
 import com.poo.projeto_hospital.persistence.Persistence;
+import com.poo.projeto_hospital.view.TelaAgenda;
 import com.poo.projeto_hospital.view.paginaInicial_login.LoginMedico;
 
 public class EntrarLoginMedico implements ActionListener {
@@ -33,9 +34,12 @@ public class EntrarLoginMedico implements ActionListener {
         List<UsuarioMedico> medicos = medicoPersistence.findAll();
         for (UsuarioMedico medico : medicos) {
             if (medico.getEmail().equals(email) && Arrays.equals(medico.getSenha(), senha)) {
-                JOptionPane.showMessageDialog(null, "Login realizado com sucesso!", "Login",
-                        JOptionPane.INFORMATION_MESSAGE);
-                this.loginMedico.getFrame().dispose();
+                //JOptionPane.showMessageDialog(null, "Login realizado com sucesso!", "Login",
+                       // JOptionPane.INFORMATION_MESSAGE);
+                loginMedico.getFrame().dispose();
+                String CPF= medico.getCpf();
+                TelaAgenda telaAgenda = new TelaAgenda(CPF);
+                telaAgenda.desenha();
                 return;
             } else if (medico.getEmail().equals(email) && !Arrays.equals(medico.getSenha(), senha)) {
                 JOptionPane.showMessageDialog(null, "Senha incorreta.", "Erro", JOptionPane.ERROR_MESSAGE);
