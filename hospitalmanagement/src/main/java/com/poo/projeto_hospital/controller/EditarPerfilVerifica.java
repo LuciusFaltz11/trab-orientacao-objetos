@@ -10,7 +10,6 @@ import com.poo.projeto_hospital.exception.SenhaException;
 import com.poo.projeto_hospital.model.Email;
 import com.poo.projeto_hospital.model.Senha;
 import com.poo.projeto_hospital.model.Usuario;
-import com.poo.projeto_hospital.model.UsuarioMedico;
 import com.poo.projeto_hospital.persistence.PacientePersistence;
 import com.poo.projeto_hospital.view.perfilPaciente.AreaPaciente;
 import com.poo.projeto_hospital.view.perfilPaciente.EditarPerfil;

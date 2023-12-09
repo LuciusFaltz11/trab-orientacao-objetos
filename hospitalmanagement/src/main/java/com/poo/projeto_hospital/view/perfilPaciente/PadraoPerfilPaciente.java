@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 import com.poo.projeto_hospital.model.Usuario;
-import com.poo.projeto_hospital.model.UsuarioMedico;
 import com.poo.projeto_hospital.view.paginaInicial_login.Login;
 
 public abstract class PadraoPerfilPaciente {
