@@ -40,31 +40,6 @@ public class Consulta {
         return duracaoMinutos;
     }
 
-    // validar data: já tem uma funçãao para isso
-    private boolean validarData(String data) {
-        SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
-        formatoData.setLenient(false);
-
-        try {
-            formatoData.parse(data);
-            return true;
-        } catch (ParseException e) {
-            return false;
-        }
-    }
-
-    private static boolean validarHorario(String horario) {
-        SimpleDateFormat formatoHorario = new SimpleDateFormat("HH:mm");
-        formatoHorario.setLenient(false);
-
-        try {
-            formatoHorario.parse(horario);
-            return true;
-        } catch (ParseException e) {
-            return false;
-        }
-
-    }
 
     public String getDescricao() {
         return descricao;

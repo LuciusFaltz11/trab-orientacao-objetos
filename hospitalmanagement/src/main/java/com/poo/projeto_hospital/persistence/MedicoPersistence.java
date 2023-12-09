@@ -50,7 +50,9 @@ public class MedicoPersistence implements Persistence<UsuarioMedico> {
         List<UsuarioMedico> medicos = findAll();
 
         for (UsuarioMedico medico : medicos) {
-            if (medico.getCpf().equals(cpf)) {
+            String cpfMedico = medico.getCpf().replaceAll("[^0-9]", "");
+            cpf = cpf.replaceAll("[^0-9]", "");
+            if (cpfMedico.equals(cpf)) {
                 return medico;
             }
         }

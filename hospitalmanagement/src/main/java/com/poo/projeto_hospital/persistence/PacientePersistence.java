@@ -50,7 +50,9 @@ public class PacientePersistence implements Persistence<Usuario> {
         Usuario paciente = null;
 
         for (Usuario p : pacientes) {
-            if (p.getCpf().equals(cpf)) {
+            String cpfPaciente = p.getCpf().replaceAll("[^0-9]", "");
+            cpf = cpf.replaceAll("[^0-9]", "");
+            if (cpfPaciente.equals(cpf)) {
                 paciente = p;
                 break;
             }
