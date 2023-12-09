@@ -12,11 +12,9 @@ import com.poo.projeto_hospital.model.CPF;
 import com.poo.projeto_hospital.model.Data;
 import com.poo.projeto_hospital.model.Email;
 import com.poo.projeto_hospital.model.Horario;
-import com.poo.projeto_hospital.model.Medico;
 import com.poo.projeto_hospital.model.Senha;
 import com.poo.projeto_hospital.model.UsuarioMedico;
 import com.poo.projeto_hospital.persistence.MedicoPersistence;
-import com.poo.projeto_hospital.persistence.Persistence;
 import com.poo.projeto_hospital.view.paginaInicial_login.LoginMedico;
 import com.poo.projeto_hospital.view.paginaInicial_login.RegistroMedico;
 

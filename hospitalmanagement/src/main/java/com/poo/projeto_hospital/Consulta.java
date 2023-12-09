@@ -3,9 +3,6 @@ package com.poo.projeto_hospital;
 import com.poo.projeto_hospital.persistence.MedicoPersistence;
 import com.poo.projeto_hospital.persistence.PacientePersistence;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 public class Consulta {
     String cpfPaciente;
     String cpfMedico;
@@ -39,7 +36,6 @@ public class Consulta {
     public int getDuracaoMinutos() {
         return duracaoMinutos;
     }
-
 
     public String getDescricao() {
         return descricao;

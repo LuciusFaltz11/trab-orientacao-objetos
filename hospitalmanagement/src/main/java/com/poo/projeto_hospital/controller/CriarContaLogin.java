@@ -12,7 +12,6 @@ import com.poo.projeto_hospital.exception.EmailException;
 import com.poo.projeto_hospital.exception.SenhaException;
 import com.poo.projeto_hospital.model.*;
 import com.poo.projeto_hospital.persistence.PacientePersistence;
-import com.poo.projeto_hospital.persistence.Persistence;
 import com.poo.projeto_hospital.view.paginaInicial_login.Login;
 import com.poo.projeto_hospital.view.paginaInicial_login.RegistroPaciente;
 
