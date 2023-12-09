@@ -85,15 +85,27 @@ public class CriarContaMedico implements ActionListener {
         UsuarioMedico medico = new UsuarioMedico(email, senha, nome, cpf, dataNascimento, cidade, estado, sexo,
                 especialidade, inicioExpediente, fimExpediente);
 
-        armazenarMedico(medico);
+        try {
+            armazenarMedico(medico);
+        } catch (RuntimeException ex) {
+            ex.getMessage();
+            JOptionPane.showMessageDialog(null, "Médico já cadastrado!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         JOptionPane.showMessageDialog(null, "Conta criada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-        new LoginMedico().createAndShowGUI();
         registroMedico.getFrame().dispose();
+        new LoginMedico().createAndShowGUI();
     }
 
     private void armazenarMedico(UsuarioMedico novo) {
         MedicoPersistence medicoPersistence = new MedicoPersistence();
         List<UsuarioMedico> medicos = medicoPersistence.modificaLista();
+
+        if (medicoPersistence.findByCpf(novo.getCpf()) != null) {
+            throw new RuntimeException("CPF já cadastrado!");
+        }
+
         medicos.add(novo);
         medicoPersistence.save(medicos);
     }
