@@ -55,7 +55,7 @@ public class Medico extends Pessoa {
 
     public ArrayList<String> getHorarios(){
         ArrayList<String> horarios = new ArrayList<>();
-        int intervaloMinutos = 30;
+        int intervaloMinutos = 60;
 
         // Converter horários para minutos
         int inicioMinutos = converterParaMinutos(inicioExpediente);

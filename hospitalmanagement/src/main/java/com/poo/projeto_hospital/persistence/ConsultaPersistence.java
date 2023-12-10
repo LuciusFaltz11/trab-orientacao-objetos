@@ -90,16 +90,6 @@ public class ConsultaPersistence implements Persistence<Consulta> {
         return consultaIds;
     }
 
-    public Consulta findById(int id) {
-        List<Consulta> consultas = findAll();
-        for (Consulta consulta : consultas) {
-            if (consulta.getId() == id) {
-                return consulta;
-            }
-        }
-        return null;
-    }
-
     public boolean removeById(int id) {
         List<Consulta> consultas = findAll();
         for (Consulta consulta : consultas) {
