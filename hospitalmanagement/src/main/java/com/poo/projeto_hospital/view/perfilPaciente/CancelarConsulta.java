@@ -2,9 +2,9 @@ package com.poo.projeto_hospital.view.perfilPaciente;
 
 import javax.swing.*;
 
-import com.poo.projeto_hospital.Consulta;
 import com.poo.projeto_hospital.controller.CancelarConsultaListener;
 import com.poo.projeto_hospital.controller.RetornarAreaPaciente;
+import com.poo.projeto_hospital.model.Consulta;
 import com.poo.projeto_hospital.model.ConsultaListItem;
 import com.poo.projeto_hospital.model.Usuario;
 import com.poo.projeto_hospital.persistence.MedicoPersistence;

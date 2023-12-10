@@ -85,13 +85,6 @@ public class Login extends FormatacaoInicial {
             }
         });
 
-        areaMedico.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                LoginMedico login = new LoginMedico();
-                finalFrame.dispose(); // Use finalFrame instead of frame
-                login.createAndShowGUI();
-            }
-        });
 
         frame.getContentPane().add(botaoPanel, BorderLayout.PAGE_END);
     }

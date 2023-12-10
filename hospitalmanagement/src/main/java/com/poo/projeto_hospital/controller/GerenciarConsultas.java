@@ -7,12 +7,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import com.poo.projeto_hospital.Consulta;
+import com.poo.projeto_hospital.model.Consulta;
 import com.poo.projeto_hospital.model.Data;
 import com.poo.projeto_hospital.model.Horario;
 import com.poo.projeto_hospital.persistence.ConsultaPersistence;
 import com.poo.projeto_hospital.persistence.Persistence;
 import com.poo.projeto_hospital.view.TelaAgenda;
+import com.poo.projeto_hospital.view.paginaInicial_login.Login;
 
 public class GerenciarConsultas implements WindowListener{
     private final TelaAgenda tela;
@@ -49,18 +50,18 @@ public class GerenciarConsultas implements WindowListener{
         List<Consulta> all = consultaPersistence.findAll();
         
         for (Consulta consulta : tela.listaConsultas()) {
-            int i = 0;
             for(Consulta aux : all){
                 if(consulta.getCpfPaciente() == aux.getCpfPaciente() && consulta.getCpfMedico() == aux.getCpfMedico() ){
-                    all.remove(i);
+                    all.remove(consulta);
                     all.add(consulta);
-                    i++;
                     break;
                 }
-                i++;
+                
             }
         }
-        consultaPersistence.save(all);
+        Login login = new Login();
+        login.createAndShowGUI();
+       
     }
 
     @Override

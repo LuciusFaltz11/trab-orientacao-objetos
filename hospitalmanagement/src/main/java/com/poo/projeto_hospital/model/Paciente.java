@@ -3,7 +3,6 @@ package com.poo.projeto_hospital.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.poo.projeto_hospital.Consulta;
 import com.poo.projeto_hospital.persistence.ConsultaPersistence;
 
 public class Paciente extends Pessoa {

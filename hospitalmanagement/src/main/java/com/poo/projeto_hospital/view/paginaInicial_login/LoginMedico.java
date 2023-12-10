@@ -83,7 +83,7 @@ public class LoginMedico extends FormatacaoInicial {
             }
         });
 
-        entrarButton.addActionListener(new EntrarLoginMedico(this));
+        
         frame.getContentPane().add(botaoPanel, BorderLayout.PAGE_END);
 
     }

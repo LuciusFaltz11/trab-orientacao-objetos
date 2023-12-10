@@ -2,7 +2,6 @@ package com.poo.projeto_hospital.view;
 
 import javax.swing.*;
 
-import com.poo.projeto_hospital.Consulta;
 import com.poo.projeto_hospital.controller.AdicionarConsulta;
 import com.poo.projeto_hospital.controller.EditarConsulta;
 import com.poo.projeto_hospital.controller.GerenciarConsultas;
@@ -10,10 +9,12 @@ import com.poo.projeto_hospital.controller.RemoverConsulta;
 import com.poo.projeto_hospital.controller.SelecionarConsulta;
 import com.poo.projeto_hospital.exception.DataException;
 import com.poo.projeto_hospital.exception.HorarioException;
+import com.poo.projeto_hospital.model.Consulta;
 import com.poo.projeto_hospital.model.Data;
 import com.poo.projeto_hospital.model.Horario;
 import com.poo.projeto_hospital.persistence.ConsultaPersistence;
 import com.poo.projeto_hospital.persistence.Persistence;
+import com.poo.projeto_hospital.view.paginaInicial_login.Login;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -55,7 +56,8 @@ public class TelaAgenda {
         tela = new JFrame("Agenda");
         tela.addWindowListener(new GerenciarConsultas(this));
         tela.setSize(WIDTH, HEIGHT);
-        tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        tela.setLocationRelativeTo(null);
+        tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         tela.setVisible(true);
         tela.setLayout(new BorderLayout());
 
@@ -144,11 +146,21 @@ public class TelaAgenda {
         JButton btnEditar = new JButton("Remarcar");
         btnEditar.addActionListener(new EditarConsulta(this));
 
+        JButton btnSair = new JButton("Sair");
+        btnSair.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tela.dispose();
+                Login login = new Login();
+                login.createAndShowGUI();
+            }
+        });
         JPanel botoes = new JPanel();
         // botoes.add(btnLaudo);
         botoes.add(btnRemover);
         botoes.add(btnEditar);
         botoes.add(btnLaudo);
+        botoes.add(btnSair);
 
         painel.add(botoes, BorderLayout.SOUTH);
 
