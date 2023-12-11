@@ -89,7 +89,7 @@ public class RegistroMedico extends FormatacaoInicial {
         especialidadeField.setFont(fieldFont);
         formularioPanel.add(especialidadeField, gbc);
 
-        JLabel inicioExpedienteLabel = new JLabel("Início/fim do expediente: ");
+        JLabel inicioExpedienteLabel = new JLabel("Início/fim do expediente(hh:mm): ");
         inicioExpedienteLabel.setFont(labelFont);
         formularioPanel.add(inicioExpedienteLabel, gbc);
 
@@ -117,7 +117,7 @@ public class RegistroMedico extends FormatacaoInicial {
         cidadeField.setFont(fieldFont);
         formularioPanel.add(cidadeField, gbc);
 
-        JLabel estadoLabel = new JLabel("Estado: ");
+        JLabel estadoLabel = new JLabel("Estado(sigla): ");
         estadoLabel.setFont(labelFont);
         formularioPanel.add(estadoLabel, gbc);
 
