@@ -1,13 +1,17 @@
+/*
+João Augusto Pilato de Castro- 202235006
+Lucius Faltz Lassarote da Silva - 202235027
+Luíza Machado Costa Nascimento - 202235021
+*/
 package com.poo.projeto_hospital.model;
 
 public class Pessoa {
-    private  String nome;
-    private  String cpf;
-    private  String dataNascimento;
-    private  String cidade;
-    private  String estado;
-    private  String sexo;
-
+    private String nome;
+    private String cpf;
+    private String dataNascimento;
+    private String cidade;
+    private String estado;
+    private String sexo;
 
     public Pessoa(String nome, String cpf, String dataNascimento, String cidade, String estado, String sexo) {
         this.nome = nome;
@@ -65,7 +69,5 @@ public class Pessoa {
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
-
-    
 
 }

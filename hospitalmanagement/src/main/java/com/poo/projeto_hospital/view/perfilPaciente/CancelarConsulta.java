@@ -1,3 +1,8 @@
+/*
+João Augusto Pilato de Castro- 202235006
+Lucius Faltz Lassarote da Silva - 202235027
+Luíza Machado Costa Nascimento - 202235021
+*/
 package com.poo.projeto_hospital.view.perfilPaciente;
 
 import javax.swing.*;
@@ -18,6 +23,7 @@ public class CancelarConsulta extends PadraoPerfilPaciente {
     private Usuario paciente;
     private DefaultListModel<ConsultaListItem> listaModel;
     private JList<ConsultaListItem> listaConsultas;
+
     public CancelarConsulta(Usuario paciente) {
         this.paciente = paciente;
     }

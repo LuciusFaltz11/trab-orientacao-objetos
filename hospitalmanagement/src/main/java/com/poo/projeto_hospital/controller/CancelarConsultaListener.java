@@ -1,3 +1,8 @@
+/*
+João Augusto Pilato de Castro- 202235006
+Lucius Faltz Lassarote da Silva - 202235027
+Luíza Machado Costa Nascimento - 202235021
+*/
 package com.poo.projeto_hospital.controller;
 
 import com.poo.projeto_hospital.model.ConsultaListItem;
@@ -16,6 +21,7 @@ public class CancelarConsultaListener implements ActionListener {
         this.evento = evento;
         this.panel = panel;
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         int selectedIndex = evento.getListaConsultas().getSelectedIndex();
@@ -23,17 +29,20 @@ public class CancelarConsultaListener implements ActionListener {
         if (selectedIndex != -1) {
             ConsultaListItem detalhesConsulta = evento.getListaModel().getElementAt(selectedIndex);
             ConsultaPersistence persistence = new ConsultaPersistence();
-            if(!persistence.removeById(detalhesConsulta.getId())){
-                JOptionPane.showMessageDialog(null, "Erro, não foi possível desmarcar a consulta.", "Erro", JOptionPane.WARNING_MESSAGE);
+            if (!persistence.removeById(detalhesConsulta.getId())) {
+                JOptionPane.showMessageDialog(null, "Erro, não foi possível desmarcar a consulta.", "Erro",
+                        JOptionPane.WARNING_MESSAGE);
             }
 
             // Atualiza a JList após o cancelamento
             evento.getListaModel().removeElementAt(selectedIndex);
-            JOptionPane.showMessageDialog(null, "Consulta desmarcada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Consulta desmarcada com sucesso!", "Sucesso",
+                    JOptionPane.INFORMATION_MESSAGE);
             panel.revalidate();
         } else {
             // Exibe uma mensagem se nenhuma consulta estiver selecionada
-            JOptionPane.showMessageDialog(null, "Selecione uma consulta para desmarcada.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Selecione uma consulta para desmarcada.", "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
         }
     }
 }

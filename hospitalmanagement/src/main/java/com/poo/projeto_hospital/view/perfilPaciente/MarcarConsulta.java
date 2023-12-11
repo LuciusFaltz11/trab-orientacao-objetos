@@ -1,3 +1,8 @@
+/*
+João Augusto Pilato de Castro- 202235006
+Lucius Faltz Lassarote da Silva - 202235027
+Luíza Machado Costa Nascimento - 202235021
+*/
 package com.poo.projeto_hospital.view.perfilPaciente;
 
 import java.awt.*;
@@ -36,7 +41,6 @@ public class MarcarConsulta extends PadraoPerfilPaciente {
         MarcarConsulta.horarioSelecionado = horarioSelecionado;
     }
 
-
     public static void setMedicoSelecionado(String medicoSelecionado) {
         MarcarConsulta.medicoSelecionado = medicoSelecionado;
     }
@@ -51,8 +55,7 @@ public class MarcarConsulta extends PadraoPerfilPaciente {
         frame.setVisible(true);
     }
 
-
-    private void createEspecialidadeComboBox(final JFrame frame){
+    private void createEspecialidadeComboBox(final JFrame frame) {
         List<String> especialidades;
         final JPanel panelMedico = new JPanel();
         final JPanel panelHorario = new JPanel();
@@ -70,7 +73,7 @@ public class MarcarConsulta extends PadraoPerfilPaciente {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String especialidadeSelecionada = (String) comboBox.getSelectedItem();
-                if(especialidadeSelecionada == null){
+                if (especialidadeSelecionada == null) {
                     return;
                 }
                 List<UsuarioMedico> medicos = medicoPersistence.filterMedicoByEspecialidade(especialidadeSelecionada);
@@ -95,7 +98,8 @@ public class MarcarConsulta extends PadraoPerfilPaciente {
         frame.add(panelHorario);
     }
 
-    private void createMedicoComboBox(final JPanel panel, List<UsuarioMedico> medicos, final JFrame framePrincipal, final JPanel panelHorario){
+    private void createMedicoComboBox(final JPanel panel, List<UsuarioMedico> medicos, final JFrame framePrincipal,
+            final JPanel panelHorario) {
         final MedicoPersistence medicoPersistence = new MedicoPersistence();
         JLabel label = new JLabel("Selecione o médico desejado");
         label.setMaximumSize(new Dimension(250, 20));
@@ -106,7 +110,7 @@ public class MarcarConsulta extends PadraoPerfilPaciente {
             public void actionPerformed(ActionEvent e) {
                 ItemComboBox itemSelecionado = (ItemComboBox) comboBox.getSelectedItem();
                 assert itemSelecionado != null;
-                if(itemSelecionado.getValue() == null){
+                if (itemSelecionado.getValue() == null) {
                     return;
                 }
                 setMedicoSelecionado(itemSelecionado.getValue());
@@ -127,13 +131,14 @@ public class MarcarConsulta extends PadraoPerfilPaciente {
     private static DefaultComboBoxModel<ItemComboBox> criarModeloMedico(List<UsuarioMedico> medicos) {
         List<ItemComboBox> listaItens = new ArrayList<>();
         listaItens.add(new ItemComboBox("Selecione", null));
-        for(UsuarioMedico medico : medicos){
+        for (UsuarioMedico medico : medicos) {
             listaItens.add(new ItemComboBox(medico.getNome(), medico.getCpf()));
         }
         return new DefaultComboBoxModel<>(listaItens.toArray(new ItemComboBox[0]));
     }
 
-    private void createHorarioDataAndDescriptionFields(JPanel panel, UsuarioMedico medico, final JFrame framePrincipal){
+    private void createHorarioDataAndDescriptionFields(JPanel panel, UsuarioMedico medico,
+            final JFrame framePrincipal) {
         JLabel labelHorario = new JLabel("Selecione o horário desejado");
         labelHorario.setMaximumSize(new Dimension(250, 20));
         final JComboBox<String> comboBoxHorario = new JComboBox<>(medico.getHorarios().toArray(new String[0]));
@@ -150,21 +155,21 @@ public class MarcarConsulta extends PadraoPerfilPaciente {
         descricaoField.setMaximumSize(new Dimension(250, 30));
 
         comboBoxHorario.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-               String horarioSelecionado = (String) comboBoxHorario.getSelectedItem();
-               if (horarioSelecionado == null) {
-                   return;
-               }
-               setHorarioSelecionado(horarioSelecionado);
-               JButton botaoMarcarConsulta = criarBotaoMarcarConsulta(framePrincipal);
-               JPanel panel = new JPanel();
-               panel.setLayout(new FlowLayout(FlowLayout.CENTER));
-               panel.add(botaoMarcarConsulta);
-               framePrincipal.add(panel);
-               framePrincipal.revalidate();
-               framePrincipal.repaint();
-           }
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String horarioSelecionado = (String) comboBoxHorario.getSelectedItem();
+                if (horarioSelecionado == null) {
+                    return;
+                }
+                setHorarioSelecionado(horarioSelecionado);
+                JButton botaoMarcarConsulta = criarBotaoMarcarConsulta(framePrincipal);
+                JPanel panel = new JPanel();
+                panel.setLayout(new FlowLayout(FlowLayout.CENTER));
+                panel.add(botaoMarcarConsulta);
+                framePrincipal.add(panel);
+                framePrincipal.revalidate();
+                framePrincipal.repaint();
+            }
         });
 
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -209,19 +214,22 @@ public class MarcarConsulta extends PadraoPerfilPaciente {
             if (!ids.isEmpty()) {
                 id = ids.get(ids.size() - 1) + 1;
             }
-            tela.addConsulta(id, paciente.getCpf(), medicoSelecionado, dataNascimentoField.getText(), horarioSelecionado, descricaoField.getText());
+            tela.addConsulta(id, paciente.getCpf(), medicoSelecionado, dataNascimentoField.getText(),
+                    horarioSelecionado, descricaoField.getText());
 
-            JOptionPane.showMessageDialog(null, "Colsulta marcada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Colsulta marcada com sucesso!", "Sucesso!",
+                    JOptionPane.INFORMATION_MESSAGE);
             framePrincipal.dispose();
             new AreaPaciente(paciente).createAndShowGUI();
         } catch (DataException e) {
             JOptionPane.showMessageDialog(null, "Data inválida!", "Erro", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao marcar consulta \n" + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao marcar consulta \n" + e.getMessage(), "Erro",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private void renderBackButton(final JFrame frame){
+    private void renderBackButton(final JFrame frame) {
         JPanel botaoPanel = new JPanel();
         botaoPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         botaoPanel.setPreferredSize(new Dimension(500, 50));

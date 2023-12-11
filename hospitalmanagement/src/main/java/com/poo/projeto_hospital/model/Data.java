@@ -1,3 +1,8 @@
+/*
+João Augusto Pilato de Castro- 202235006
+Lucius Faltz Lassarote da Silva - 202235027
+Luíza Machado Costa Nascimento - 202235021
+*/
 package com.poo.projeto_hospital.model;
 
 import com.poo.projeto_hospital.exception.DataException;
@@ -41,31 +46,31 @@ public class Data {
             throw new DataException();
     }
 
-    public static int compara (String Data1, String Data2) {
+    public static int compara(String Data1, String Data2) {
 
-        int dia1 = Integer.parseInt(Data1.substring(0,2));
-        int mes1 = Integer.parseInt(Data1.substring(3,5));
+        int dia1 = Integer.parseInt(Data1.substring(0, 2));
+        int mes1 = Integer.parseInt(Data1.substring(3, 5));
         int ano1 = Integer.parseInt(Data1.substring(6));
 
-        int dia2 = Integer.parseInt(Data2.substring(0,2));
-        int mes2 = Integer.parseInt(Data2.substring(3,5));
+        int dia2 = Integer.parseInt(Data2.substring(0, 2));
+        int mes2 = Integer.parseInt(Data2.substring(3, 5));
         int ano2 = Integer.parseInt(Data2.substring(6));
 
-        if(ano1 > ano2)
+        if (ano1 > ano2)
             return 1;
-        else if(ano1 < ano2)
+        else if (ano1 < ano2)
             return -1;
-        else if(mes1 > mes2)
+        else if (mes1 > mes2)
             return 1;
-        else if(mes1 < mes2)
+        else if (mes1 < mes2)
             return -1;
-        else if(dia1 > dia2)
+        else if (dia1 > dia2)
             return 1;
-        else if(dia1 < dia2)
+        else if (dia1 < dia2)
             return -1;
         else
 
-        return 0;
+            return 0;
 
     }
 }

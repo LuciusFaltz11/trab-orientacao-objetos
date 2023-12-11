@@ -1,3 +1,8 @@
+/*
+João Augusto Pilato de Castro- 202235006
+Lucius Faltz Lassarote da Silva - 202235027
+Luíza Machado Costa Nascimento - 202235021
+*/
 package com.poo.projeto_hospital.persistence;
 
 import java.io.File;
@@ -83,8 +88,9 @@ public class ConsultaPersistence implements Persistence<Consulta> {
         List<Integer> consultaIds = new ArrayList<>();
 
         for (Consulta consulta : consultas) {
-            // Adicione o ID da consulta à lista (assumindo que o ID é uma propriedade chamada "id" na classe Consulta)
-            consultaIds.add(consulta.getId());  // Substitua "getId()" pelo método que retorna o ID da sua consulta
+            // Adicione o ID da consulta à lista (assumindo que o ID é uma propriedade
+            // chamada "id" na classe Consulta)
+            consultaIds.add(consulta.getId()); // Substitua "getId()" pelo método que retorna o ID da sua consulta
         }
 
         return consultaIds;

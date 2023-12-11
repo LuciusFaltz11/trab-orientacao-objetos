@@ -1,3 +1,8 @@
+/*
+João Augusto Pilato de Castro- 202235006
+Lucius Faltz Lassarote da Silva - 202235027
+Luíza Machado Costa Nascimento - 202235021
+*/
 package com.poo.projeto_hospital.controller;
 
 import java.awt.event.ActionEvent;
@@ -92,7 +97,6 @@ public class CriarContaLogin implements ActionListener {
 
         if (pacientePersistence.findByEmail(novo.getEmail()) != null)
             throw new RuntimeException("Email já cadastrado!");
-
 
         pacientes.add(novo);
         pacientePersistence.save(pacientes);

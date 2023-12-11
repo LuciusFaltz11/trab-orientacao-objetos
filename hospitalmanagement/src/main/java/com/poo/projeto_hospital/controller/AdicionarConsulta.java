@@ -1,3 +1,8 @@
+/*
+João Augusto Pilato de Castro- 202235006
+Lucius Faltz Lassarote da Silva - 202235027
+Luíza Machado Costa Nascimento - 202235021
+*/
 package com.poo.projeto_hospital.controller;
 
 import java.awt.event.ActionEvent;
@@ -14,6 +19,6 @@ public class AdicionarConsulta implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //tela.addConsulta();
+        // tela.addConsulta();
     }
 }

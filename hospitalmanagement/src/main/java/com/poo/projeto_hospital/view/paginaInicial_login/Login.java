@@ -1,7 +1,8 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+João Augusto Pilato de Castro- 202235006
+Lucius Faltz Lassarote da Silva - 202235027
+Luíza Machado Costa Nascimento - 202235021
+*/
 package com.poo.projeto_hospital.view.paginaInicial_login;
 
 import java.awt.BorderLayout;
@@ -84,7 +85,6 @@ public class Login extends FormatacaoInicial {
                 finalFrame.dispose();
             }
         });
-
 
         frame.getContentPane().add(botaoPanel, BorderLayout.PAGE_END);
     }

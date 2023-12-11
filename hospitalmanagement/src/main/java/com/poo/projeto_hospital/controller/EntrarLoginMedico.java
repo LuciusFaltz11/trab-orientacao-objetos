@@ -1,3 +1,8 @@
+/*
+João Augusto Pilato de Castro- 202235006
+Lucius Faltz Lassarote da Silva - 202235027
+Luíza Machado Costa Nascimento - 202235021
+*/
 package com.poo.projeto_hospital.controller;
 
 import java.awt.event.ActionEvent;
@@ -34,10 +39,10 @@ public class EntrarLoginMedico implements ActionListener {
         List<UsuarioMedico> medicos = medicoPersistence.findAll();
         for (UsuarioMedico medico : medicos) {
             if (medico.getEmail().equals(email) && Arrays.equals(medico.getSenha(), senha)) {
-                //JOptionPane.showMessageDialog(null, "Login realizado com sucesso!", "Login",
-                       // JOptionPane.INFORMATION_MESSAGE);
+                // JOptionPane.showMessageDialog(null, "Login realizado com sucesso!", "Login",
+                // JOptionPane.INFORMATION_MESSAGE);
                 loginMedico.getFrame().dispose();
-                String CPF= medico.getCpf();
+                String CPF = medico.getCpf();
                 TelaAgenda telaAgenda = new TelaAgenda(CPF);
                 telaAgenda.desenha();
                 return;

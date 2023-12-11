@@ -1,3 +1,8 @@
+/*
+João Augusto Pilato de Castro- 202235006
+Lucius Faltz Lassarote da Silva - 202235027
+Luíza Machado Costa Nascimento - 202235021
+*/
 package com.poo.projeto_hospital.view;
 
 import java.awt.BorderLayout;
@@ -22,21 +27,19 @@ import javax.swing.SwingConstants;
 import com.poo.projeto_hospital.controller.GerenciarConsultas;
 import com.poo.projeto_hospital.model.Consulta;
 
-
 public class Laudo extends JFrame {
-
 
     private Consulta consulta;
     private JFrame frame;
     private JTextArea textArea;
-    
+
     public Laudo(Consulta consulta) {
         this.consulta = consulta;
         Tela();
     }
 
-    public void Tela () {
-         // 1. Create JFrame
+    public void Tela() {
+        // 1. Create JFrame
         frame = new JFrame("Laudo");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -60,7 +63,7 @@ public class Laudo extends JFrame {
         btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               // consulta.setLaudo(getText());
+                // consulta.setLaudo(getText());
             }
         });
 
@@ -101,8 +104,7 @@ public class Laudo extends JFrame {
 
     public static void main(String[] args) {
         Laudo laudo = new Laudo(null);
-        
-    }
 
+    }
 
 }

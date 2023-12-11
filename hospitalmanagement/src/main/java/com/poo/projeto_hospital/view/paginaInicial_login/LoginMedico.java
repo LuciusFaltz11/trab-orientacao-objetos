@@ -1,3 +1,8 @@
+/*
+João Augusto Pilato de Castro- 202235006
+Lucius Faltz Lassarote da Silva - 202235027
+Luíza Machado Costa Nascimento - 202235021
+*/
 package com.poo.projeto_hospital.view.paginaInicial_login;
 
 import com.poo.projeto_hospital.controller.EntrarLoginMedico;
@@ -83,7 +88,6 @@ public class LoginMedico extends FormatacaoInicial {
             }
         });
 
-        
         frame.getContentPane().add(botaoPanel, BorderLayout.PAGE_END);
 
     }

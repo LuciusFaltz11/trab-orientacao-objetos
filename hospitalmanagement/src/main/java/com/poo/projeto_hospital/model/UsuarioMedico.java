@@ -1,3 +1,8 @@
+/*
+João Augusto Pilato de Castro- 202235006
+Lucius Faltz Lassarote da Silva - 202235027
+Luíza Machado Costa Nascimento - 202235021
+*/
 package com.poo.projeto_hospital.model;
 
 public class UsuarioMedico extends Medico {
@@ -34,6 +39,9 @@ public class UsuarioMedico extends Medico {
 
     @Override
     public String toString() {
-        return String.format("Nome: %s\nCPF: %s\nData de Nascimento: %s\nCidade: %s\nEstado: %s\nSexo: %s\nEspecialidade: %s\nInicio do Expediente: %s\nFinal do Expediente: %s\n", getNome(), getCpf(), getDataNascimento(), getCidade(), getEstado(), getSexo(), getEspecialidade(), getInicioExpediente(), getFinalExpediente());
+        return String.format(
+                "Nome: %s\nCPF: %s\nData de Nascimento: %s\nCidade: %s\nEstado: %s\nSexo: %s\nEspecialidade: %s\nInicio do Expediente: %s\nFinal do Expediente: %s\n",
+                getNome(), getCpf(), getDataNascimento(), getCidade(), getEstado(), getSexo(), getEspecialidade(),
+                getInicioExpediente(), getFinalExpediente());
     }
 }

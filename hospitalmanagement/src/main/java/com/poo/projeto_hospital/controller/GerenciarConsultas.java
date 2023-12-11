@@ -1,3 +1,8 @@
+/*
+João Augusto Pilato de Castro- 202235006
+Lucius Faltz Lassarote da Silva - 202235027
+Luíza Machado Costa Nascimento - 202235021
+*/
 package com.poo.projeto_hospital.controller;
 
 import java.awt.event.WindowEvent;
@@ -15,7 +20,7 @@ import com.poo.projeto_hospital.persistence.Persistence;
 import com.poo.projeto_hospital.view.TelaAgenda;
 import com.poo.projeto_hospital.view.paginaInicial_login.Login;
 
-public class GerenciarConsultas implements WindowListener{
+public class GerenciarConsultas implements WindowListener {
     private final TelaAgenda tela;
 
     public GerenciarConsultas(TelaAgenda tela) {
@@ -24,8 +29,7 @@ public class GerenciarConsultas implements WindowListener{
 
     @Override
     public void windowOpened(WindowEvent e) {
-        
-         
+
         ConsultaPersistence consultaPersistence = new ConsultaPersistence();
         List<Consulta> all = consultaPersistence.findByMedico(tela.getCpfMedico());
         Collections.sort(all, new Comparator<Consulta>() {
@@ -40,7 +44,6 @@ public class GerenciarConsultas implements WindowListener{
             }
         });
         tela.carregaConsultas(all);
-        
 
     }
 
@@ -48,20 +51,21 @@ public class GerenciarConsultas implements WindowListener{
     public void windowClosing(WindowEvent e) {
         Persistence<Consulta> consultaPersistence = new ConsultaPersistence();
         List<Consulta> all = consultaPersistence.findAll();
-        
+
         for (Consulta consulta : tela.listaConsultas()) {
-            for(Consulta aux : all){
-                if(consulta.getCpfPaciente() == aux.getCpfPaciente() && consulta.getCpfMedico() == aux.getCpfMedico() ){
+            for (Consulta aux : all) {
+                if (consulta.getCpfPaciente() == aux.getCpfPaciente()
+                        && consulta.getCpfMedico() == aux.getCpfMedico()) {
                     all.remove(consulta);
                     all.add(consulta);
                     break;
                 }
-                
+
             }
         }
         Login login = new Login();
         login.createAndShowGUI();
-       
+
     }
 
     @Override

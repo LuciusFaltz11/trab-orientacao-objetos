@@ -1,3 +1,8 @@
+/*
+João Augusto Pilato de Castro- 202235006
+Lucius Faltz Lassarote da Silva - 202235027
+Luíza Machado Costa Nascimento - 202235021
+*/
 package com.poo.projeto_hospital.model;
 
 import com.poo.projeto_hospital.persistence.MedicoPersistence;
@@ -11,10 +16,10 @@ public class Consulta {
     private String horario;
     private int duracaoMinutos;
     private String descricao;
-    
 
     // validar os parametros do construtor (data e horario)
-    public Consulta(int id, String cpfPaciente, String cpfMedico, String data, String horario, int duracao, String descricao) {
+    public Consulta(int id, String cpfPaciente, String cpfMedico, String data, String horario, int duracao,
+            String descricao) {
         this.id = id;
         this.cpfPaciente = cpfPaciente;
         this.cpfMedico = cpfMedico;
@@ -127,5 +132,4 @@ public class Consulta {
                 + getEspecialidadeMedico() + ".";
     }
 
-    
 }
